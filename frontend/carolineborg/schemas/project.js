@@ -10,8 +10,18 @@ export default {
       type: 'string',
     },
     {
-      name: 'date',
-      type: 'datetime',
+      name: 'thumbnail',
+      type: 'image',
+    },
+    {
+      name: 'creator',
+      title: 'Creator',
+      type: 'reference',
+      to: { type: 'creator' },
+    },
+    {
+      name: 'secondary_byline',
+      type: 'string',
     },
     {
       name: 'intro',
@@ -22,6 +32,10 @@ export default {
       title: 'Images',
       type: 'array',
       of: [{ type: 'image' }],
+    },
+    {
+      name: 'quote',
+      type: 'text',
     },
     {
       name: 'layout',

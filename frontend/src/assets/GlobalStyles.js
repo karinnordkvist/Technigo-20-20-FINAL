@@ -51,5 +51,5 @@ a {
 export const InnerWrapper = styled.div`
   width: 60vw;
   max-width: 800px;
-  margin: auto;
+  margin: 60px auto;
 `;

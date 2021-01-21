@@ -1,6 +1,6 @@
 import React from 'react';
-import styled from 'styled-components';
-import { Link } from 'react-router-dom';
+import styled from 'styled-components/macro';
+import { NavLink, Link } from 'react-router-dom';
 
 // Styling
 import { InnerWrapper } from '../assets/GlobalStyles';
@@ -13,23 +13,29 @@ export const Navigation = () => {
       <LinkWrapper>
         <InnerLinkWrapperLeft>
           <div>
-            <Link to="/">
+            <NavLink to="/">
               <NavImage src="./images/cb.png" />
-            </Link>
+            </NavLink>
           </div>
           <div>
-            <a>Stories</a>
+            <NavLink to="/stories" activeStyle={{ fontStyle: 'italic' }}>
+              Stories
+            </NavLink>
           </div>
         </InnerLinkWrapperLeft>
         <InnerLinkWrapperRight>
           <div>
-            <Link to="/food">Food</Link>
+            <NavLink to="/food" activeStyle={{ fontStyle: 'italic' }}>
+              Food
+            </NavLink>
           </div>
           <div>
             <a>Projects</a>
           </div>
           <div>
-            <Link to={'/contact'}>Contact</Link>
+            <NavLink to="/contact" activeStyle={{ fontStyle: 'italic' }}>
+              Contact
+            </NavLink>
           </div>
         </InnerLinkWrapperRight>
       </LinkWrapper>
