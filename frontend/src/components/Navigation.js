@@ -9,7 +9,7 @@ import { InnerWrapper } from '../assets/GlobalStyles';
 
 export const Navigation = () => {
   return (
-    <InnerWrapper>
+    <NavInnerWrapper>
       <LinkWrapper>
         <InnerLinkWrapperLeft>
           <div>
@@ -18,14 +18,20 @@ export const Navigation = () => {
             </NavLink>
           </div>
           <div>
-            <NavLink to="/stories" activeStyle={{ fontStyle: 'italic' }}>
+            <NavLink
+              to="/stories"
+              activeStyle={{ fontStyle: 'italic', letterSpacing: '.4px' }}
+            >
               Stories
             </NavLink>
           </div>
         </InnerLinkWrapperLeft>
         <InnerLinkWrapperRight>
           <div>
-            <NavLink to="/food" activeStyle={{ fontStyle: 'italic' }}>
+            <NavLink
+              to="/food"
+              activeStyle={{ fontStyle: 'italic', letterSpacing: '.4px' }}
+            >
               Food
             </NavLink>
           </div>
@@ -33,17 +39,24 @@ export const Navigation = () => {
             <a>Projects</a>
           </div>
           <div>
-            <NavLink to="/contact" activeStyle={{ fontStyle: 'italic' }}>
+            <NavLink
+              to="/contact"
+              activeStyle={{ fontStyle: 'italic', letterSpacing: '.4px' }}
+            >
               Contact
             </NavLink>
           </div>
         </InnerLinkWrapperRight>
       </LinkWrapper>
-    </InnerWrapper>
+    </NavInnerWrapper>
   );
 };
 
 // ----------------------------------------------------------------
+const NavInnerWrapper = styled(InnerWrapper)`
+  z-index: 5;
+`;
+
 const LinkWrapper = styled.div`
   width: 100%;
   display: flex;

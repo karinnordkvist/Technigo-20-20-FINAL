@@ -40,6 +40,7 @@ a {
 
   &:hover {
     font-style: italic;
+    letter-spacing: 0.4px;
   }
 }
 `;
@@ -52,4 +53,5 @@ export const InnerWrapper = styled.div`
   width: 60vw;
   max-width: 800px;
   margin: 60px auto;
+  z-index: 2;
 `;
