@@ -1,29 +1,38 @@
 import React from 'react';
-import {
-  BrowserRouter as Router,
-  Route,
-  Switch,
-  Redirect,
-} from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import styled from 'styled-components';
+
+// Styling
 import GlobalStyles from './assets/GlobalStyles';
+
+// Components
+import { Navigation } from './components/Navigation';
+import { Home } from './components/Home';
+import { Contact } from './components/Contact';
+import { Food } from './components/Food';
+
+// ----------------------------------------------------------------
 
 export const App = () => {
   return (
     <Router>
       <GlobalStyles />
-      <Switch>
-        <Route path="/" exact>
-          <p>Find me in src/app.js!</p>
-          <Text>Hello</Text>
-        </Route>
-      </Switch>
+      <OuterWrapper>
+        <Navigation />
+        <Switch>
+          <Route component={Home} path="/" exact />
+          <Route component={Contact} path="/contact" />
+          <Route component={Food} path="/food" />
+        </Switch>
+      </OuterWrapper>
     </Router>
   );
 };
 
-const Text = styled.p`
-  font-family: 'Pearl';
-  font-size: 80px;
-  text-transform: uppercase;
+// ----------------------------------------------------------------
+const OuterWrapper = styled.div`
+  width: 100%;
+  height: 100%;
+  padding: 50px;
+  background: #fcfbf8;
 `;

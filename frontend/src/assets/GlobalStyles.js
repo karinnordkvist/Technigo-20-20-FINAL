@@ -1,4 +1,4 @@
-import { createGlobalStyle } from 'styled-components/macro';
+import styled, { createGlobalStyle } from 'styled-components/macro';
 
 export default createGlobalStyle`
 * {
@@ -11,10 +11,15 @@ export default createGlobalStyle`
   text-rendering: optimizeLegibility;
 }
 
+html {
+  width: 100%;
+  height: 100%;
+}
+
 body {
   margin: 0;
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
@@ -22,8 +27,29 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+#root {
+  width: 100%;
+  height: 100%;
 }
+
+a {
+  font-family: 'Fraunces';
+  text-decoration: none;
+  color: #000;
+  cursor: pointer;
+
+  &:hover {
+    font-style: italic;
+  }
+}
+`;
+
+// ----------------------------------------------------------------
+
+// Other global styling components
+
+export const InnerWrapper = styled.div`
+  width: 60vw;
+  max-width: 800px;
+  margin: auto;
 `;
