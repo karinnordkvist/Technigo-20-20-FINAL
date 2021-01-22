@@ -1,17 +1,24 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components/macro';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import sanityClient from '../client.js';
 
 // Styling
 import { InnerWrapper } from '../assets/GlobalStyles';
 
+// Reducers
+import { location } from '../reducers/location';
+
 // ----------------------------------------------------------------
 
 export const Stories = () => {
+  const currentLocation = useLocation();
+  const dispatch = useDispatch();
   const [storyData, setStoryData] = useState(null);
 
   useEffect(() => {
+    dispatch(location.actions.setLocation(currentLocation.pathname));
     sanityClient
       .fetch(
         `*[_type == 'project']|order(_createdAt desc){title, slug, "thumbnail":thumbnail.asset->{url, tags, title}, date, intro, "images": images[] {"image":asset->{tags, url}}.image, layout }`

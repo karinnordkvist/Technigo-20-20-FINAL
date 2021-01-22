@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components/macro';
-import { NavLink, Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 // Styling
 import { InnerWrapper } from '../assets/GlobalStyles';
@@ -8,43 +9,51 @@ import { InnerWrapper } from '../assets/GlobalStyles';
 // ----------------------------------------------------------------
 
 export const Navigation = () => {
+  const currentLocation = useSelector((store) => store.location.location);
+  console.log(currentLocation);
+
   return (
     <NavInnerWrapper>
       <LinkWrapper>
         <InnerLinkWrapperLeft>
           <div>
-            <NavLink to="/">
+            <NavButton to="/" location={currentLocation}>
               <NavImage src="./images/cb.png" />
-            </NavLink>
+            </NavButton>
           </div>
           <div>
-            <NavLink
+            <NavButton
               to="/stories"
               activeStyle={{ fontStyle: 'italic', letterSpacing: '.4px' }}
+              location={currentLocation}
             >
               Stories
-            </NavLink>
+            </NavButton>
           </div>
         </InnerLinkWrapperLeft>
         <InnerLinkWrapperRight>
           <div>
-            <NavLink
+            <NavButton
               to="/food"
               activeStyle={{ fontStyle: 'italic', letterSpacing: '.4px' }}
+              location={currentLocation}
             >
               Food
-            </NavLink>
+            </NavButton>
           </div>
           <div>
-            <a>Projects</a>
+            <NavButton to="/stories" location={currentLocation}>
+              Projects
+            </NavButton>
           </div>
           <div>
-            <NavLink
+            <NavButton
               to="/contact"
               activeStyle={{ fontStyle: 'italic', letterSpacing: '.4px' }}
+              location={currentLocation}
             >
               Contact
-            </NavLink>
+            </NavButton>
           </div>
         </InnerLinkWrapperRight>
       </LinkWrapper>
@@ -58,7 +67,7 @@ const NavInnerWrapper = styled(InnerWrapper)`
   position: fixed;
   left: 0;
   right: 0;
-  top: 30px;
+  top: 0;
 `;
 
 const LinkWrapper = styled.div`
@@ -84,10 +93,16 @@ const InnerLinkWrapperRight = styled(InnerLinkWrapperLeft)`
   div {
     width: 80px;
     margin-left: 20px;
+    margin-right: 0;
     text-align: right;
   }
 `;
 
 const NavImage = styled.img`
   width: 20px;
+  filter: invert(1);
+`;
+
+const NavButton = styled(NavLink)`
+  color: ${(props) => (props.location === '/' ? '#fff' : '#000')};
 `;

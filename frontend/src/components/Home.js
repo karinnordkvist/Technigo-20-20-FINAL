@@ -1,26 +1,66 @@
 import React, { useState, useRef, useEffect } from 'react';
 import styled from 'styled-components/macro';
+import { useLocation } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+
+// Data
+import sanityClient from '../client.js';
 
 // Styling
 import { InnerWrapper } from '../assets/GlobalStyles';
+
+// Reducers
+import { location } from '../reducers/location';
 
 // ----------------------------------------------------------------
 
 export const Home = () => {
   const ref = useRef();
-  const [offsetTop, setOffsetTop] = useState();
+  const currentLocation = useLocation();
+  const dispatch = useDispatch();
+  // const [offsetTop, setOffsetTop] = useState();
+  const [projects, setProjects] = useState([]);
+  const [homeData, setHomeData] = useState(null);
 
   useEffect(() => {
-    setOffsetTop(ref.current.offsetTop);
-  }, [offsetTop]);
+    // Send current location to reducer
+    dispatch(location.actions.setLocation(currentLocation.pathname));
 
-  console.log(800 - offsetTop);
+    // Fetch all projects
+    sanityClient
+      .fetch(`*[_type == 'project']`)
+      .then((data) => setProjects(data))
+      .catch(console.error);
 
+    // Fetch all home-data
+    sanityClient
+      .fetch(
+        `*[_type == 'home']{ "hero_image":hero_image.asset->{url, tags, title, byline}, hero_title, hero_text}`
+      )
+      .then((data) => setHomeData(data[0]))
+      .catch(console.error);
+  }, []);
+
+  // console.log(projects);
+  // console.log(homeData);
+
+  // useEffect(() => {
+  //   setOffsetTop(ref.current.offsetTop);
+  // }, [offsetTop]);
+
+  if (!homeData) {
+    return (
+      <InnerWrapper>
+        <p>Loading...</p>
+      </InnerWrapper>
+    );
+  }
   return (
     <HomeOuterWrapper>
-      <HeroBG></HeroBG>
+      <HeroBG img={homeData.hero_image.url}></HeroBG>
       <HeroWrapper ref={ref}>
-        <HeroTitle>Caroline Borg</HeroTitle>
+        <HeroTitle>{homeData.hero_title}</HeroTitle>
+        <HeroSubtitle>{homeData.hero_text}</HeroSubtitle>
       </HeroWrapper>
 
       <InnerWrapper>
@@ -41,14 +81,23 @@ const HeroTitle = styled.h1`
   padding-top: 260px;
 `;
 
+const HeroSubtitle = styled.h3`
+  font-family: 'Pearl';
+  text-align: center;
+  color: #fff;
+  font-weight: normal;
+  margin-top: 10px;
+`;
+
 const HeroBG = styled.div`
   width: 100%;
   height: 800px;
   position: absolute;
   top: 0;
   left: 0;
-  background-image: url('https://cdn.sanity.io/images/yi8mv9iz/production/84b32277dff9f37579588d8c4717944249d4e4fd-1088x725.jpg');
+  background-image: url(${(props) => props.img});
   background-size: cover;
+  background-position: center;
   z-index: -1;
 `;
 

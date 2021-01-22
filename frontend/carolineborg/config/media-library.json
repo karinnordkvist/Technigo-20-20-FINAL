@@ -1,4 +1,12 @@
 {
   "theme": "light",
-  "themeChanges": {}
+  "themeChanges": {},
+  "customFields": [
+    {
+      "label": "Byline",
+      "name": "byline",
+      "placeholder": "No byline yet...",
+      "type": "textarea"
+    }
+  ]
 }

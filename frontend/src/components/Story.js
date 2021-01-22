@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components/macro';
 import { useParams, useHistory, useLocation } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 
 import sanityClient from '../client.js';
 
@@ -12,21 +13,27 @@ import {
   FlexWrapper,
 } from '../assets/GlobalStyles';
 
+// Reducers
+import { location } from '../reducers/location';
+
 // ----------------------------------------------------------------
 
 export const Story = () => {
+  const currentLocation = useLocation();
+  const dispatch = useDispatch();
   const { slug } = useParams();
   const [storyData, setStoryData] = useState(null);
 
   // For back-button & breadcrumbs
   const history = useHistory();
-  const location = useLocation();
-  const formattedLocation = location.pathname
+  const formattedLocation = currentLocation.pathname
     .substring(1)
     .replaceAll('/', ' · ');
 
   // Fetch story data
   useEffect(() => {
+    dispatch(location.actions.setLocation(currentLocation.pathname));
+
     sanityClient
       .fetch(
         `*[slug.current == "${slug}"]{_id, title, slug, "main_image":main_image.asset->{url, tags, title}, "thumbnail":thumbnail.asset->{url, tags, title}, creator, secondary_byline, intro, "images": images[] {"image":asset->{tags, url}}.image, quote, layout }`
@@ -45,7 +52,7 @@ export const Story = () => {
     );
   }
   return (
-    <InnerWrapper>
+    <StoryInnerWrapper>
       <FlexWrapper>
         <BackButton onClick={history.goBack}>Tillbaka</BackButton>
         <BreadCrumbs>{formattedLocation}</BreadCrumbs>
@@ -57,11 +64,15 @@ export const Story = () => {
         storyData.images.map((image, index) => (
           <StoryImage src={image.url} key={index} />
         ))}
-    </InnerWrapper>
+    </StoryInnerWrapper>
   );
 };
 
 // ----------------------------------------------------------------
+
+const StoryInnerWrapper = styled(InnerWrapper)`
+  margin: 100px auto;
+`;
 
 const MainImage = styled.img`
   margin-top: 50px;

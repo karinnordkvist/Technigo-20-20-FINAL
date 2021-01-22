@@ -5,6 +5,8 @@ import {
   Switch,
   Redirect,
 } from 'react-router-dom';
+import { Provider } from 'react-redux';
+import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import styled from 'styled-components/macro';
 
 // Styling
@@ -19,31 +21,42 @@ import { Contact } from './components/Contact';
 import { Food } from './components/Food';
 import { NotFound } from './components/NotFound';
 
+// Reducers
+import { location } from './reducers/location';
+
+// ----------------------------------------------------------------
+const reducer = combineReducers({
+  location: location.reducer,
+});
+
+const store = configureStore({ reducer });
 // ----------------------------------------------------------------
 
 export const App = () => {
   return (
-    <Router>
-      <GlobalStyles />
-      <OuterWrapper>
-        <Navigation />
-        <Switch>
-          <Route component={Home} path="/" exact />
-          <Route component={Story} path="/stories/:slug" />
-          <Route component={Stories} path="/stories" />
-          <Route component={Contact} path="/contact" />
-          <Route component={Food} path="/food" />
+    <Provider store={store}>
+      <Router>
+        <GlobalStyles />
+        <OuterWrapper>
+          <Navigation />
+          <Switch>
+            <Route component={Home} path="/" exact />
+            <Route component={Story} path="/stories/:slug" />
+            <Route component={Stories} path="/stories" />
+            <Route component={Contact} path="/contact" />
+            <Route component={Food} path="/food" />
 
-          {/* Route to 404-page */}
-          <Route exact path="/404">
-            <NotFound />
-          </Route>
+            {/* Route to 404-page */}
+            <Route exact path="/404">
+              <NotFound />
+            </Route>
 
-          {/* Redirect to 404-page */}
-          <Redirect to="/404" />
-        </Switch>
-      </OuterWrapper>
-    </Router>
+            {/* Redirect to 404-page */}
+            <Redirect to="/404" />
+          </Switch>
+        </OuterWrapper>
+      </Router>
+    </Provider>
   );
 };
 
