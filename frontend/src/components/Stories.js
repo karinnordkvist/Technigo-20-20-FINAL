@@ -31,18 +31,18 @@ export const Stories = () => {
         storyData.map((project) => {
           return (
             <StoryWrapper key={project.title}>
-              <ProjectThumbnail src={project.thumbnail.url} />
-              <ProjectTextWrapper>
+              <StoryThumbnail src={project.thumbnail.url} />
+              <StoryTextWrapper>
                 <StoryCategory>Story:</StoryCategory>
                 <Link
                   to={'/stories/' + project.slug.current}
                   key={project.slug.current}
                 >
-                  <ProjectTitle>{project.title}</ProjectTitle>
+                  <StoryTitle>{project.title}</StoryTitle>
                 </Link>
-                <ProjectIntro>{project.intro}</ProjectIntro>
-                <ProjectLink to="/stories">Link to the project</ProjectLink>
-              </ProjectTextWrapper>
+                <StoryIntro>{project.intro}</StoryIntro>
+                <StoryLink to="/stories">Link to the project</StoryLink>
+              </StoryTextWrapper>
             </StoryWrapper>
           );
         })}
@@ -51,7 +51,7 @@ export const Stories = () => {
 };
 
 const StoriesInnerWrapper = styled(InnerWrapper)`
-  padding-bottom: 50px;
+  padding: 50px 0;
 `;
 
 const StoriesIntro = styled.p`
@@ -68,37 +68,38 @@ const StoryWrapper = styled.div`
   margin: 20px 0;
 `;
 
+// Single story ----------------
 const StoryCategory = styled.p`
   font-family: 'Fraunces';
   font-style: italic;
   font-size: 14px;
 `;
 
-const ProjectThumbnail = styled.img`
-  width: 150px;
+const StoryThumbnail = styled.img`
+  width: 220px;
   height: 150px;
   object-fit: cover;
   max-width: 100%;
 `;
 
-const ProjectTextWrapper = styled.div`
+const StoryTextWrapper = styled.div`
   display: flex;
   flex-direction: column;
   margin-left: 50px;
 `;
 
-const ProjectTitle = styled.h2`
+const StoryTitle = styled.h2`
   font-family: 'Fraunces';
   font-weight: 300;
-  margin-top: 10px;
+  margin-top: 5px;
 `;
 
-const ProjectIntro = styled.p`
+const StoryIntro = styled.p`
   font-family: 'Fraunces';
   margin-top: 15px;
 `;
 
-const ProjectLink = styled(Link)`
+const StoryLink = styled(Link)`
   margin-top: 20px;
   font-size: 14px;
 `;

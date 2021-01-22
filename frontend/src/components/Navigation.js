@@ -55,6 +55,10 @@ export const Navigation = () => {
 // ----------------------------------------------------------------
 const NavInnerWrapper = styled(InnerWrapper)`
   z-index: 5;
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 30px;
 `;
 
 const LinkWrapper = styled.div`
