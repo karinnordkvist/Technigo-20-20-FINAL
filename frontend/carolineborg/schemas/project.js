@@ -8,11 +8,13 @@ export default {
     {
       name: 'title',
       type: 'string',
+      validation: (Rule) => Rule.required(),
     },
     {
       name: 'slug',
       title: 'Slug',
       type: 'slug',
+      validation: (Rule) => Rule.required(),
       options: {
         source: 'title',
         maxLength: 96,
@@ -21,6 +23,12 @@ export default {
     {
       name: 'thumbnail',
       type: 'image',
+      validation: (Rule) => Rule.required(),
+    },
+    {
+      name: 'main_image',
+      type: 'image',
+      validation: (Rule) => Rule.required(),
     },
     {
       name: 'creator',

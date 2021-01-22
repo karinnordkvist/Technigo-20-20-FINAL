@@ -14,42 +14,45 @@ export const Stories = () => {
   useEffect(() => {
     sanityClient
       .fetch(
-        `*[_type == 'project']{title, slug, "thumbnail":thumbnail.asset->{url, tags, title}, date, intro, "images": images[] {"image":asset->{tags, url}}.image, layout }`
+        `*[_type == 'project']|order(_createdAt desc){title, slug, "thumbnail":thumbnail.asset->{url, tags, title}, date, intro, "images": images[] {"image":asset->{tags, url}}.image, layout }`
       )
       .then((data) => setStoryData(data))
       .catch(console.error);
   }, []);
 
   return (
-    <InnerWrapper>
+    <StoriesInnerWrapper>
       <StoriesIntro>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Dictum
         consectetur ultrices turpis lectus. Amet commodo curabitur rutrum proin
-        pulvinar rhoncus semper donec. Sit integer morbi vestibulum felis. Mi
-        neque eget diam augue in.
+        pulvinar rhoncus semper donec. Sit integer morbi vestibulum felis.
       </StoriesIntro>
       {storyData &&
         storyData.map((project) => {
           return (
-            <ProjectWrapper key={project.title}>
+            <StoryWrapper key={project.title}>
               <ProjectThumbnail src={project.thumbnail.url} />
               <ProjectTextWrapper>
+                <StoryCategory>Story:</StoryCategory>
                 <Link
                   to={'/stories/' + project.slug.current}
                   key={project.slug.current}
                 >
-                  <StoryCategory>Story:</StoryCategory>
                   <ProjectTitle>{project.title}</ProjectTitle>
                 </Link>
                 <ProjectIntro>{project.intro}</ProjectIntro>
                 <ProjectLink to="/stories">Link to the project</ProjectLink>
               </ProjectTextWrapper>
-            </ProjectWrapper>
+            </StoryWrapper>
           );
         })}
-    </InnerWrapper>
+    </StoriesInnerWrapper>
   );
 };
+
+const StoriesInnerWrapper = styled(InnerWrapper)`
+  padding-bottom: 50px;
+`;
 
 const StoriesIntro = styled.p`
   font-family: 'Fraunces';
@@ -60,7 +63,7 @@ const StoriesIntro = styled.p`
   margin-bottom: 50px;
 `;
 
-const ProjectWrapper = styled.div`
+const StoryWrapper = styled.div`
   display: flex;
   margin: 20px 0;
 `;
@@ -95,4 +98,7 @@ const ProjectIntro = styled.p`
   margin-top: 15px;
 `;
 
-const ProjectLink = styled(Link)``;
+const ProjectLink = styled(Link)`
+  margin-top: 20px;
+  font-size: 14px;
+`;

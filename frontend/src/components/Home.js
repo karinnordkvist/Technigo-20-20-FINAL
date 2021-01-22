@@ -9,9 +9,7 @@ import { InnerWrapper } from '../assets/GlobalStyles';
 export const Home = () => {
   return (
     <HomeOuterWrapper>
-      <HomeHero>
-        <p>Hero</p>
-      </HomeHero>
+      <HomeHero></HomeHero>
       <InnerWrapper>
         <p>Home-page</p>
       </InnerWrapper>
@@ -23,7 +21,7 @@ const HomeOuterWrapper = styled.div``;
 
 const HomeHero = styled.div`
   width: 100%;
-  height: 400px;
+  height: 800px;
   position: absolute;
   top: 0;
   left: 0;

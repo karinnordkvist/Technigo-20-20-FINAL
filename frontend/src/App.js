@@ -1,5 +1,10 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+  Redirect,
+} from 'react-router-dom';
 import styled from 'styled-components/macro';
 
 // Styling
@@ -12,6 +17,7 @@ import { Story } from './components/Story';
 import { Stories } from './components/Stories';
 import { Contact } from './components/Contact';
 import { Food } from './components/Food';
+import { NotFound } from './components/NotFound';
 
 // ----------------------------------------------------------------
 
@@ -27,6 +33,14 @@ export const App = () => {
           <Route component={Stories} path="/stories" />
           <Route component={Contact} path="/contact" />
           <Route component={Food} path="/food" />
+
+          {/* Route to 404-page */}
+          <Route exact path="/404">
+            <NotFound />
+          </Route>
+
+          {/* Redirect to 404-page */}
+          <Redirect to="/404" />
         </Switch>
       </OuterWrapper>
     </Router>
@@ -38,6 +52,5 @@ const OuterWrapper = styled.div`
   width: 100%;
   height: 100%;
   padding: 50px;
-  background: #fcfbf8;
   z-index: -2;
 `;

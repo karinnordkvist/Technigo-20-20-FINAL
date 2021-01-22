@@ -20,6 +20,7 @@ body {
   margin: 0;
   width: 100%;
   height: 100%;
+  background: #fcfbf8;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
@@ -50,8 +51,33 @@ a {
 // Other global styling components
 
 export const InnerWrapper = styled.div`
-  width: 60vw;
+  width: 80vw;
   max-width: 800px;
   margin: 60px auto;
   z-index: 2;
+`;
+
+export const FlexWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+`;
+
+export const BackButton = styled.button`
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: 'Fraunces';
+
+  &:hover {
+    font-style: italic;
+    letter-spacing: 0.4px;
+  }
+`;
+
+export const BreadCrumbs = styled.p`
+  font-family: 'Fraunces';
+  font-style: italic;
+  font-size: 14px;
+  text-transform: capitalize;
 `;
