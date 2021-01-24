@@ -45,6 +45,14 @@ export default {
       type: 'text',
     },
     {
+      name: 'grids',
+      title: 'Image Grids',
+      description:
+        'Add 2 images and/or some text, and select a type of layout.',
+      type: 'array',
+      of: [{ type: 'grid' }],
+    },
+    {
       name: 'images',
       title: 'Images',
       type: 'array',
@@ -53,18 +61,6 @@ export default {
     {
       name: 'quote',
       type: 'text',
-    },
-    {
-      name: 'layout',
-      title: 'Layout',
-      type: 'string',
-      options: {
-        list: [
-          { value: 'grid-1', title: 'Grid 1' },
-          { value: 'grid-2', title: 'Grid 2' },
-          { value: 'grid-3', title: 'Grid 3' },
-        ],
-      },
     },
   ],
 };

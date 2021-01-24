@@ -36,7 +36,19 @@ export const Story = () => {
 
     sanityClient
       .fetch(
-        `*[slug.current == "${slug}"]{_id, title, slug, "main_image":main_image.asset->{url, tags, title}, "thumbnail":thumbnail.asset->{url, tags, title}, creator, secondary_byline, intro, "images": images[] {"image":asset->{tags, url}}.image, quote, layout }`
+        `*[slug.current == "${slug}"]{
+          _id, 
+          title, 
+          slug, 
+          "main_image":main_image.asset->{url, tags, title}, 
+          "thumbnail":thumbnail.asset->{url, tags, title}, 
+          creator, 
+          secondary_byline, 
+          intro, 
+          "grids": grids[]{"images":images[]{"image":asset->{tags, url}}.image, text, grid_type},
+          "images": images[] {"image":asset->{tags, url}}.image, 
+          quote, 
+         }`
       )
       .then((data) => setStoryData(data[0]))
       .catch(console.error);
@@ -60,10 +72,25 @@ export const Story = () => {
       <MainImage src={storyData.main_image.url} />
       <StoryTitle>{storyData.title}</StoryTitle>
       <StoryIntro>{storyData.intro}</StoryIntro>
-      {storyData.images &&
+      {storyData.grids &&
+        storyData.grids.map((grid, index) => {
+          console.log(grid.grid_type);
+          return (
+            <GridWrapper key={index}>
+              <GridImageWrapper gridType={grid.grid_type}>
+                {grid.images.map((image, index) => (
+                  <StoryImage src={image.url} key={index} />
+                ))}
+              </GridImageWrapper>
+              {grid.text && <GridText>{grid.text}</GridText>}
+            </GridWrapper>
+          );
+        })}
+
+      {/* {storyData.images &&z
         storyData.images.map((image, index) => (
           <StoryImage src={image.url} key={index} />
-        ))}
+        ))} */}
     </StoryInnerWrapper>
   );
 };
@@ -94,4 +121,23 @@ const StoryIntro = styled.p`
   font-family: 'Fraunces';
   text-align: center;
   margin-bottom: 50px;
+`;
+
+const GridWrapper = styled.div``;
+
+const GridImageWrapper = styled.div`
+  display: grid;
+  grid-template-columns: ${(props) =>
+    props.gridType == 'grid-2' ? '1fr 1fr' : '1fr'};
+  gap: 20px;
+  img {
+  }
+`;
+
+const GridText = styled.p`
+  font-size: 36px;
+  font-family: 'Fraunces';
+  text-align: center;
+  padding: 50px 0;
+  font-style: italic;
 `;

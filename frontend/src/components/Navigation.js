@@ -14,49 +14,44 @@ export const Navigation = () => {
 
   return (
     <NavInnerWrapper>
-      <LinkWrapper>
-        <InnerLinkWrapperLeft>
-          <div>
-            <NavButton to="/" location={currentLocation}>
+      <LinksOuterWrapper>
+        <Left>
+          <LinkWrapper location={currentLocation}>
+            <NavButton to="/">
               <NavImage src="./images/cb.png" />
             </NavButton>
-          </div>
-          <div>
+          </LinkWrapper>
+          <LinkWrapper location={currentLocation}>
             <NavButton
               to="/stories"
               activeStyle={{ fontStyle: 'italic', letterSpacing: '.4px' }}
-              location={currentLocation}
             >
               Stories
             </NavButton>
-          </div>
-        </InnerLinkWrapperLeft>
-        <InnerLinkWrapperRight>
-          <div>
+          </LinkWrapper>
+        </Left>
+        <Right>
+          <LinkWrapper location={currentLocation}>
             <NavButton
               to="/food"
               activeStyle={{ fontStyle: 'italic', letterSpacing: '.4px' }}
-              location={currentLocation}
             >
               Food
             </NavButton>
-          </div>
-          <div>
-            <NavButton to="/stories" location={currentLocation}>
-              Projects
-            </NavButton>
-          </div>
-          <div>
+          </LinkWrapper>
+          <LinkWrapper location={currentLocation}>
+            <NavButton to="/stories">Projects</NavButton>
+          </LinkWrapper>
+          <LinkWrapper location={currentLocation}>
             <NavButton
               to="/contact"
               activeStyle={{ fontStyle: 'italic', letterSpacing: '.4px' }}
-              location={currentLocation}
             >
               Contact
             </NavButton>
-          </div>
-        </InnerLinkWrapperRight>
-      </LinkWrapper>
+          </LinkWrapper>
+        </Right>
+      </LinksOuterWrapper>
     </NavInnerWrapper>
   );
 };
@@ -70,14 +65,14 @@ const NavInnerWrapper = styled(InnerWrapper)`
   top: 0;
 `;
 
-const LinkWrapper = styled.div`
+const LinksOuterWrapper = styled.div`
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
 `;
 
-const InnerLinkWrapperLeft = styled.div`
+const Left = styled.div`
   display: flex;
 
   div {
@@ -87,7 +82,7 @@ const InnerLinkWrapperLeft = styled.div`
   }
 `;
 
-const InnerLinkWrapperRight = styled(InnerLinkWrapperLeft)`
+const Right = styled(Left)`
   display: flex;
 
   div {
@@ -95,6 +90,15 @@ const InnerLinkWrapperRight = styled(InnerLinkWrapperLeft)`
     margin-left: 20px;
     margin-right: 0;
     text-align: right;
+  }
+`;
+
+const LinkWrapper = styled.div`
+  img {
+    filter: ${(props) => (props.location === '/' ? 'invert(1)' : 'invert(0)')};
+  }
+  a {
+    color: ${(props) => (props.location === '/' ? '#fff' : '#000')};
   }
 `;
 
