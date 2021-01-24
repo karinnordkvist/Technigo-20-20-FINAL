@@ -39,6 +39,12 @@ export const Home = () => {
       )
       .then((data) => setHomeData(data[0]))
       .catch(console.error);
+
+    sanityClient
+      .fetch(
+        `*[_type == 'recipe' || _type == 'project']| order(_createdAt desc)`
+      )
+      .then((data) => console.log(data[0]));
   }, []);
 
   // console.log(projects);
@@ -64,7 +70,14 @@ export const Home = () => {
       </HeroWrapper>
 
       <InnerWrapper>
-        <p>Below?</p>
+        <AboutImage src="" />
+        <AboutHeader>About</AboutHeader>
+        <AboutText>
+          “Lorem ipsum dolor sit amet, consectetur adipiscing elit. Dictum
+          consectetur ultrices turpis lectus. Amet commodo curabitur rutrum
+          proin pulvinar rhoncus semper donec. Sit integer morbi vestibulum
+          felis. Mi neque eget diam augue in.“
+        </AboutText>
       </InnerWrapper>
     </HomeOuterWrapper>
   );
@@ -104,4 +117,24 @@ const HeroBG = styled.div`
 const HeroWrapper = styled.div`
   /* background: red; */
   height: 750px;
+`;
+
+const AboutImage = styled.img`
+  width: 30vw;
+  margin: 50px auto;
+`;
+
+const AboutHeader = styled.h2`
+  font-family: 'Pearl';
+  font-weight: normal;
+  font-size: 20px;
+  text-align: center;
+  text-transform: uppercase;
+`;
+
+const AboutText = styled.p`
+  margin-top: 30px;
+  font-family: 'Fraunces';
+  font-size: 20px;
+  line-height: 1.6;
 `;

@@ -18,6 +18,7 @@ import { Home } from './components/Home';
 import { Story } from './components/Story';
 import { Stories } from './components/Stories';
 import { Contact } from './components/Contact';
+import { Recipe } from './components/Recipe';
 import { Food } from './components/Food';
 import { NotFound } from './components/NotFound';
 
@@ -44,6 +45,7 @@ export const App = () => {
             <Route component={Story} path="/stories/:slug" />
             <Route component={Stories} path="/stories" />
             <Route component={Contact} path="/contact" />
+            <Route component={Recipe} path="/food/:slug" />
             <Route component={Food} path="/food" />
 
             {/* Route to 404-page */}
