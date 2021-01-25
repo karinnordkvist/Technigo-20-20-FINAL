@@ -41,6 +41,9 @@ export default {
       name: 'thumbnail',
       type: 'image',
       validation: (Rule) => Rule.required(),
+      options: {
+        hotspot: true,
+      },
     },
     {
       name: 'creator',

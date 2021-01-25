@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useRef } from 'react';
 import styled from 'styled-components/macro';
 import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
@@ -9,8 +9,11 @@ import { InnerWrapper } from '../assets/GlobalStyles';
 // ----------------------------------------------------------------
 
 export const Navigation = () => {
+  const ref = useRef();
+  const [projectsActive, setProjectsActive] = useState(false);
+  const [storiesActive, setStoriesActive] = useState(false);
   const currentLocation = useSelector((store) => store.location.location);
-  console.log(currentLocation);
+  console.log(ref);
 
   return (
     <NavInnerWrapper>
@@ -21,17 +24,29 @@ export const Navigation = () => {
               <NavImage src="./images/cb.png" />
             </NavButton>
           </LinkWrapper>
-          <LinkWrapper location={currentLocation}>
+
+          <DropdownLinkWrapper
+            location={currentLocation}
+            onMouseEnter={() => setStoriesActive(true)}
+            onMouseLeave={() => setStoriesActive(false)}
+          >
             <NavButton
               to="/stories"
               activeStyle={{ fontStyle: 'italic', letterSpacing: '.4px' }}
             >
-              Stories
+              Stories <DownArrow>▼</DownArrow>
             </NavButton>
-          </LinkWrapper>
+            <Dropdown showing={storiesActive}>
+              <DropdownNavButton to="/stories">Projects</DropdownNavButton>
+              <DropdownNavButton to="/stories">Projects</DropdownNavButton>
+              <DropdownNavButton to="/stories">Projects</DropdownNavButton>
+              <DropdownNavButton to="/stories">Projects</DropdownNavButton>
+            </Dropdown>
+          </DropdownLinkWrapper>
         </Left>
+
         <Right>
-          <LinkWrapper location={currentLocation}>
+          <LinkWrapper location={currentLocation} ref={ref}>
             <NavButton
               to="/food"
               activeStyle={{ fontStyle: 'italic', letterSpacing: '.4px' }}
@@ -39,9 +54,23 @@ export const Navigation = () => {
               Food
             </NavButton>
           </LinkWrapper>
-          <LinkWrapper location={currentLocation}>
-            <NavButton to="/stories">Projects</NavButton>
-          </LinkWrapper>
+
+          <DropdownLinkWrapper
+            location={currentLocation}
+            onMouseEnter={() => setProjectsActive(true)}
+            onMouseLeave={() => setProjectsActive(false)}
+          >
+            <NavButton to="/stories" ref={ref}>
+              Projects <DownArrow>▼</DownArrow>
+            </NavButton>
+            <Dropdown showing={projectsActive}>
+              <DropdownNavButton to="/stories">Projects</DropdownNavButton>
+              <DropdownNavButton to="/stories">Projects</DropdownNavButton>
+              <DropdownNavButton to="/stories">Projects</DropdownNavButton>
+              <DropdownNavButton to="/stories">Projects</DropdownNavButton>
+            </Dropdown>
+          </DropdownLinkWrapper>
+
           <LinkWrapper location={currentLocation}>
             <NavButton
               to="/contact"
@@ -81,15 +110,26 @@ const Left = styled.div`
     text-align: left;
   }
 `;
+const NavButton = styled(NavLink)``;
+
+const DropdownNavButton = styled(NavButton)`
+  margin-left: 0;
+  text-align: left;
+  padding: 3px 0;
+`;
 
 const Right = styled(Left)`
   display: flex;
 
   div {
-    width: 80px;
+    width: 100px;
     margin-left: 20px;
     margin-right: 0;
     text-align: right;
+  }
+
+  ${DropdownNavButton} {
+    text-align: left;
   }
 `;
 
@@ -102,11 +142,25 @@ const LinkWrapper = styled.div`
   }
 `;
 
+const Dropdown = styled.div`
+  display: ${(props) => (props.showing ? 'flex' : 'none')};
+  position: absolute;
+  z-index: 5;
+  padding-top: 10px;
+  flex-direction: column;
+  align-items: flex-start;
+`;
+
+const DropdownLinkWrapper = styled(LinkWrapper)`
+  display: relative;
+`;
+
 const NavImage = styled.img`
   width: 20px;
   filter: invert(1);
 `;
 
-const NavButton = styled(NavLink)`
-  color: ${(props) => (props.location === '/' ? '#fff' : '#000')};
+const DownArrow = styled.span`
+  font-size: 6px;
+  margin-left: 2px;
 `;
