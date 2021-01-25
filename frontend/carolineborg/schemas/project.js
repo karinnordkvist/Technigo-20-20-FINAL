@@ -7,28 +7,19 @@ export default {
   fields: [
     {
       name: 'title',
+      title: 'Title*',
       type: 'string',
       validation: (Rule) => Rule.required(),
     },
     {
       name: 'slug',
-      title: 'Slug',
+      title: 'Slug*',
       type: 'slug',
       validation: (Rule) => Rule.required(),
       options: {
         source: 'title',
         maxLength: 96,
       },
-    },
-    {
-      name: 'thumbnail',
-      type: 'image',
-      validation: (Rule) => Rule.required(),
-    },
-    {
-      name: 'main_image',
-      type: 'image',
-      validation: (Rule) => Rule.required(),
     },
     {
       name: 'creator',
@@ -40,6 +31,24 @@ export default {
       name: 'secondary_byline',
       type: 'string',
     },
+    {
+      name: 'client',
+      title: 'Company / Client',
+      type: 'string',
+    },
+    {
+      name: 'thumbnail',
+      title: 'Thumbnail*',
+      type: 'image',
+      validation: (Rule) => Rule.required(),
+    },
+    {
+      name: 'main_image',
+      title: 'Main Image*',
+      type: 'image',
+      validation: (Rule) => Rule.required(),
+    },
+
     {
       name: 'intro',
       type: 'text',

@@ -35,7 +35,7 @@ export const Home = () => {
     // Fetch all home-data
     sanityClient
       .fetch(
-        `*[_type == 'home']{ "hero_image":hero_image.asset->{url, tags, title, byline}, hero_title, hero_text}`
+        `*[_type == 'home']{ "hero_image":hero_image.asset->{url, tags, title, byline}, hero_title, hero_text, intro_text}`
       )
       .then((data) => setHomeData(data[0]))
       .catch(console.error);
@@ -69,16 +69,16 @@ export const Home = () => {
         <HeroSubtitle>{homeData.hero_text}</HeroSubtitle>
       </HeroWrapper>
 
-      <InnerWrapper>
-        <AboutImage src="" />
+      <SectionWrapper>
+        {/* <AboutImage src="" /> */}
         <AboutHeader>About</AboutHeader>
-        <AboutText>
-          “Lorem ipsum dolor sit amet, consectetur adipiscing elit. Dictum
-          consectetur ultrices turpis lectus. Amet commodo curabitur rutrum
-          proin pulvinar rhoncus semper donec. Sit integer morbi vestibulum
-          felis. Mi neque eget diam augue in.“
-        </AboutText>
-      </InnerWrapper>
+        <AboutText>{homeData.intro_text}</AboutText>
+      </SectionWrapper>
+      <SectionWrapper>
+        {/* <AboutImage src="" /> */}
+        <AboutHeader>About</AboutHeader>
+        <AboutText>{homeData.intro_text}</AboutText>
+      </SectionWrapper>
     </HomeOuterWrapper>
   );
 };
@@ -104,7 +104,7 @@ const HeroSubtitle = styled.h3`
 
 const HeroBG = styled.div`
   width: 100%;
-  height: 800px;
+  height: 100vh;
   position: absolute;
   top: 0;
   left: 0;
@@ -117,6 +117,10 @@ const HeroBG = styled.div`
 const HeroWrapper = styled.div`
   /* background: red; */
   height: 750px;
+`;
+
+const SectionWrapper = styled(InnerWrapper)`
+  padding: 50px auto;
 `;
 
 const AboutImage = styled.img`
@@ -137,4 +141,5 @@ const AboutText = styled.p`
   font-family: 'Fraunces';
   font-size: 20px;
   line-height: 1.6;
+  text-align: center;
 `;

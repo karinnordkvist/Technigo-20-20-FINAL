@@ -76,8 +76,8 @@ export default {
     },
     {
       name: 'steps',
-      type: 'array',
       description: 'How to cook the recipe',
+      type: 'array',
       of: [{ type: 'string' }],
       validation: (Rule) => Rule.required(),
     },
