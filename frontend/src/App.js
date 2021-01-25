@@ -44,9 +44,9 @@ export const App = () => {
             <Route component={Home} path="/" exact />
             <Route component={Story} path="/stories/:slug" />
             <Route component={Stories} path="/stories" />
-            <Route component={Contact} path="/contact" />
             <Route component={Recipe} path="/food/:slug" />
             <Route component={Food} path="/food" />
+            <Route component={Contact} path="/contact" />
 
             {/* Route to 404-page */}
             <Route exact path="/404">

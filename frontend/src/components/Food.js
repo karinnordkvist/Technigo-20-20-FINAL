@@ -104,7 +104,7 @@ const FoodIntro = styled.p`
 const RecipesWrapper = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 20px;
+  gap: 50px 20px;
 `;
 
 const Recipe = styled.div`
@@ -115,6 +115,10 @@ const Recipe = styled.div`
 
 const RecipeThumbnail = styled.img`
   margin-bottom: 20px;
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  object-position: 50% 50%;
 `;
 
 const RecipeTitle = styled(Link)`

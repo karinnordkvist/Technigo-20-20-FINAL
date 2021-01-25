@@ -40,15 +40,13 @@ export const Home = () => {
       .then((data) => setHomeData(data[0]))
       .catch(console.error);
 
+    // Fetch most recently uploaded project/recipe
     sanityClient
       .fetch(
         `*[_type == 'recipe' || _type == 'project']| order(_createdAt desc)`
       )
       .then((data) => console.log(data[0]));
   }, []);
-
-  // console.log(projects);
-  // console.log(homeData);
 
   // useEffect(() => {
   //   setOffsetTop(ref.current.offsetTop);
@@ -74,16 +72,17 @@ export const Home = () => {
         <AboutHeader>About</AboutHeader>
         <AboutText>{homeData.intro_text}</AboutText>
       </SectionWrapper>
-      <SectionWrapper>
-        {/* <AboutImage src="" /> */}
-        <AboutHeader>About</AboutHeader>
-        <AboutText>{homeData.intro_text}</AboutText>
-      </SectionWrapper>
+      <SectionWrapper></SectionWrapper>
     </HomeOuterWrapper>
   );
 };
 
 const HomeOuterWrapper = styled.div``;
+
+const HeroWrapper = styled.div`
+  /* background: red; */
+  height: 100vh;
+`;
 
 const HeroTitle = styled.h1`
   font-family: 'Pearl';
@@ -114,11 +113,6 @@ const HeroBG = styled.div`
   z-index: -1;
 `;
 
-const HeroWrapper = styled.div`
-  /* background: red; */
-  height: 750px;
-`;
-
 const SectionWrapper = styled(InnerWrapper)`
   padding: 50px auto;
 `;
@@ -142,4 +136,5 @@ const AboutText = styled.p`
   font-size: 20px;
   line-height: 1.6;
   text-align: center;
+  font-style: italic;
 `;
