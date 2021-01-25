@@ -130,6 +130,7 @@ const Right = styled(Left)`
 
   ${DropdownNavButton} {
     text-align: left;
+    margin-left: 10px;
   }
 `;
 
