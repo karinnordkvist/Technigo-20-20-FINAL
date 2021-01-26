@@ -39,7 +39,8 @@ export const Story = () => {
         `*[slug.current == "${slug}"]{
           _id, 
           title, 
-          slug, 
+          slug,
+          tags, 
           "main_image":main_image.asset->{url, tags, title}, 
           "thumbnail":thumbnail.asset->{url, tags, title}, 
           creator, 

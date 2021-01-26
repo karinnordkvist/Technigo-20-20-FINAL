@@ -20,6 +20,7 @@ import { Stories } from './components/Stories';
 import { Contact } from './components/Contact';
 import { Recipe } from './components/Recipe';
 import { Food } from './components/Food';
+import { ListedProjects } from './components/ListedProjects';
 import { NotFound } from './components/NotFound';
 
 // Reducers
@@ -46,6 +47,7 @@ export const App = () => {
             <Route component={Stories} path="/stories" />
             <Route component={Recipe} path="/food/:slug" />
             <Route component={Food} path="/food" />
+            <Route component={ListedProjects} path="/projects" />
             <Route component={Contact} path="/contact" />
 
             {/* Route to 404-page */}

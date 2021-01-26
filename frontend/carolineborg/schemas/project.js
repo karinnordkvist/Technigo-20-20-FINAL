@@ -13,8 +13,8 @@ export default {
     },
     {
       name: 'slug',
-      title: 'Slug*',
       type: 'slug',
+      title: 'Slug*',
       validation: (Rule) => Rule.required(),
       options: {
         source: 'title',
@@ -23,8 +23,15 @@ export default {
     },
     {
       name: 'tags',
-      title: 'Tags*',
-      type: 'block',
+      title:
+        'Type of project* (tags: photography, styling, pr, editorial or motion)',
+      description:
+        'Add all tags needed and make sure you spell it right, in lowercase.',
+      type: 'array',
+      of: [{ type: 'string' }],
+      options: {
+        layout: 'tags',
+      },
       validation: (Rule) => Rule.required(),
     },
     {
@@ -35,6 +42,9 @@ export default {
     },
     {
       name: 'secondary_byline',
+      title: 'Secondary byline',
+      description:
+        'Add full name. If you want to add more than one person, separate the names with a comma.',
       type: 'string',
     },
     {
@@ -52,6 +62,7 @@ export default {
       name: 'main_image',
       title: 'Main Image*',
       type: 'image',
+      description: 'Horizontal orientation works best here.',
       validation: (Rule) => Rule.required(),
     },
 

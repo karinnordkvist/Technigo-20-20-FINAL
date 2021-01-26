@@ -1,7 +1,10 @@
 import React, { useState, useRef } from 'react';
 import styled from 'styled-components/macro';
-import { NavLink } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { NavLink, useHistory } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+
+// Reducer
+import { location } from '../reducers/location';
 
 // Styling
 import { InnerWrapper } from '../assets/GlobalStyles';
@@ -10,18 +13,23 @@ import { InnerWrapper } from '../assets/GlobalStyles';
 
 export const Navigation = () => {
   const ref = useRef();
+  const dispatch = useDispatch();
+  const history = useHistory();
   const [projectsActive, setProjectsActive] = useState(false);
   const [storiesActive, setStoriesActive] = useState(false);
   const currentLocation = useSelector((store) => store.location.location);
-  console.log(ref);
 
+  const onClickHandler = (value) => {
+    dispatch(location.actions.setProjectCategory(value));
+    history.push('/projects');
+  };
   return (
     <NavInnerWrapper>
       <LinksOuterWrapper>
         <Left>
           <LinkWrapper location={currentLocation}>
             <NavButton to="/">
-              <NavImage src="./images/cb.png" />
+              <NavImage src={process.env.PUBLIC_URL + '/images/cb.png'} />
             </NavButton>
           </LinkWrapper>
 
@@ -37,16 +45,42 @@ export const Navigation = () => {
               Stories <DownArrow>▼</DownArrow>
             </NavButton>
             <Dropdown showing={storiesActive}>
-              <DropdownNavButton to="/stories">Projects</DropdownNavButton>
-              <DropdownNavButton to="/stories">Projects</DropdownNavButton>
-              <DropdownNavButton to="/stories">Projects</DropdownNavButton>
-              <DropdownNavButton to="/stories">Projects</DropdownNavButton>
+              <StoriesDropdownButton
+                location={currentLocation}
+                onClick={() => onClickHandler('photography')}
+              >
+                Photography
+              </StoriesDropdownButton>
+              <StoriesDropdownButton
+                location={currentLocation}
+                onClick={() => onClickHandler('pr')}
+              >
+                PR
+              </StoriesDropdownButton>
+              <StoriesDropdownButton
+                location={currentLocation}
+                onClick={() => onClickHandler('styling')}
+              >
+                Styling
+              </StoriesDropdownButton>
+              <StoriesDropdownButton
+                location={currentLocation}
+                onClick={() => onClickHandler('editorial')}
+              >
+                Editorial
+              </StoriesDropdownButton>
+              <StoriesDropdownButton
+                location={currentLocation}
+                onClick={() => onClickHandler('motion')}
+              >
+                Motion
+              </StoriesDropdownButton>
             </Dropdown>
           </DropdownLinkWrapper>
         </Left>
 
         <Right>
-          <LinkWrapper location={currentLocation} ref={ref}>
+          <LinkWrapper location={currentLocation}>
             <NavButton
               to="/food"
               activeStyle={{ fontStyle: 'italic', letterSpacing: '.4px' }}
@@ -60,14 +94,50 @@ export const Navigation = () => {
             onMouseEnter={() => setProjectsActive(true)}
             onMouseLeave={() => setProjectsActive(false)}
           >
-            <NavButton to="/stories" ref={ref}>
+            <NavButton
+              to="/projects"
+              activeStyle={{ fontStyle: 'italic', letterSpacing: '.4px' }}
+              onClick={() => onClickHandler('')}
+            >
               Projects <DownArrow>▼</DownArrow>
             </NavButton>
             <Dropdown showing={projectsActive}>
-              <DropdownNavButton to="/stories">Projects</DropdownNavButton>
-              <DropdownNavButton to="/stories">Projects</DropdownNavButton>
-              <DropdownNavButton to="/stories">Projects</DropdownNavButton>
-              <DropdownNavButton to="/stories">Projects</DropdownNavButton>
+              <DropdownButton
+                location={currentLocation}
+                onClick={() => onClickHandler('')}
+              >
+                All
+              </DropdownButton>
+              <DropdownButton
+                location={currentLocation}
+                onClick={() => onClickHandler('photography')}
+              >
+                Photography
+              </DropdownButton>
+              <DropdownButton
+                location={currentLocation}
+                onClick={() => onClickHandler('pr')}
+              >
+                PR
+              </DropdownButton>
+              <DropdownButton
+                location={currentLocation}
+                onClick={() => onClickHandler('styling')}
+              >
+                Styling
+              </DropdownButton>
+              <DropdownButton
+                location={currentLocation}
+                onClick={() => onClickHandler('editorial')}
+              >
+                Editorial
+              </DropdownButton>
+              <DropdownButton
+                location={currentLocation}
+                onClick={() => onClickHandler('motion')}
+              >
+                Motion
+              </DropdownButton>
             </Dropdown>
           </DropdownLinkWrapper>
 
@@ -164,4 +234,25 @@ const NavImage = styled.img`
 const DownArrow = styled.span`
   font-size: 6px;
   margin-left: 2px;
+`;
+
+const DropdownButton = styled.button`
+  font-family: 'Fraunces';
+  color: ${(props) => (props.location === '/' ? '#fff' : '#000')};
+  font-size: 16px;
+  border: none;
+  background: none;
+  margin-left: 10px;
+  text-align: left;
+  padding: 3px 0;
+  cursor: pointer;
+
+  &:hover {
+    font-style: italic;
+    letter-spacing: '.4px';
+  }
+`;
+
+const StoriesDropdownButton = styled(DropdownButton)`
+  margin-left: 0;
 `;

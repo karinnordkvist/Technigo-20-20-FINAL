@@ -35,7 +35,6 @@ export default {
       name: 'portions',
       title: 'Portions/Amount',
       type: 'string',
-      validation: (Rule) => Rule.required(),
     },
     {
       name: 'thumbnail',
