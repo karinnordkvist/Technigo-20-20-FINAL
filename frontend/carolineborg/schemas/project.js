@@ -22,6 +22,12 @@ export default {
       },
     },
     {
+      name: 'tags',
+      title: 'Tags*',
+      type: 'block',
+      validation: (Rule) => Rule.required(),
+    },
+    {
       name: 'creator',
       title: 'Creator',
       type: 'reference',
