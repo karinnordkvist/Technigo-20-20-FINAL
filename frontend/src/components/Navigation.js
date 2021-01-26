@@ -18,6 +18,7 @@ export const Navigation = () => {
   const [projectsActive, setProjectsActive] = useState(false);
   const [storiesActive, setStoriesActive] = useState(false);
   const currentLocation = useSelector((store) => store.location.location);
+  const tags = ['all', 'photography', 'pr', 'styling', 'editorial', 'motion'];
 
   const onClickHandler = (value) => {
     dispatch(location.actions.setProjectCategory(value));
@@ -49,31 +50,19 @@ export const Navigation = () => {
                 location={currentLocation}
                 onClick={() => onClickHandler('photography')}
               >
-                Photography
+                Newbie SS21
               </StoriesDropdownButton>
               <StoriesDropdownButton
                 location={currentLocation}
                 onClick={() => onClickHandler('pr')}
               >
-                PR
+                Allt i Hemmet - Jul
               </StoriesDropdownButton>
               <StoriesDropdownButton
                 location={currentLocation}
                 onClick={() => onClickHandler('styling')}
               >
-                Styling
-              </StoriesDropdownButton>
-              <StoriesDropdownButton
-                location={currentLocation}
-                onClick={() => onClickHandler('editorial')}
-              >
-                Editorial
-              </StoriesDropdownButton>
-              <StoriesDropdownButton
-                location={currentLocation}
-                onClick={() => onClickHandler('motion')}
-              >
-                Motion
+                Gustavienne
               </StoriesDropdownButton>
             </Dropdown>
           </DropdownLinkWrapper>
@@ -84,6 +73,7 @@ export const Navigation = () => {
             <NavButton
               to="/food"
               activeStyle={{ fontStyle: 'italic', letterSpacing: '.4px' }}
+              style={{ marginRight: '30px' }}
             >
               Food
             </NavButton>
@@ -102,42 +92,17 @@ export const Navigation = () => {
               Projects <DownArrow>▼</DownArrow>
             </NavButton>
             <Dropdown showing={projectsActive}>
-              <DropdownButton
-                location={currentLocation}
-                onClick={() => onClickHandler('')}
-              >
-                All
-              </DropdownButton>
-              <DropdownButton
-                location={currentLocation}
-                onClick={() => onClickHandler('photography')}
-              >
-                Photography
-              </DropdownButton>
-              <DropdownButton
-                location={currentLocation}
-                onClick={() => onClickHandler('pr')}
-              >
-                PR
-              </DropdownButton>
-              <DropdownButton
-                location={currentLocation}
-                onClick={() => onClickHandler('styling')}
-              >
-                Styling
-              </DropdownButton>
-              <DropdownButton
-                location={currentLocation}
-                onClick={() => onClickHandler('editorial')}
-              >
-                Editorial
-              </DropdownButton>
-              <DropdownButton
-                location={currentLocation}
-                onClick={() => onClickHandler('motion')}
-              >
-                Motion
-              </DropdownButton>
+              {tags &&
+                tags.map((tag) => {
+                  return (
+                    <DropdownButton
+                      location={currentLocation}
+                      onClick={() => onClickHandler(tag === 'all' ? '' : tag)}
+                    >
+                      {tag}
+                    </DropdownButton>
+                  );
+                })}
             </Dropdown>
           </DropdownLinkWrapper>
 
@@ -192,7 +157,7 @@ const Right = styled(Left)`
   display: flex;
 
   div {
-    width: 100px;
+    width: 130px;
     margin-left: 20px;
     margin-right: 0;
     text-align: right;
@@ -242,9 +207,10 @@ const DropdownButton = styled.button`
   font-size: 16px;
   border: none;
   background: none;
-  margin-left: 10px;
+  margin-left: 38px;
   text-align: left;
-  padding: 3px 0;
+  padding: 4px 0;
+  text-transform: uppercase;
   cursor: pointer;
 
   &:hover {
@@ -255,4 +221,5 @@ const DropdownButton = styled.button`
 
 const StoriesDropdownButton = styled(DropdownButton)`
   margin-left: 0;
+  width: 400px;
 `;

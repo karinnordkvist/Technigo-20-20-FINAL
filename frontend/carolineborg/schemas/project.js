@@ -12,6 +12,13 @@ export default {
       validation: (Rule) => Rule.required(),
     },
     {
+      name: 'selected_story',
+      title: 'Feature in Stories',
+      description:
+        'Check this box if you want this project to be featured on the Stories page.',
+      type: 'boolean',
+    },
+    {
       name: 'slug',
       type: 'slug',
       title: 'Slug*',
@@ -26,7 +33,7 @@ export default {
       title:
         'Type of project* (tags: photography, styling, pr, editorial or motion)',
       description:
-        'Add all tags needed and make sure you spell it right, in lowercase.',
+        'Add all tags needed and make sure you spell it right, in lower case.',
       type: 'array',
       of: [{ type: 'string' }],
       options: {
