@@ -18,7 +18,7 @@ import { location } from '../reducers/location';
 
 // ----------------------------------------------------------------
 
-export const Story = () => {
+export const SelectedStory = () => {
   const currentLocation = useLocation();
   const dispatch = useDispatch();
   const { slug } = useParams();
@@ -71,7 +71,7 @@ export const Story = () => {
         <BreadCrumbs>{formattedLocation}</BreadCrumbs>
       </FlexWrapper>
       <MainImage src={storyData.main_image.url} />
-      <StoryTitle>{storyData.title}</StoryTitle>
+      <StoryTitle>SELECTED: {storyData.title}</StoryTitle>
       <StoryIntro>{storyData.intro}</StoryIntro>
       {storyData.grids &&
         storyData.grids.map((grid, index) => {

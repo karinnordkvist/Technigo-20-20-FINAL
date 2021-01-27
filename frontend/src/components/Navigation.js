@@ -1,7 +1,8 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components/macro';
 import { NavLink, useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
+import sanityClient from '../client.js';
 
 // Reducer
 import { location } from '../reducers/location';
@@ -12,92 +13,111 @@ import { InnerWrapper } from '../assets/GlobalStyles';
 // ----------------------------------------------------------------
 
 export const Navigation = () => {
-  const ref = useRef();
   const dispatch = useDispatch();
   const history = useHistory();
   const [projectsActive, setProjectsActive] = useState(false);
   const [storiesActive, setStoriesActive] = useState(false);
   const currentLocation = useSelector((store) => store.location.location);
   const tags = ['all', 'photography', 'pr', 'styling', 'editorial', 'motion'];
+  const [stories, setStories] = useState([]);
 
-  const onClickHandler = (value) => {
+  // Send category choice to redux for listed projects-page, navigate to projects
+  const projectsClickHandler = (value) => {
     dispatch(location.actions.setProjectCategory(value));
     history.push('/projects');
   };
+
+  // Navigate to selected story
+  const storiesClickHandler = (slug) => {
+    history.push('/projects/' + slug);
+  };
+
+  useEffect(() => {
+    sanityClient
+      .fetch(
+        `*[_type == 'project' && selected_story == true]| order(_createdAt desc){
+              title, slug }`
+      )
+      .then((data) => setStories(data))
+      .catch(console.error);
+  }, []);
+
   return (
     <NavInnerWrapper>
       <LinksOuterWrapper>
         <Left>
+          {/* Home ------------------------------------ */}
           <LinkWrapper location={currentLocation}>
-            <NavButton to="/">
+            <NavLink to="/">
               <NavImage src={process.env.PUBLIC_URL + '/images/cb.png'} />
-            </NavButton>
+            </NavLink>
           </LinkWrapper>
 
+          {/* Selected Stories ------------------------------------ */}
           <DropdownLinkWrapper
             location={currentLocation}
             onMouseEnter={() => setStoriesActive(true)}
             onMouseLeave={() => setStoriesActive(false)}
+            style={{ width: '200px' }}
           >
-            <NavButton
+            <NavLink
               to="/stories"
-              activeStyle={{ fontStyle: 'italic', letterSpacing: '.4px' }}
+              activeStyle={{ fontStyle: 'italic', letterSpacing: '.3px' }}
             >
-              Stories <DownArrow>▼</DownArrow>
-            </NavButton>
+              Selected Stories <DownArrow>▼</DownArrow>
+            </NavLink>
             <Dropdown showing={storiesActive}>
-              <StoriesDropdownButton
-                location={currentLocation}
-                onClick={() => onClickHandler('photography')}
-              >
-                Newbie SS21
-              </StoriesDropdownButton>
-              <StoriesDropdownButton
-                location={currentLocation}
-                onClick={() => onClickHandler('pr')}
-              >
-                Allt i Hemmet - Jul
-              </StoriesDropdownButton>
-              <StoriesDropdownButton
-                location={currentLocation}
-                onClick={() => onClickHandler('styling')}
-              >
-                Gustavienne
-              </StoriesDropdownButton>
+              {stories &&
+                stories.map((story, index) => {
+                  return (
+                    <StoriesDropdownButton
+                      location={currentLocation}
+                      onClick={() => storiesClickHandler(story.slug.current)}
+                      key={index}
+                    >
+                      {story.title}
+                    </StoriesDropdownButton>
+                  );
+                })}
             </Dropdown>
           </DropdownLinkWrapper>
         </Left>
 
         <Right>
+          {/* Food ------------------------------------ */}
           <LinkWrapper location={currentLocation}>
-            <NavButton
+            <NavLink
               to="/food"
-              activeStyle={{ fontStyle: 'italic', letterSpacing: '.4px' }}
-              style={{ marginRight: '30px' }}
+              activeStyle={{ fontStyle: 'italic', letterSpacing: '.3px' }}
+              style={{ marginRight: '20px' }}
             >
               Food
-            </NavButton>
+            </NavLink>
           </LinkWrapper>
 
+          {/* Projects ------------------------------------ */}
           <DropdownLinkWrapper
             location={currentLocation}
             onMouseEnter={() => setProjectsActive(true)}
             onMouseLeave={() => setProjectsActive(false)}
           >
-            <NavButton
+            <NavLink
               to="/projects"
-              activeStyle={{ fontStyle: 'italic', letterSpacing: '.4px' }}
-              onClick={() => onClickHandler('')}
+              activeStyle={{ fontStyle: 'italic', letterSpacing: '.3px' }}
+              onClick={() => projectsClickHandler('')}
             >
               Projects <DownArrow>▼</DownArrow>
-            </NavButton>
+            </NavLink>
             <Dropdown showing={projectsActive}>
               {tags &&
-                tags.map((tag) => {
+                tags.map((tag, index) => {
                   return (
                     <DropdownButton
                       location={currentLocation}
-                      onClick={() => onClickHandler(tag === 'all' ? '' : tag)}
+                      onClick={() =>
+                        projectsClickHandler(tag === 'all' ? '' : tag)
+                      }
+                      key={index}
                     >
                       {tag}
                     </DropdownButton>
@@ -106,13 +126,14 @@ export const Navigation = () => {
             </Dropdown>
           </DropdownLinkWrapper>
 
+          {/* Contact ------------------------------------ */}
           <LinkWrapper location={currentLocation}>
-            <NavButton
+            <NavLink
               to="/contact"
-              activeStyle={{ fontStyle: 'italic', letterSpacing: '.4px' }}
+              activeStyle={{ fontStyle: 'italic', letterSpacing: '.3px' }}
             >
               Contact
-            </NavButton>
+            </NavLink>
           </LinkWrapper>
         </Right>
       </LinksOuterWrapper>
@@ -136,8 +157,10 @@ const LinksOuterWrapper = styled.div`
   justify-content: space-between;
 `;
 
+// Left side of the menu
 const Left = styled.div`
   display: flex;
+  align-items: center;
 
   div {
     width: 80px;
@@ -145,14 +168,13 @@ const Left = styled.div`
     text-align: left;
   }
 `;
-const NavButton = styled(NavLink)``;
 
-const DropdownNavButton = styled(NavButton)`
-  margin-left: 0;
-  text-align: left;
-  padding: 3px 0;
+const NavImage = styled.img`
+  width: 20px;
+  filter: invert(1);
 `;
 
+// Right side of the menu
 const Right = styled(Left)`
   display: flex;
 
@@ -162,13 +184,9 @@ const Right = styled(Left)`
     margin-right: 0;
     text-align: right;
   }
-
-  ${DropdownNavButton} {
-    text-align: left;
-    margin-left: 10px;
-  }
 `;
 
+// Separate div to be able to use props for navlinks
 const LinkWrapper = styled.div`
   img {
     filter: ${(props) => (props.location === '/' ? 'invert(1)' : 'invert(0)')};
@@ -191,16 +209,6 @@ const DropdownLinkWrapper = styled(LinkWrapper)`
   display: relative;
 `;
 
-const NavImage = styled.img`
-  width: 20px;
-  filter: invert(1);
-`;
-
-const DownArrow = styled.span`
-  font-size: 6px;
-  margin-left: 2px;
-`;
-
 const DropdownButton = styled.button`
   font-family: 'Fraunces';
   color: ${(props) => (props.location === '/' ? '#fff' : '#000')};
@@ -215,11 +223,16 @@ const DropdownButton = styled.button`
 
   &:hover {
     font-style: italic;
-    letter-spacing: '.4px';
+    letter-spacing: '.3px';
   }
 `;
 
 const StoriesDropdownButton = styled(DropdownButton)`
   margin-left: 0;
   width: 400px;
+`;
+
+const DownArrow = styled.span`
+  font-size: 6px;
+  margin-left: 2px;
 `;

@@ -21,7 +21,7 @@ export const Stories = () => {
     dispatch(location.actions.setLocation(currentLocation.pathname));
     sanityClient
       .fetch(
-        `*[_type == 'project']|order(_createdAt desc){title, slug, "thumbnail":thumbnail.asset->{url, tags, title}, date, intro, "images": images[] {"image":asset->{tags, url}}.image, layout }`
+        `*[_type == 'project' && selected_story == true]|order(_createdAt desc){title, slug, "thumbnail":thumbnail.asset->{url, tags, title}, date, intro, "images": images[] {"image":asset->{tags, url}}.image, layout }`
       )
       .then((data) => setStoryData(data))
       .catch(console.error);

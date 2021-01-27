@@ -5,7 +5,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import sanityClient from '../client.js';
 
 // Styling
-import { InnerWrapper } from '../assets/GlobalStyles';
+import {
+  InnerWrapper,
+  BreadCrumbs,
+  BackButton,
+  FlexWrapper,
+} from '../assets/GlobalStyles';
 
 // Reducers
 import { location } from '../reducers/location';
@@ -22,6 +27,7 @@ export const ListedProjects = () => {
   );
 
   useEffect(() => {
+    // dispatch(location.actions.setProjectCategory(''));
     dispatch(location.actions.setLocation(currentLocation.pathname));
     if (!categoryRaw) {
       sanityClient
@@ -56,6 +62,12 @@ export const ListedProjects = () => {
 
   return (
     <StoriesInnerWrapper>
+      <FlexWrapper>
+        <BreadCrumbs>
+          Showing: {categoryRaw === '' ? 'All projects' : categoryRaw}
+        </BreadCrumbs>
+        <BackButton>Tillbaka</BackButton>
+      </FlexWrapper>
       {projects &&
         projects.map((project) => {
           return (
@@ -64,7 +76,7 @@ export const ListedProjects = () => {
               <StoryTextWrapper>
                 <StoryCategory>Story:</StoryCategory>
                 <Link
-                  to={'/stories/' + project.slug.current}
+                  to={'/projects/' + project.slug.current}
                   key={project.slug.current}
                 >
                   <StoryTitle>{project.title}</StoryTitle>

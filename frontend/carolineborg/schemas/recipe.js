@@ -84,6 +84,19 @@ export default {
       validation: (Rule) => Rule.required(),
     },
     {
+      name: 'test_steps',
+      description: 'How to cook the recipe',
+      type: 'array',
+      of: [
+        {
+          type: 'object',
+          title: 'Text',
+          fields: [{ type: 'string', name: 'text' }],
+        },
+        { type: 'image' },
+      ],
+    },
+    {
       name: 'break_out_text',
       type: 'string',
     },

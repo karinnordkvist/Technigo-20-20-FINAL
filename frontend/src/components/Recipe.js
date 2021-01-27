@@ -22,13 +22,14 @@ export const Recipe = () => {
   const currentLocation = useLocation();
   const dispatch = useDispatch();
   const { slug } = useParams();
-  const [storyData, setStoryData] = useState(null);
+  const [recipeData, setRecipeData] = useState(null);
 
   // For back-button & breadcrumbs
   const history = useHistory();
   const formattedLocation = currentLocation.pathname
     .substring(1)
-    .replaceAll('/', ' · ');
+    .replaceAll('/', ' · ')
+    .replaceAll('-', ' ');
 
   // Fetch story data
   useEffect(() => {
@@ -39,8 +40,8 @@ export const Recipe = () => {
         `*[slug.current == "${slug}"]{
             _id,
             title,
-            category,
             slug,
+            category,
             portions,
             "thumbnail":thumbnail.asset->{url, tags, title},
             creator,
@@ -48,18 +49,20 @@ export const Recipe = () => {
             secondary_byline,
             intro,
             ingredients,
+            toppings,
             steps,
+            "test_steps" : test_steps[] {"image":asset->{tags,url}, "text": text},
             break_out_text,
             "images": images[] {"image":asset->{tags, url}}.image
            }`
       )
-      .then((data) => setStoryData(data[0]))
+      .then((data) => setRecipeData(data[0]))
       .catch(console.error);
   }, []);
 
-  console.log(storyData);
+  console.log(recipeData);
 
-  if (!storyData) {
+  if (!recipeData) {
     return (
       <InnerWrapper>
         <p>Loading...</p>
@@ -67,80 +70,145 @@ export const Recipe = () => {
     );
   }
   return (
-    <StoryInnerWrapper>
-      <FlexWrapper>
-        <BackButton onClick={history.goBack}>Tillbaka</BackButton>
-        <BreadCrumbs>{formattedLocation}</BreadCrumbs>
-      </FlexWrapper>
-      <MainImage src={storyData.main_image.url} />
-      <StoryTitle>{storyData.title}</StoryTitle>
-      <StoryIntro>{storyData.intro}</StoryIntro>
-      {storyData.grids &&
-        storyData.grids.map((grid, index) => {
-          console.log(grid.grid_type);
-          return (
-            <GridWrapper key={index}>
-              <GridImageWrapper gridType={grid.grid_type}>
-                {grid.images.map((image, index) => (
-                  <StoryImage src={image.url} key={index} />
-                ))}
-              </GridImageWrapper>
-              {grid.text && <GridText>{grid.text}</GridText>}
-            </GridWrapper>
-          );
-        })}
+    <>
+      <RecipeTopWrapper>
+        <FlexWrapper>
+          <BackButton onClick={history.goBack}>Tillbaka</BackButton>
+          <BreadCrumbs>Food · {recipeData.title}</BreadCrumbs>
+        </FlexWrapper>
+      </RecipeTopWrapper>
+      <RecipeHeaderWrapper>
+        <MainImage src={recipeData.main_image.url} />
 
-      {/* {storyData.images &&z
-        storyData.images.map((image, index) => (
-          <StoryImage src={image.url} key={index} />
-        ))} */}
-    </StoryInnerWrapper>
+        <RecipeHeaderTextWrapper>
+          <RecipeIntro>{recipeData.intro}</RecipeIntro>
+          <RecipeCategory>{recipeData.category}</RecipeCategory>
+          <RecipeTitle>{recipeData.title}</RecipeTitle>
+          {recipeData.secondary_byline && (
+            <RecipeByline>Byline: {recipeData.secondary_byline}</RecipeByline>
+          )}
+        </RecipeHeaderTextWrapper>
+      </RecipeHeaderWrapper>
+      <RecipeMainWrapper>
+        <Ingredients>
+          <IngredientsList>
+            {recipeData.ingredients.map((ingredient) => {
+              return <li key={ingredient}>{ingredient}</li>;
+            })}
+          </IngredientsList>
+        </Ingredients>
+        {/* <Steps>
+          <StepsList>
+            {recipeData.steps.map((step, index) => {
+              return <li key={index}>{step}</li>;
+            })}
+          </StepsList>
+        </Steps> */}
+        <Steps>
+          <StepsList>
+            {recipeData.test_steps.map((step, index) => {
+              if (step.text) {
+                return <li key={index}>{step.text}</li>;
+              }
+              if (step.image) {
+                return <img src={step.image.url} />;
+              }
+              // return <li key={index}>{step}</li>;
+            })}
+          </StepsList>
+        </Steps>
+      </RecipeMainWrapper>
+    </>
   );
 };
 
 // ----------------------------------------------------------------
 
-const StoryInnerWrapper = styled(InnerWrapper)`
-  margin: 100px auto;
+const RecipeTopWrapper = styled(InnerWrapper)`
+  margin: 150px auto 0;
+`;
+
+const RecipeHeaderWrapper = styled.div`
+  display: flex;
+  align-items: flex-end;
+`;
+
+const RecipeHeaderTextWrapper = styled.div`
+  width: 40vw;
+  max-width: 600px;
+  margin-top: 50px;
+  margin-left: 30px;
+  display: flex;
+  flex-direction: column;
 `;
 
 const MainImage = styled.img`
   margin-top: 50px;
-  max-width: 100%;
+  width: 50vw;
 `;
 
-const StoryImage = styled.img`
-  max-width: 100%;
-`;
-
-const StoryTitle = styled.h1`
-  font-family: 'Fraunces';
-  font-weight: 300;
-  text-align: center;
-  margin: 50px auto 30px;
-`;
-
-const StoryIntro = styled.p`
-  font-family: 'Fraunces';
-  text-align: center;
+const RecipeMainWrapper = styled(InnerWrapper)`
+  display: flex;
+  align-items: center;
   margin-bottom: 50px;
 `;
 
-const GridWrapper = styled.div``;
+const Ingredients = styled.div`
+  width: 400px;
+`;
 
-const GridImageWrapper = styled.div`
-  display: grid;
-  grid-template-columns: ${(props) =>
-    props.gridType == 'grid-2' ? '1fr 1fr' : '1fr'};
-  gap: 20px;
-  img {
+const IngredientsList = styled.ul`
+  list-style-type: none;
+
+  li {
+    font-family: 'Fraunces';
+    line-height: 1.6;
+    text-align: right;
+    margin-right: 40px;
   }
 `;
 
-const GridText = styled.p`
-  font-size: 36px;
+const Steps = styled.div`
   font-family: 'Fraunces';
-  text-align: center;
-  padding: 50px 0;
+  line-height: 1.6;
+`;
+const StepsList = styled.ol`
+  margin-left: 30px;
+
+  img {
+    max-width: 100%;
+    margin: 20px 0;
+  }
+  li {
+  }
+`;
+
+const RecipeTitle = styled.h1`
+  font-family: 'Fraunces';
+  font-weight: 300;
+  font-size: 46px;
+`;
+
+const RecipeCategory = styled.p`
+  font-family: 'Pearl';
+  text-transform: uppercase;
+  margin-bottom: 10px;
+`;
+
+const RecipeIntro = styled.p`
+  font-family: 'Fraunces';
+  margin-bottom: 40px;
+  max-width: 60%;
+  font-size: 18px;
+  line-height: 1.5;
   font-style: italic;
+  margin-right: 50px;
+`;
+
+const RecipeByline = styled.p`
+  font-family: 'Fraunces';
+  margin-top: 10px;
+  font-size: 10px;
+  font-style: italic;
+  margin-right: 50px;
 `;

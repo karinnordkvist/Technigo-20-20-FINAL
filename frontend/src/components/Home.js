@@ -80,7 +80,6 @@ export const Home = () => {
 const HomeOuterWrapper = styled.div``;
 
 const HeroWrapper = styled.div`
-  /* background: red; */
   height: 100vh;
 `;
 

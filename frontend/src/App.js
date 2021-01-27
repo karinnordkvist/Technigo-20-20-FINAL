@@ -16,6 +16,7 @@ import GlobalStyles from './assets/GlobalStyles';
 import { Navigation } from './components/Navigation';
 import { Home } from './components/Home';
 import { Story } from './components/Story';
+import { SelectedStory } from './components/SelectedStory';
 import { Stories } from './components/Stories';
 import { Contact } from './components/Contact';
 import { Recipe } from './components/Recipe';
@@ -43,10 +44,11 @@ export const App = () => {
           <Navigation />
           <Switch>
             <Route component={Home} path="/" exact />
-            <Route component={Story} path="/stories/:slug" />
+            <Route component={SelectedStory} path="/stories/:slug" />
             <Route component={Stories} path="/stories" />
             <Route component={Recipe} path="/food/:slug" />
             <Route component={Food} path="/food" />
+            <Route component={Story} path="/projects/:slug" />
             <Route component={ListedProjects} path="/projects" />
             <Route component={Contact} path="/contact" />
 
@@ -66,6 +68,5 @@ export const App = () => {
 
 // ----------------------------------------------------------------
 const OuterWrapper = styled.div`
-  padding: 50px;
   z-index: -2;
 `;
