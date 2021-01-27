@@ -92,6 +92,7 @@ export const Recipe = () => {
       <RecipeMainWrapper>
         <Ingredients>
           <IngredientsList>
+            <li style={{ fontStyle: 'italic' }}>Ingredienser:</li>
             {recipeData.ingredients.map((ingredient) => {
               return <li key={ingredient}>{ingredient}</li>;
             })}
@@ -149,12 +150,13 @@ const MainImage = styled.img`
 
 const RecipeMainWrapper = styled(InnerWrapper)`
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   margin-bottom: 50px;
 `;
 
 const Ingredients = styled.div`
   width: 400px;
+  margin-top: 50px;
 `;
 
 const IngredientsList = styled.ul`
