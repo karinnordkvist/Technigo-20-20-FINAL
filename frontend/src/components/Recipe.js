@@ -93,9 +93,10 @@ export const Recipe = () => {
         <Ingredients>
           <IngredientsList>
             <li style={{ fontStyle: 'italic' }}>Ingredienser:</li>
-            {recipeData.ingredients.map((ingredient) => {
-              return <li key={ingredient}>{ingredient}</li>;
-            })}
+            {recipeData &&
+              recipeData.ingredients.map((ingredient) => {
+                return <li key={ingredient}>{ingredient}</li>;
+              })}
           </IngredientsList>
         </Ingredients>
         {/* <Steps>
@@ -107,15 +108,16 @@ export const Recipe = () => {
         </Steps> */}
         <Steps>
           <StepsList>
-            {recipeData.test_steps.map((step, index) => {
-              if (step.text) {
-                return <li key={index}>{step.text}</li>;
-              }
-              if (step.image) {
-                return <img src={step.image.url} />;
-              }
-              // return <li key={index}>{step}</li>;
-            })}
+            {recipeData &&
+              recipeData.test_steps.map((step, index) => {
+                if (step.text) {
+                  return <li key={index}>{step.text}</li>;
+                }
+                if (step.image) {
+                  return <img src={step.image.url} />;
+                }
+                // return <li key={index}>{step}</li>;
+              })}
           </StepsList>
         </Steps>
       </RecipeMainWrapper>
