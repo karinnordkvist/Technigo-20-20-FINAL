@@ -76,15 +76,15 @@ export default {
       type: 'array',
       of: [{ type: 'string' }],
     },
+    // {
+    //   name: 'steps',
+    //   description: 'How to cook the recipe',
+    //   type: 'array',
+    //   of: [{ type: 'string' }],
+    //   validation: (Rule) => Rule.required(),
+    // },
     {
       name: 'steps',
-      description: 'How to cook the recipe',
-      type: 'array',
-      of: [{ type: 'string' }],
-      validation: (Rule) => Rule.required(),
-    },
-    {
-      name: 'test_steps',
       description: 'How to cook the recipe',
       type: 'array',
       of: [

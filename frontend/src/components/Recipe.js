@@ -50,8 +50,7 @@ export const Recipe = () => {
             intro,
             ingredients,
             toppings,
-            steps,
-            "test_steps" : test_steps[] {"image":asset->{tags,url}, "text": text},
+            "steps" : steps[] {"image":asset->{tags,url}, "text": text},
             break_out_text,
             "images": images[] {"image":asset->{tags, url}}.image
            }`
@@ -71,15 +70,17 @@ export const Recipe = () => {
   }
   return (
     <>
+      {/* Top-bar (breadcrumbs + nav) */}
       <RecipeTopWrapper>
         <FlexWrapper>
           <BackButton onClick={history.goBack}>Tillbaka</BackButton>
           <BreadCrumbs>Food · {recipeData.title}</BreadCrumbs>
         </FlexWrapper>
       </RecipeTopWrapper>
+
+      {/* Header */}
       <RecipeHeaderWrapper>
         <MainImage src={recipeData.main_image.url} />
-
         <RecipeHeaderTextWrapper>
           <RecipeIntro>{recipeData.intro}</RecipeIntro>
           <RecipeCategory>{recipeData.category}</RecipeCategory>
@@ -89,32 +90,30 @@ export const Recipe = () => {
           )}
         </RecipeHeaderTextWrapper>
       </RecipeHeaderWrapper>
+
       <RecipeMainWrapper>
+        {/* Ingredients */}
         <Ingredients>
           <IngredientsList>
             <li style={{ fontStyle: 'italic' }}>Ingredienser:</li>
             {recipeData.ingredients &&
-              recipeData.ingredients.map((ingredient) => {
-                return <li key={ingredient}>{ingredient}</li>;
+              recipeData.ingredients.map((ingredient, index) => {
+                return <li key={index}>{ingredient}</li>;
               })}
           </IngredientsList>
         </Ingredients>
-        {/* <Steps>
-          <StepsList>
-            {recipeData.steps.map((step, index) => {
-              return <li key={index}>{step}</li>;
-            })}
-          </StepsList>
-        </Steps> */}
+
+        {/* Steps */}
         <Steps>
           <StepsList>
-            {recipeData.test_steps &&
-              recipeData.test_steps.map((step, index) => {
+            <p style={{ fontStyle: 'italic' }}>Gör såhär:</p>
+            {recipeData.steps &&
+              recipeData.steps.map((step, index) => {
                 if (step.text) {
                   return <li key={index}>{step.text}</li>;
                 }
                 if (step.image) {
-                  return <img src={step.image.url} />;
+                  return <img key={index} src={step.image.url} />;
                 }
                 // return <li key={index}>{step}</li>;
               })}
@@ -138,7 +137,7 @@ const RecipeHeaderWrapper = styled.div`
 
 const RecipeHeaderTextWrapper = styled.div`
   width: 40vw;
-  max-width: 600px;
+  max-width: 400px;
   margin-top: 50px;
   margin-left: 30px;
   display: flex;
@@ -148,12 +147,14 @@ const RecipeHeaderTextWrapper = styled.div`
 const MainImage = styled.img`
   margin-top: 50px;
   width: 50vw;
+  height: 600px;
+  object-fit: cover;
 `;
 
 const RecipeMainWrapper = styled(InnerWrapper)`
   display: flex;
   align-items: flex-start;
-  margin-bottom: 50px;
+  padding-bottom: 50px;
 `;
 
 const Ingredients = styled.div`
@@ -178,12 +179,17 @@ const Steps = styled.div`
 `;
 const StepsList = styled.ol`
   margin-left: 30px;
+  list-style-position: inside;
 
   img {
-    max-width: 100%;
+    width: 100%;
+    max-height: 373px;
+    object-fit: cover;
+    object-position: 50% 50%;
     margin: 20px 0;
   }
   li {
+    margin: 20px 0;
   }
 `;
 

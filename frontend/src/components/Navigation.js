@@ -36,7 +36,7 @@ export const Navigation = () => {
     sanityClient
       .fetch(
         `*[_type == 'project' && selected_story == true]| order(_createdAt desc){
-              title, slug }`
+              title, slug, client }`
       )
       .then((data) => setStories(data))
       .catch(console.error);
@@ -76,6 +76,7 @@ export const Navigation = () => {
                       key={index}
                     >
                       {story.title}
+                      <NavClient>för {story.client}</NavClient>
                     </StoriesDropdownButton>
                   );
                 })}
@@ -144,7 +145,7 @@ export const Navigation = () => {
 // ----------------------------------------------------------------
 const NavInnerWrapper = styled(InnerWrapper)`
   z-index: 5;
-  position: fixed;
+  position: absolute;
   left: 0;
   right: 0;
   top: 0;
@@ -203,6 +204,14 @@ const Dropdown = styled.div`
   padding-top: 10px;
   flex-direction: column;
   align-items: flex-start;
+`;
+
+const NavClient = styled.span`
+  display: block;
+  font-style: italic;
+  text-transform: capitalize;
+  font-size: 14px;
+  margin: 2px 0 2px;
 `;
 
 const DropdownLinkWrapper = styled(LinkWrapper)`

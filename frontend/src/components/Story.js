@@ -19,16 +19,17 @@ import { location } from '../reducers/location';
 // ----------------------------------------------------------------
 
 export const Story = () => {
-  const currentLocation = useLocation();
-  const dispatch = useDispatch();
   const { slug } = useParams();
+  const dispatch = useDispatch();
+  const currentLocation = useLocation();
   const [storyData, setStoryData] = useState(null);
 
   // For back-button & breadcrumbs
   const history = useHistory();
   const formattedLocation = currentLocation.pathname
     .substring(1)
-    .replaceAll('/', ' · ');
+    .replaceAll('/', ' · ')
+    .replaceAll('-', ' ');
 
   // Fetch story data
   useEffect(() => {
@@ -38,9 +39,11 @@ export const Story = () => {
       .fetch(
         `*[slug.current == "${slug}"]{
           _id, 
-          title, 
+          title,
+          client, 
           slug,
-          tags, 
+          tags,
+          text, 
           "main_image":main_image.asset->{url, tags, title}, 
           "thumbnail":thumbnail.asset->{url, tags, title}, 
           creator, 
@@ -59,9 +62,9 @@ export const Story = () => {
 
   if (!storyData) {
     return (
-      <InnerWrapper>
+      <StoryInnerWrapper>
         <p>Loading...</p>
-      </InnerWrapper>
+      </StoryInnerWrapper>
     );
   }
   return (
@@ -71,8 +74,32 @@ export const Story = () => {
         <BreadCrumbs>{formattedLocation}</BreadCrumbs>
       </FlexWrapper>
       <MainImage src={storyData.main_image.url} />
+      <StoryClient>{storyData.client}</StoryClient>
       <StoryTitle>{storyData.title}</StoryTitle>
+      <StoryByline>
+        ----- projekt skapat med {storyData.secondary_byline}
+      </StoryByline>
       <StoryIntro>{storyData.intro}</StoryIntro>
+
+      <StoryTextWrapper>
+        <StoryInfo>
+          <li>Client:</li>
+          <li style={{ fontStyle: 'italic', marginBottom: '10px' }}>
+            {storyData.client}
+          </li>
+          <li>Team:</li>
+          <li style={{ fontStyle: 'italic', marginBottom: '10px' }}>
+            Caroline Borg, {storyData.secondary_byline}
+          </li>
+          <li>Tags:</li>
+          <li style={{ fontStyle: 'italic', marginBottom: '10px' }}>
+            {storyData.tags && storyData.tags.map((tag) => <Tag>{tag}</Tag>)}
+          </li>
+        </StoryInfo>
+        <StoryMainText>{storyData.text}</StoryMainText>
+      </StoryTextWrapper>
+
+      {/* Image-grids */}
       {storyData.grids &&
         storyData.grids.map((grid, index) => {
           console.log(grid.grid_type);
@@ -99,29 +126,76 @@ export const Story = () => {
 // ----------------------------------------------------------------
 
 const StoryInnerWrapper = styled(InnerWrapper)`
-  margin: 100px auto;
+  margin: 150px auto;
 `;
 
 const MainImage = styled.img`
-  margin-top: 50px;
-  max-width: 100%;
+  margin: 30px 0 50px;
+  width: 100%;
+  max-height: 500px;
+  object-fit: cover;
+  object-position: 50% 50%;
 `;
 
-const StoryImage = styled.img`
-  max-width: 100%;
+const StoryClient = styled.p`
+  font-family: 'Fraunces';
+  font-size: 16px;
+  text-align: center;
+  text-transform: uppercase;
 `;
 
 const StoryTitle = styled.h1`
   font-family: 'Fraunces';
+  font-size: 36px;
   font-weight: 300;
   text-align: center;
-  margin: 50px auto 30px;
+  margin: 20px auto 30px;
 `;
 
 const StoryIntro = styled.p`
   font-family: 'Fraunces';
+  font-size: 24px;
+  font-style: italic;
+  font-weight: 300;
+  line-height: 1.6;
+  margin: 40px auto;
   text-align: center;
-  margin-bottom: 50px;
+  max-width: 70%;
+`;
+
+const StoryByline = styled.p`
+  font-family: 'Fraunces';
+  font-size: 16px;
+  text-align: center;
+  font-style: italic;
+`;
+
+const StoryTextWrapper = styled.div`
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 30px;
+`;
+
+const StoryInfo = styled.ul`
+  list-style: none;
+  font-family: 'Fraunces';
+  font-size: 16px;
+
+  li {
+    width: 20vw;
+  }
+`;
+
+const Tag = styled.span`
+  &:not(:last-child)::after {
+    content: ', ';
+  }
+`;
+
+const StoryMainText = styled.p`
+  font-family: 'Fraunces';
+  font-size: 16px;
+  line-height: 1.6;
 `;
 
 const GridWrapper = styled.div``;
@@ -141,4 +215,8 @@ const GridText = styled.p`
   text-align: center;
   padding: 50px 0;
   font-style: italic;
+`;
+
+const StoryImage = styled.img`
+  max-width: 100%;
 `;

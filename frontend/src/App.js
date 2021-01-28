@@ -23,6 +23,7 @@ import { Recipe } from './components/Recipe';
 import { Food } from './components/Food';
 import { ListedProjects } from './components/ListedProjects';
 import { NotFound } from './components/NotFound';
+import { Footer } from './components/Footer';
 
 // Reducers
 import { location } from './reducers/location';
@@ -60,6 +61,7 @@ export const App = () => {
             {/* Redirect to 404-page */}
             <Redirect to="/404" />
           </Switch>
+          <Footer />
         </OuterWrapper>
       </Router>
     </Provider>

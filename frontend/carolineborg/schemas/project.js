@@ -72,9 +72,14 @@ export default {
       description: 'Horizontal orientation works best here.',
       validation: (Rule) => Rule.required(),
     },
-
     {
       name: 'intro',
+      title: 'Intro',
+      type: 'text',
+    },
+    {
+      name: 'text',
+      title: 'Main Text',
       type: 'text',
     },
     {
@@ -93,6 +98,7 @@ export default {
     },
     {
       name: 'quote',
+      title: 'Quote',
       type: 'text',
     },
   ],

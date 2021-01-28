@@ -6,12 +6,7 @@ import { useDispatch } from 'react-redux';
 import sanityClient from '../client.js';
 
 // Styling
-import {
-  InnerWrapper,
-  BreadCrumbs,
-  BackButton,
-  FlexWrapper,
-} from '../assets/GlobalStyles';
+import { InnerWrapper } from '../assets/GlobalStyles';
 
 // Reducers
 import { location } from '../reducers/location';
@@ -89,7 +84,7 @@ export const Food = () => {
 // ----------------------------------------------------------------
 
 const FoodInnerWrapper = styled(InnerWrapper)`
-  margin: 100px auto;
+  margin: 150px auto;
 `;
 
 const FoodIntro = styled.p`

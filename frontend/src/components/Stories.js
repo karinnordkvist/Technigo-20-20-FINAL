@@ -57,8 +57,10 @@ export const Stories = () => {
   );
 };
 
+// ----------------------------------------------------------------
+
 const StoriesInnerWrapper = styled(InnerWrapper)`
-  padding: 50px 0;
+  padding: 100px 0;
 `;
 
 const StoriesIntro = styled.p`

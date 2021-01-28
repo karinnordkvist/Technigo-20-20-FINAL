@@ -89,7 +89,7 @@ const HeroTitle = styled.h1`
   font-size: 100px;
   color: #fff;
   font-weight: normal;
-  padding-top: 260px;
+  padding-top: 300px;
 `;
 
 const HeroSubtitle = styled.h3`
