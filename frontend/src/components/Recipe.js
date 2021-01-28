@@ -93,7 +93,7 @@ export const Recipe = () => {
         <Ingredients>
           <IngredientsList>
             <li style={{ fontStyle: 'italic' }}>Ingredienser:</li>
-            {recipeData &&
+            {recipeData.ingredients &&
               recipeData.ingredients.map((ingredient) => {
                 return <li key={ingredient}>{ingredient}</li>;
               })}
@@ -108,7 +108,7 @@ export const Recipe = () => {
         </Steps> */}
         <Steps>
           <StepsList>
-            {recipeData &&
+            {recipeData.test_steps &&
               recipeData.test_steps.map((step, index) => {
                 if (step.text) {
                   return <li key={index}>{step.text}</li>;
