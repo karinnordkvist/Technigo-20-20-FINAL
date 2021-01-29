@@ -5,6 +5,7 @@ import { useDispatch } from 'react-redux';
 
 import sanityClient from '../client.js';
 
+import { Grid_1 } from './Grids';
 // Styling
 import {
   InnerWrapper,
@@ -63,7 +64,7 @@ export const Story = () => {
   if (!storyData) {
     return (
       <StoryInnerWrapper>
-        <p>Loading...</p>
+        <Loader>Loading...</Loader>
       </StoryInnerWrapper>
     );
   }
@@ -98,21 +99,30 @@ export const Story = () => {
         </StoryInfo>
         <StoryMainText>{storyData.text}</StoryMainText>
       </StoryTextWrapper>
+      {/* <Grid_1
+        image1={storyData.images[0].url}
+        image2={storyData.images[1].url}
+      /> */}
 
       {/* Image-grids */}
       {storyData.grids &&
         storyData.grids.map((grid, index) => {
           console.log(grid.grid_type);
-          return (
-            <GridWrapper key={index}>
-              <GridImageWrapper gridType={grid.grid_type}>
-                {grid.images.map((image, index) => (
-                  <StoryImage src={image.url} key={index} />
-                ))}
-              </GridImageWrapper>
-              {grid.text && <GridText>{grid.text}</GridText>}
-            </GridWrapper>
-          );
+          if (grid.grid_type === 'grid-2') {
+            return (
+              <Grid_1 image1={grid.images[0].url} image2={grid.images[1].url} />
+            );
+          }
+          // return (
+          //   <GridWrapper key={index}>
+          //     <GridImageWrapper gridType={grid.grid_type}>
+          //       {grid.images.map((image, index) => (
+          //         <StoryImage src={image.url} key={index} />
+          //       ))}
+          //     </GridImageWrapper>
+          //     {grid.text && <GridText>{grid.text}</GridText>}
+          //   </GridWrapper>
+          // );
         })}
 
       {/* {storyData.images &&z
@@ -127,6 +137,12 @@ export const Story = () => {
 
 const StoryInnerWrapper = styled(InnerWrapper)`
   margin: 150px auto;
+`;
+
+const Loader = styled.p`
+  font-family: 'Pearl';
+  text-align: center;
+  padding: 300px auto;
 `;
 
 const MainImage = styled.img`

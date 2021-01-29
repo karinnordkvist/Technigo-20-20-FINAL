@@ -48,7 +48,7 @@ export const Contact = () => {
     <ContactInnerWrapper>
       <ContactImage src={process.env.PUBLIC_URL + '/images/caroline.jpg'} />
       {/* <ContactTitle>Want to work together?</ContactTitle> */}
-      <ContactSubtitle>Contact</ContactSubtitle>
+      <ContactSubtitle>Kontakt</ContactSubtitle>
       <ContactText>
         “Lorem ipsum dolor sit amet, consectetur adipiscing elit. Dictum
         consectetur ultrices turpis lectus. Amet commodo curabitur rutrum proin
@@ -56,7 +56,7 @@ export const Contact = () => {
         neque eget diam augue in.“
       </ContactText>
       <ContactInfo>
-        Phone:
+        Telefon:
         <div>+46 5453 34345</div>
       </ContactInfo>
       <ContactInfo>

@@ -64,7 +64,7 @@ export const Navigation = () => {
               to="/stories"
               activeStyle={{ fontStyle: 'italic', letterSpacing: '.3px' }}
             >
-              Selected Stories <DownArrow>▼</DownArrow>
+              Stories <DownArrow>▼</DownArrow>
             </NavLink>
             <Dropdown showing={storiesActive}>
               {stories &&
@@ -92,7 +92,7 @@ export const Navigation = () => {
               activeStyle={{ fontStyle: 'italic', letterSpacing: '.3px' }}
               style={{ marginRight: '20px' }}
             >
-              Food
+              Mat
             </NavLink>
           </LinkWrapper>
 
@@ -107,7 +107,7 @@ export const Navigation = () => {
               activeStyle={{ fontStyle: 'italic', letterSpacing: '.3px' }}
               onClick={() => projectsClickHandler('')}
             >
-              Projects <DownArrow>▼</DownArrow>
+              Projekt <DownArrow>▼</DownArrow>
             </NavLink>
             <Dropdown showing={projectsActive}>
               {tags &&
@@ -133,7 +133,7 @@ export const Navigation = () => {
               to="/contact"
               activeStyle={{ fontStyle: 'italic', letterSpacing: '.3px' }}
             >
-              Contact
+              Kontakt
             </NavLink>
           </LinkWrapper>
         </Right>
@@ -224,7 +224,7 @@ const DropdownButton = styled.button`
   font-size: 16px;
   border: none;
   background: none;
-  margin-left: 38px;
+  margin-left: 46px;
   text-align: left;
   padding: 4px 0;
   text-transform: uppercase;

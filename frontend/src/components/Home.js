@@ -54,9 +54,9 @@ export const Home = () => {
 
   if (!homeData) {
     return (
-      <InnerWrapper>
+      <LoaderWrapper>
         <p>Loading...</p>
-      </InnerWrapper>
+      </LoaderWrapper>
     );
   }
   return (
@@ -77,6 +77,13 @@ export const Home = () => {
   );
 };
 
+const LoaderWrapper = styled.div`
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
 const HomeOuterWrapper = styled.div``;
 
 const HeroWrapper = styled.div`
@@ -89,7 +96,7 @@ const HeroTitle = styled.h1`
   font-size: 100px;
   color: #fff;
   font-weight: normal;
-  padding-top: 300px;
+  padding-top: 350px;
 `;
 
 const HeroSubtitle = styled.h3`

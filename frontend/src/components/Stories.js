@@ -74,6 +74,7 @@ const StoriesIntro = styled.p`
 
 const StoryWrapper = styled.div`
   display: flex;
+  align-items: center;
   margin: 20px 0;
 `;
 
