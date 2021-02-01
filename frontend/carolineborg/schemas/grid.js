@@ -5,6 +5,11 @@ export default {
   title: 'Grid',
   type: 'document',
   fields: [
+    // {
+    //   name: 'name',
+    //   title: 'Name',
+    //   type: 'string',
+    // },
     {
       name: 'images',
       title: 'Images',
@@ -18,7 +23,7 @@ export default {
       type: 'string',
     },
     {
-      name: 'grid_type',
+      name: 'name',
       title: 'Grid Type',
       description:
         'Make sure that the amount of images matches the selected grid.',
@@ -27,28 +32,28 @@ export default {
         list: [
           {
             value: 'grid-1',
-            title: '1 image, full width (obs. 1 image!)',
+            title: 'Grid 1 - 1 horizontal image, full width',
           },
-          { value: 'grid-2', title: '2 vertical images' },
+          {
+            value: 'grid-2',
+            title: 'Grid 2 - 2 vertical images',
+          },
           {
             value: 'grid-3',
-            title: '1 bigger image, 1 smaller, partly on top of the other',
+            title:
+              'Grid 3 - 1 bigger image, 1 smaller, partly on top of the other',
           },
           {
             value: 'grid-4',
-            title: '3 images horizontally (obs. 3 images!)',
+            title: 'Grid 4 - 3 images horizontally (obs. 3 images!)',
           },
           {
             value: 'grid-5',
-            title: '2 horizontal images',
+            title: 'Grid 5 - 1 smaller image, 1 bigger in the back',
           },
           {
             value: 'grid-6',
-            title: '1 smaller image, 1 bigger in the back',
-          },
-          {
-            value: 'grid-7',
-            title: '1 big image, block of text on top (obs. 1 image!)',
+            title: 'Grid 6 - 1 big image, block of text on top',
           },
         ],
       },

@@ -5,7 +5,7 @@ import { useDispatch } from 'react-redux';
 
 import sanityClient from '../client.js';
 
-import { Grid_1 } from './Grids';
+import { Grid_1, Grid_2, Grid_3, Grid_4, Grid_5, Grid_6 } from './Grids';
 // Styling
 import {
   InnerWrapper,
@@ -94,7 +94,8 @@ export const Story = () => {
           </li>
           <li>Tags:</li>
           <li style={{ fontStyle: 'italic', marginBottom: '10px' }}>
-            {storyData.tags && storyData.tags.map((tag) => <Tag>{tag}</Tag>)}
+            {storyData.tags &&
+              storyData.tags.map((tag, index) => <Tag key={index}>{tag}</Tag>)}
           </li>
         </StoryInfo>
         <StoryMainText>{storyData.text}</StoryMainText>
@@ -107,12 +108,56 @@ export const Story = () => {
       {/* Image-grids */}
       {storyData.grids &&
         storyData.grids.map((grid, index) => {
-          console.log(grid.grid_type);
+          if (grid.grid_type === 'grid-1') {
+            return <Grid_1 image1={grid.images[0].url} key={index} />;
+          }
           if (grid.grid_type === 'grid-2') {
             return (
-              <Grid_1 image1={grid.images[0].url} image2={grid.images[1].url} />
+              <Grid_2
+                image1={grid.images[0].url}
+                image2={grid.images[1].url}
+                key={index}
+              />
             );
           }
+          if (grid.grid_type === 'grid-3') {
+            return (
+              <Grid_3
+                image1={grid.images[0].url}
+                image2={grid.images[1].url}
+                key={index}
+              />
+            );
+          }
+          if (grid.grid_type === 'grid-4') {
+            return (
+              <Grid_4
+                image1={grid.images[0].url}
+                image2={grid.images[1].url}
+                image3={grid.images[2].url}
+                key={index}
+              />
+            );
+          }
+          if (grid.grid_type === 'grid-5') {
+            return (
+              <Grid_5
+                image1={grid.images[0].url}
+                image2={grid.images[1].url}
+                key={index}
+              />
+            );
+          }
+          if (grid.grid_type === 'grid-6') {
+            return (
+              <Grid_6
+                image1={grid.images[0].url}
+                text={grid.text}
+                key={index}
+              />
+            );
+          }
+
           // return (
           //   <GridWrapper key={index}>
           //     <GridImageWrapper gridType={grid.grid_type}>

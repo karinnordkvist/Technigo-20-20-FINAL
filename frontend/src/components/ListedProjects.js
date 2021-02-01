@@ -82,7 +82,6 @@ export const ListedProjects = () => {
                   <StoryTitle>{project.title}</StoryTitle>
                 </Link>
                 <StoryIntro>{project.intro}</StoryIntro>
-                <StoryLink to="/stories">Link to the project</StoryLink>
               </StoryTextWrapper>
             </StoryWrapper>
           );
@@ -138,6 +137,8 @@ const StoryTitle = styled.h2`
 const StoryIntro = styled.p`
   font-family: 'Fraunces';
   margin-top: 15px;
+  font-size: 14px;
+  line-height: 1.5;
 `;
 
 const StoryLink = styled(Link)`
