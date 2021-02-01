@@ -129,6 +129,7 @@ const StoryCategory = styled.p`
 `;
 
 const Tag = styled.span`
+  font-size: 12px;
   padding: 2px 5px;
   background: #e6e3dc;
   margin-right: 3px;

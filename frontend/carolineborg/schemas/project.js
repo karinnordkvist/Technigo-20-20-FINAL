@@ -90,16 +90,5 @@ export default {
       type: 'array',
       of: [{ type: 'grid' }],
     },
-    {
-      name: 'images',
-      title: 'Images',
-      type: 'array',
-      of: [{ type: 'image' }],
-    },
-    {
-      name: 'quote',
-      title: 'Quote',
-      type: 'text',
-    },
   ],
 };
