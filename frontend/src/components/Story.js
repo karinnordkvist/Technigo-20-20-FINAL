@@ -50,7 +50,7 @@ export const Story = () => {
           creator, 
           secondary_byline, 
           intro, 
-          "grids": grids[]{"images":images[]{"image":asset->{tags, url}}.image, text, grid_type},
+          "grids": grids[]{"images":images[]{"image":asset->{tags, url}}.image, text, name},
           "images": images[] {"image":asset->{tags, url}}.image, 
           quote, 
          }`
@@ -108,10 +108,10 @@ export const Story = () => {
       {/* Image-grids */}
       {storyData.grids &&
         storyData.grids.map((grid, index) => {
-          if (grid.grid_type === 'grid-1') {
+          if (grid.name === 'grid-1') {
             return <Grid_1 image1={grid.images[0].url} key={index} />;
           }
-          if (grid.grid_type === 'grid-2') {
+          if (grid.name === 'grid-2') {
             return (
               <Grid_2
                 image1={grid.images[0].url}
@@ -120,7 +120,7 @@ export const Story = () => {
               />
             );
           }
-          if (grid.grid_type === 'grid-3') {
+          if (grid.name === 'grid-3') {
             return (
               <Grid_3
                 image1={grid.images[0].url}
@@ -129,7 +129,7 @@ export const Story = () => {
               />
             );
           }
-          if (grid.grid_type === 'grid-4') {
+          if (grid.name === 'grid-4') {
             return (
               <Grid_4
                 image1={grid.images[0].url}
@@ -139,7 +139,7 @@ export const Story = () => {
               />
             );
           }
-          if (grid.grid_type === 'grid-5') {
+          if (grid.name === 'grid-5') {
             return (
               <Grid_5
                 image1={grid.images[0].url}
@@ -148,7 +148,7 @@ export const Story = () => {
               />
             );
           }
-          if (grid.grid_type === 'grid-6') {
+          if (grid.name === 'grid-6') {
             return (
               <Grid_6
                 image1={grid.images[0].url}
