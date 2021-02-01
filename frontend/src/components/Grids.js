@@ -57,9 +57,13 @@ export const Grid_6 = ({ image1, text }) => {
 
 // STYLES --------------------------------
 
-const G1_ImageWrapper = styled.div`
+const baseGrid = styled.div`
   width: 100%;
   display: grid;
+  margin: 20px auto;
+`;
+
+const G1_ImageWrapper = styled(baseGrid)`
   grid-template-columns: 1fr;
 
   img {
@@ -67,9 +71,7 @@ const G1_ImageWrapper = styled.div`
   }
 `;
 
-const G2_ImageWrapper = styled.div`
-  width: 100%;
-  display: grid;
+const G2_ImageWrapper = styled(baseGrid)`
   grid-template-columns: 1fr 1fr;
 
   img {
@@ -77,9 +79,7 @@ const G2_ImageWrapper = styled.div`
   }
 `;
 
-const G3_ImageWrapper = styled.div`
-  width: 100%;
-  display: grid;
+const G3_ImageWrapper = styled(baseGrid)`
   grid-template-columns: repeat(12, 1fr);
 
   img:first-child {
@@ -96,9 +96,7 @@ const G3_ImageWrapper = styled.div`
   }
 `;
 
-const G4_ImageWrapper = styled.div`
-  width: 100%;
-  display: grid;
+const G4_ImageWrapper = styled(baseGrid)`
   grid-template-columns: repeat(3, 1fr);
 
   img {
@@ -106,9 +104,7 @@ const G4_ImageWrapper = styled.div`
   }
 `;
 
-const G5_ImageWrapper = styled.div`
-  width: 100%;
-  display: grid;
+const G5_ImageWrapper = styled(baseGrid)`
   grid-template-columns: repeat(12, 1fr);
 
   img:first-child {
@@ -126,9 +122,7 @@ const G5_ImageWrapper = styled.div`
   }
 `;
 
-const G6_ImageWrapper = styled.div`
-  width: 100%;
-  display: grid;
+const G6_ImageWrapper = styled(baseGrid)`
   grid-template-columns: repeat(12, 1fr);
 
   img {

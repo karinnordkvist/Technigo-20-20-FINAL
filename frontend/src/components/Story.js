@@ -100,80 +100,62 @@ export const Story = () => {
         </StoryInfo>
         <StoryMainText>{storyData.text}</StoryMainText>
       </StoryTextWrapper>
-      {/* <Grid_1
-        image1={storyData.images[0].url}
-        image2={storyData.images[1].url}
-      /> */}
 
       {/* Image-grids */}
-      {storyData.grids &&
-        storyData.grids.map((grid, index) => {
-          if (grid.name === 'grid-1') {
-            return <Grid_1 image1={grid.images[0].url} key={index} />;
-          }
-          if (grid.name === 'grid-2') {
-            return (
-              <Grid_2
-                image1={grid.images[0].url}
-                image2={grid.images[1].url}
-                key={index}
-              />
-            );
-          }
-          if (grid.name === 'grid-3') {
-            return (
-              <Grid_3
-                image1={grid.images[0].url}
-                image2={grid.images[1].url}
-                key={index}
-              />
-            );
-          }
-          if (grid.name === 'grid-4') {
-            return (
-              <Grid_4
-                image1={grid.images[0].url}
-                image2={grid.images[1].url}
-                image3={grid.images[2].url}
-                key={index}
-              />
-            );
-          }
-          if (grid.name === 'grid-5') {
-            return (
-              <Grid_5
-                image1={grid.images[0].url}
-                image2={grid.images[1].url}
-                key={index}
-              />
-            );
-          }
-          if (grid.name === 'grid-6') {
-            return (
-              <Grid_6
-                image1={grid.images[0].url}
-                text={grid.text}
-                key={index}
-              />
-            );
-          }
-
-          // return (
-          //   <GridWrapper key={index}>
-          //     <GridImageWrapper gridType={grid.grid_type}>
-          //       {grid.images.map((image, index) => (
-          //         <StoryImage src={image.url} key={index} />
-          //       ))}
-          //     </GridImageWrapper>
-          //     {grid.text && <GridText>{grid.text}</GridText>}
-          //   </GridWrapper>
-          // );
-        })}
-
-      {/* {storyData.images &&z
-        storyData.images.map((image, index) => (
-          <StoryImage src={image.url} key={index} />
-        ))} */}
+      <StoryGridWrapper>
+        {storyData.grids &&
+          storyData.grids.map((grid, index) => {
+            if (grid.name === 'grid-1') {
+              return <Grid_1 image1={grid.images[0].url} key={index} />;
+            }
+            if (grid.name === 'grid-2') {
+              return (
+                <Grid_2
+                  image1={grid.images[0].url}
+                  image2={grid.images[1].url}
+                  key={index}
+                />
+              );
+            }
+            if (grid.name === 'grid-3') {
+              return (
+                <Grid_3
+                  image1={grid.images[0].url}
+                  image2={grid.images[1].url}
+                  key={index}
+                />
+              );
+            }
+            if (grid.name === 'grid-4') {
+              return (
+                <Grid_4
+                  image1={grid.images[0].url}
+                  image2={grid.images[1].url}
+                  image3={grid.images[2].url}
+                  key={index}
+                />
+              );
+            }
+            if (grid.name === 'grid-5') {
+              return (
+                <Grid_5
+                  image1={grid.images[0].url}
+                  image2={grid.images[1].url}
+                  key={index}
+                />
+              );
+            }
+            if (grid.name === 'grid-6') {
+              return (
+                <Grid_6
+                  image1={grid.images[0].url}
+                  text={grid.text}
+                  key={index}
+                />
+              );
+            }
+          })}
+      </StoryGridWrapper>
     </StoryInnerWrapper>
   );
 };
@@ -259,25 +241,4 @@ const StoryMainText = styled.p`
   line-height: 1.6;
 `;
 
-const GridWrapper = styled.div``;
-
-const GridImageWrapper = styled.div`
-  display: grid;
-  grid-template-columns: ${(props) =>
-    props.gridType == 'grid-2' ? '1fr 1fr' : '1fr'};
-  gap: 20px;
-  img {
-  }
-`;
-
-const GridText = styled.p`
-  font-size: 36px;
-  font-family: 'Fraunces';
-  text-align: center;
-  padding: 50px 0;
-  font-style: italic;
-`;
-
-const StoryImage = styled.img`
-  max-width: 100%;
-`;
+const StoryGridWrapper = styled.div``;

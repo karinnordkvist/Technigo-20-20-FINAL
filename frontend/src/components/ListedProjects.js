@@ -33,13 +33,15 @@ export const ListedProjects = () => {
       sanityClient
         .fetch(
           `*[_type == 'project']| order(_createdAt desc){
-                  title, 
+                  title,
+                  client, 
                   slug, 
                   "thumbnail":thumbnail.asset->{url, tags, title}, 
                   date, 
                   intro, 
                   "images": images[] {"image":asset->{tags, url}}.image, 
-                  layout }`
+                  layout,
+                tags }`
         )
         .then((data) => setProjects(data))
         .catch(console.error);
@@ -49,11 +51,13 @@ export const ListedProjects = () => {
           `*[_type == 'project' && ${category} in tags]| order(_createdAt desc){
                   title, 
                   slug, 
+                  client,
                   "thumbnail":thumbnail.asset->{url, tags, title}, 
                   date, 
                   intro, 
                   "images": images[] {"image":asset->{tags, url}}.image, 
-                  layout }`
+                  layout,
+                tags }`
         )
         .then((data) => setProjects(data))
         .catch(console.error);
@@ -74,14 +78,22 @@ export const ListedProjects = () => {
             <StoryWrapper key={project.title}>
               <StoryThumbnail src={project.thumbnail.url} />
               <StoryTextWrapper>
-                <StoryCategory>Story:</StoryCategory>
                 <Link
                   to={'/projects/' + project.slug.current}
                   key={project.slug.current}
                 >
                   <StoryTitle>{project.title}</StoryTitle>
+                  {project.client && (
+                    <StoryCategory>för {project.client}</StoryCategory>
+                  )}
                 </Link>
                 <StoryIntro>{project.intro}</StoryIntro>
+                <StoryCategory>
+                  {project.tags &&
+                    project.tags.map((tag, index) => (
+                      <Tag key={index}>{tag}</Tag>
+                    ))}
+                </StoryCategory>
               </StoryTextWrapper>
             </StoryWrapper>
           );
@@ -105,7 +117,7 @@ const StoriesIntro = styled.p`
 
 const StoryWrapper = styled.div`
   display: flex;
-  margin: 20px 0;
+  margin: 25px 0;
 `;
 
 // Single story ----------------
@@ -113,11 +125,18 @@ const StoryCategory = styled.p`
   font-family: 'Fraunces';
   font-style: italic;
   font-size: 14px;
+  margin-top: 5px;
+`;
+
+const Tag = styled.span`
+  padding: 2px 5px;
+  background: #e6e3dc;
+  margin-right: 3px;
 `;
 
 const StoryThumbnail = styled.img`
-  width: 220px;
-  height: 150px;
+  width: 240px;
+  height: 170px;
   object-fit: cover;
   max-width: 100%;
 `;
@@ -136,7 +155,7 @@ const StoryTitle = styled.h2`
 
 const StoryIntro = styled.p`
   font-family: 'Fraunces';
-  margin-top: 15px;
+  margin: 15px auto 5px auto;
   font-size: 14px;
   line-height: 1.5;
 `;
