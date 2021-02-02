@@ -61,7 +61,7 @@ const StoryImageNavWrapper = styled.div`
 
 const StoryThumbnail = styled.img`
   width: 100%;
-  height: 450px;
+  height: 400px;
   object-fit: cover;
   max-width: 100%;
 `;

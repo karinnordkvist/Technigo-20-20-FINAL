@@ -65,7 +65,7 @@ export const Stories = () => {
                       <Tag key={index}>{tag}</Tag>
                     ))}
                 </StoryTagsWrapper>
-                <StoryLink to="/stories">Read more..</StoryLink>
+                <StoryLink to="/stories">Read more &#187;</StoryLink>
               </StoryTextWrapper>
             </StoryWrapper>
           );
@@ -89,26 +89,41 @@ const StoriesIntro = styled.p`
   margin-bottom: 50px;
 `;
 
-const StoryWrapper = styled.div`
-  display: flex;
-  align-items: center;
-  margin: 20px 0;
-  padding-bottom: 20px;
-
-  &:not(:last-child) {
-    border-bottom: 1px solid #e6e3dc;
-  }
-`;
-
-// Single story ----------------
 const StoryTextWrapper = styled.div`
   display: flex;
   align-items: center;
   width: 50%;
   flex-direction: column;
-  margin-left: 50px;
   text-align: center;
 `;
+
+const StoryWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  flex-direction: row-reverse;
+  margin: 20px 0;
+  padding-bottom: 20px;
+
+  ${StoryTextWrapper} {
+    margin-right: 50px;
+    margin-left: 0;
+  }
+
+  &:not(:last-child) {
+    border-bottom: 1px solid #e6e3dc;
+  }
+
+  &:nth-child(2) {
+    flex-direction: row;
+
+    ${StoryTextWrapper} {
+      margin-left: 50px;
+      margin-right: 0;
+    }
+  }
+`;
+
+// Single story ----------------
 
 const StoryTitle = styled.h2`
   font-family: 'Fraunces';
