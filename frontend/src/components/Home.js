@@ -96,7 +96,17 @@ const HeroTitle = styled.h1`
   font-size: 100px;
   color: #fff;
   font-weight: normal;
-  padding-top: 350px;
+  padding-top: 300px;
+
+  @media (max-width: 900px) {
+    font-size: 60px;
+    margin-bottom: 20px;
+    margin: 10px 20px;
+  }
+
+  @media (max-width: 400px) {
+    font-size: 40px;
+  }
 `;
 
 const HeroSubtitle = styled.h3`
@@ -104,7 +114,12 @@ const HeroSubtitle = styled.h3`
   text-align: center;
   color: #fff;
   font-weight: normal;
-  margin-top: 10px;
+  margin: 10px 20px;
+
+  @media (max-width: 900px) {
+    font-size: 18px;
+    line-height: 2;
+  }
 `;
 
 const HeroBG = styled.div`

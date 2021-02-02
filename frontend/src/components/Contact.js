@@ -109,7 +109,7 @@ const ContactText = styled.p`
   margin: 20px 0 30px;
 `;
 
-const ContactInfo = styled.p`
+const ContactInfo = styled.div`
   font-family: 'Fraunces';
   font-size: 16px;
   font-style: italic;

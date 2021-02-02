@@ -12,7 +12,7 @@ import { InnerWrapper } from '../assets/GlobalStyles';
 
 // ----------------------------------------------------------------
 
-export const Navigation = () => {
+export const ResponsiveNavigation = () => {
   const dispatch = useDispatch();
   const history = useHistory();
   const [projectsActive, setProjectsActive] = useState(false);
@@ -20,6 +20,8 @@ export const Navigation = () => {
   const currentLocation = useSelector((store) => store.location.location);
   const tags = ['all', 'photography', 'pr', 'styling', 'editorial', 'motion'];
   const [stories, setStories] = useState([]);
+
+  const [subMenu, setSubMenu] = useState(false);
 
   // Send category choice to redux for listed projects-page, navigate to projects
   const projectsClickHandler = (value) => {
@@ -45,112 +47,85 @@ export const Navigation = () => {
   return (
     <NavInnerWrapper>
       <LinksOuterWrapper>
-        <Left>
-          {/* Home ------------------------------------ */}
-          <LinkWrapper location={currentLocation}>
-            <NavLink to="/">
-              <NavImage src={process.env.PUBLIC_URL + '/images/cb.png'} />
-            </NavLink>
-          </LinkWrapper>
-
-          {/* Selected Stories ------------------------------------ */}
-          <DropdownLinkWrapper
+        {/* Home ------------------------------------ */}
+        <LinkWrapper location={currentLocation}>
+          <NavLink to="/">
+            <NavImage src={process.env.PUBLIC_URL + '/images/cb.png'} />
+          </NavLink>
+        </LinkWrapper>
+        <LinkWrapper location={currentLocation}>
+          <NavButton
             location={currentLocation}
-            onMouseEnter={() => setStoriesActive(true)}
-            onMouseLeave={() => setStoriesActive(false)}
-            style={{ width: '200px' }}
+            onClick={() => setSubMenu(!subMenu)}
           >
+            Show menu
+          </NavButton>
+        </LinkWrapper>
+      </LinksOuterWrapper>
+
+      {/* SUBMENU ---------------------------------------------------------------- */}
+      {subMenu && (
+        <SubLinksOuterWrapper>
+          {/* Selected Stories ------------------------------------ */}
+          <LinkWrapper location={currentLocation}>
             <NavLink
               to="/stories"
               activeStyle={{ fontStyle: 'italic', letterSpacing: '.3px' }}
+              onClick={() => setSubMenu(false)}
             >
-              Stories <DownArrow>▼</DownArrow>
+              Stories
             </NavLink>
-            <Dropdown showing={storiesActive}>
-              {stories &&
-                stories.map((story, index) => {
-                  return (
-                    <StoriesDropdownButton
-                      location={currentLocation}
-                      onClick={() => storiesClickHandler(story.slug.current)}
-                      key={index}
-                    >
-                      {story.title}
-                      <NavClient>för {story.client}</NavClient>
-                    </StoriesDropdownButton>
-                  );
-                })}
-            </Dropdown>
-          </DropdownLinkWrapper>
-        </Left>
+          </LinkWrapper>
 
-        <Right>
           {/* Food ------------------------------------ */}
           <LinkWrapper location={currentLocation}>
             <NavLink
               to="/food"
               activeStyle={{ fontStyle: 'italic', letterSpacing: '.3px' }}
-              style={{ marginRight: '20px' }}
+              onClick={() => setSubMenu(false)}
             >
               Mat
             </NavLink>
           </LinkWrapper>
 
           {/* Projects ------------------------------------ */}
-          <DropdownLinkWrapper
-            location={currentLocation}
-            onMouseEnter={() => setProjectsActive(true)}
-            onMouseLeave={() => setProjectsActive(false)}
-          >
+          <LinkWrapper location={currentLocation}>
             <NavLink
               to="/projects"
               activeStyle={{ fontStyle: 'italic', letterSpacing: '.3px' }}
               onClick={() => projectsClickHandler('')}
+              onClick={() => setSubMenu(false)}
             >
-              Projekt <DownArrow>▼</DownArrow>
+              Projekt
             </NavLink>
-            <Dropdown showing={projectsActive}>
-              {tags &&
-                tags.map((tag, index) => {
-                  return (
-                    <DropdownButton
-                      location={currentLocation}
-                      onClick={() =>
-                        projectsClickHandler(tag === 'all' ? '' : tag)
-                      }
-                      key={index}
-                    >
-                      {tag}
-                    </DropdownButton>
-                  );
-                })}
-            </Dropdown>
-          </DropdownLinkWrapper>
+          </LinkWrapper>
 
           {/* Contact ------------------------------------ */}
           <LinkWrapper location={currentLocation}>
             <NavLink
               to="/contact"
               activeStyle={{ fontStyle: 'italic', letterSpacing: '.3px' }}
+              onClick={() => setSubMenu(false)}
             >
               Kontakt
             </NavLink>
           </LinkWrapper>
-        </Right>
-      </LinksOuterWrapper>
+        </SubLinksOuterWrapper>
+      )}
     </NavInnerWrapper>
   );
 };
 
 // ----------------------------------------------------------------
 const NavInnerWrapper = styled(InnerWrapper)`
+  margin: 35px auto 45px auto;
   z-index: 5;
   position: absolute;
   left: 0;
   right: 0;
   top: 0;
 
-  @media (max-width: 900px) {
+  @media (min-width: 900px) {
     display: none;
   }
 `;
@@ -162,16 +137,13 @@ const LinksOuterWrapper = styled.div`
   justify-content: space-between;
 `;
 
-// Left side of the menu
-const Left = styled.div`
+const SubLinksOuterWrapper = styled.div`
+  margin-top: 20px;
+  width: 100%;
   display: flex;
-  align-items: center;
-
-  div {
-    width: 80px;
-    margin-right: 20px;
-    text-align: left;
-  }
+  align-items: flex-end;
+  text-align: right;
+  justify-content: space-between;
 `;
 
 const NavImage = styled.img`
@@ -179,15 +151,17 @@ const NavImage = styled.img`
   filter: invert(1);
 `;
 
-// Right side of the menu
-const Right = styled(Left)`
-  display: flex;
+const NavButton = styled.button`
+  border: none;
+  background: none;
+  color: ${(props) => (props.location === '/' ? '#fff' : '#000')};
 
-  div {
-    width: 130px;
-    margin-left: 20px;
-    margin-right: 0;
-    text-align: right;
+  font-family: 'Fraunces';
+  cursor: pointer;
+
+  &:hover {
+    font-style: italic;
+    letter-spacing: 0.4px;
   }
 `;
 
@@ -199,27 +173,7 @@ const LinkWrapper = styled.div`
   a {
     color: ${(props) => (props.location === '/' ? '#fff' : '#000')};
   }
-`;
-
-const Dropdown = styled.div`
-  display: ${(props) => (props.showing ? 'flex' : 'none')};
-  position: absolute;
-  z-index: 5;
-  padding-top: 10px;
-  flex-direction: column;
-  align-items: flex-start;
-`;
-
-const NavClient = styled.span`
-  display: block;
-  font-style: italic;
-  text-transform: capitalize;
-  font-size: 14px;
-  margin: 2px 0 2px;
-`;
-
-const DropdownLinkWrapper = styled(LinkWrapper)`
-  display: relative;
+  font-size: 13px;
 `;
 
 const DropdownButton = styled.button`

@@ -43,7 +43,6 @@ export const Recipe = () => {
             slug,
             category,
             portions,
-            "thumbnail":thumbnail.asset->{url, tags, title},
             creator,
             "main_image":main_image.asset->{url, tags, title},
             secondary_byline,
@@ -51,8 +50,6 @@ export const Recipe = () => {
             ingredients,
             toppings,
             "steps" : steps[] {"image":asset->{tags,url}, "text": text},
-            break_out_text,
-            "images": images[] {"image":asset->{tags, url}}.image
            }`
       )
       .then((data) => setRecipeData(data[0]))
@@ -128,11 +125,20 @@ export const Recipe = () => {
 
 const RecipeTopWrapper = styled(InnerWrapper)`
   margin: 150px auto 0;
+
+  @media (max-width: 900px) {
+    margin: 150px auto 0 auto;
+  }
 `;
 
 const RecipeHeaderWrapper = styled.div`
   display: flex;
   align-items: flex-end;
+
+  @media (max-width: 900px) {
+    flex-direction: column;
+    align-items: center;
+  }
 `;
 
 const RecipeHeaderTextWrapper = styled.div`
@@ -142,6 +148,11 @@ const RecipeHeaderTextWrapper = styled.div`
   margin-left: 30px;
   display: flex;
   flex-direction: column;
+
+  @media (max-width: 900px) {
+    width: 80vw;
+    max-width: 80vw;
+  }
 `;
 
 const MainImage = styled.img`
@@ -149,17 +160,37 @@ const MainImage = styled.img`
   width: 50vw;
   height: 600px;
   object-fit: cover;
+
+  @media (max-width: 900px) {
+    width: 100vw;
+  }
 `;
 
 const RecipeMainWrapper = styled(InnerWrapper)`
   display: flex;
   align-items: flex-start;
   padding-bottom: 50px;
+
+  @media (max-width: 900px) {
+    width: 80vw;
+
+    flex-direction: column;
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-bottom: 0;
+  }
 `;
 
 const Ingredients = styled.div`
   width: 400px;
   margin-top: 50px;
+
+  @media (max-width: 900px) {
+    width: 80vw;
+
+    width: 100%;
+    margin-top: 20px;
+  }
 `;
 
 const IngredientsList = styled.ul`
@@ -170,6 +201,10 @@ const IngredientsList = styled.ul`
     line-height: 1.6;
     text-align: right;
     margin-right: 40px;
+
+    @media (max-width: 900px) {
+      text-align: left;
+    }
   }
 `;
 
@@ -177,9 +212,14 @@ const Steps = styled.div`
   font-family: 'Fraunces';
   line-height: 1.6;
 `;
+
 const StepsList = styled.ol`
   margin-left: 30px;
   list-style-position: inside;
+
+  @media (max-width: 900px) {
+    margin-left: 0;
+  }
 
   img {
     width: 100%;
@@ -197,6 +237,10 @@ const RecipeTitle = styled.h1`
   font-family: 'Fraunces';
   font-weight: 300;
   font-size: 46px;
+
+  @media (max-width: 900px) {
+    font-size: 32px;
+  }
 `;
 
 const RecipeCategory = styled.p`
@@ -213,6 +257,10 @@ const RecipeIntro = styled.p`
   line-height: 1.5;
   font-style: italic;
   margin-right: 50px;
+
+  @media (max-width: 900px) {
+    max-width: 100%;
+  }
 `;
 
 const RecipeByline = styled.p`

@@ -65,7 +65,9 @@ export const Stories = () => {
                       <Tag key={index}>{tag}</Tag>
                     ))}
                 </StoryTagsWrapper>
-                <StoryLink to="/stories">Read more &#187;</StoryLink>
+                <StoryLink to={'/projects/' + project.slug.current}>
+                  Read more &#187;
+                </StoryLink>
               </StoryTextWrapper>
             </StoryWrapper>
           );
@@ -78,6 +80,11 @@ export const Stories = () => {
 
 const StoriesInnerWrapper = styled(InnerWrapper)`
   padding: 100px 0;
+
+  @media (max-width: 900px) {
+    padding: 60px 0 0;
+    margin: 90px auto 20px auto;
+  }
 `;
 
 const StoriesIntro = styled.p`
@@ -87,6 +94,10 @@ const StoriesIntro = styled.p`
   font-weight: 300;
   line-height: 1.6;
   margin-bottom: 50px;
+
+  @media (max-width: 900px) {
+    font-size: 24px;
+  }
 `;
 
 const StoryTextWrapper = styled.div`
@@ -95,6 +106,10 @@ const StoryTextWrapper = styled.div`
   width: 50%;
   flex-direction: column;
   text-align: center;
+
+  @media (max-width: 900px) {
+    width: 100%;
+  }
 `;
 
 const StoryWrapper = styled.div`
@@ -104,21 +119,32 @@ const StoryWrapper = styled.div`
   margin: 20px 0;
   padding-bottom: 20px;
 
-  ${StoryTextWrapper} {
-    margin-right: 50px;
-    margin-left: 0;
-  }
-
   &:not(:last-child) {
     border-bottom: 1px solid #e6e3dc;
   }
 
-  &:nth-child(2) {
-    flex-direction: row;
+  @media (min-width: 900px) {
+    ${StoryTextWrapper} {
+      margin-right: 50px;
+      margin-left: 0;
+    }
+
+    &:nth-child(2) {
+      flex-direction: row;
+
+      ${StoryTextWrapper} {
+        margin-left: 50px;
+        margin-right: 0;
+      }
+    }
+  }
+
+  @media (max-width: 900px) {
+    flex-direction: column;
 
     ${StoryTextWrapper} {
-      margin-left: 50px;
-      margin-right: 0;
+      margin: 10px 0;
+      padding: 0;
     }
   }
 `;

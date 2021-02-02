@@ -14,6 +14,7 @@ import GlobalStyles from './assets/GlobalStyles';
 
 // Components
 import { Navigation } from './components/Navigation';
+import { ResponsiveNavigation } from './components/ResponsiveNavigation';
 import { Home } from './components/Home';
 import { Story } from './components/Story';
 import { SelectedStory } from './components/SelectedStory';
@@ -43,6 +44,7 @@ export const App = () => {
         <GlobalStyles />
         <OuterWrapper>
           <Navigation />
+          <ResponsiveNavigation />
           <Switch>
             <Route component={Home} path="/" exact />
             <Route component={SelectedStory} path="/stories/:slug" />

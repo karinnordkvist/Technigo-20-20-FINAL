@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import styled from 'styled-components/macro';
+import { useHistory } from 'react-router-dom';
 
 // ----------------------------------------------------------------
 
 export const ThumbnailGallery = ({ project }) => {
+  const history = useHistory();
   const [currentImage, setCurrentImage] = useState(0);
 
   let imageList = [];
@@ -30,7 +32,10 @@ export const ThumbnailGallery = ({ project }) => {
         <button onClick={() => changeImage('decrease')}>&#60;</button>
         <button onClick={() => changeImage('increase')}>&#62;</button>
       </StoryImageNavWrapper>
-      <StoryThumbnail src={imageList[currentImage]} />
+      <StoryThumbnail
+        src={imageList[currentImage]}
+        onClick={() => history.push('/projects/' + project.slug.current)}
+      />
     </StoryImageWrapper>
   );
 };
@@ -40,6 +45,10 @@ export const ThumbnailGallery = ({ project }) => {
 const StoryImageWrapper = styled.div`
   width: 50%;
   position: relative;
+
+  @media (max-width: 900px) {
+    width: 100%;
+  }
 `;
 
 const StoryImageNavWrapper = styled.div`
@@ -66,4 +75,5 @@ const StoryThumbnail = styled.img`
   height: 400px;
   object-fit: cover;
   max-width: 100%;
+  cursor: pointer;
 `;

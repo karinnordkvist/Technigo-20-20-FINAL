@@ -104,11 +104,19 @@ export const ListedProjects = () => {
 
 const StoriesInnerWrapper = styled(InnerWrapper)`
   padding: 100px 0;
+
+  @media (max-width: 900px) {
+    padding: 90px 0 0 0;
+  }
 `;
 
 const StoryWrapper = styled.div`
   display: flex;
   margin: 25px 0;
+
+  @media (max-width: 900px) {
+    flex-direction: column;
+  }
 `;
 
 // Single story ----------------
@@ -131,18 +139,32 @@ const StoryThumbnail = styled.img`
   height: 170px;
   object-fit: cover;
   max-width: 100%;
+
+  @media (max-width: 900px) {
+    width: 100%;
+    height: 350px;
+  }
 `;
 
 const StoryTextWrapper = styled.div`
   display: flex;
   flex-direction: column;
   margin-left: 50px;
+
+  @media (max-width: 900px) {
+    margin: 10px auto 50px auto;
+    text-align: center;
+  }
 `;
 
 const StoryTitle = styled.h2`
   font-family: 'Fraunces';
   font-weight: 300;
   margin-top: 5px;
+
+  @media (max-width: 900px) {
+    margin-top: 20px;
+  }
 `;
 
 const StoryIntro = styled.p`

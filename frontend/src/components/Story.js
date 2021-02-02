@@ -164,6 +164,10 @@ export const Story = () => {
 
 const StoryInnerWrapper = styled(InnerWrapper)`
   margin: 150px auto;
+
+  @media (max-width: 900px) {
+    margin: 150px auto 0 auto;
+  }
 `;
 
 const Loader = styled.p`
@@ -204,6 +208,10 @@ const StoryIntro = styled.p`
   margin: 40px auto;
   text-align: center;
   max-width: 70%;
+
+  @media (max-width: 900px) {
+    max-width: 95%;
+  }
 `;
 
 const StoryByline = styled.p`
@@ -217,6 +225,10 @@ const StoryTextWrapper = styled.div`
   display: flex;
   align-items: flex-start;
   margin-bottom: 30px;
+
+  @media (max-width: 900px) {
+    flex-direction: column;
+  }
 `;
 
 const StoryInfo = styled.ul`
@@ -226,6 +238,15 @@ const StoryInfo = styled.ul`
 
   li {
     width: 20vw;
+  }
+
+  @media (max-width: 900px) {
+    text-align: center;
+    margin: 0 auto 20px auto;
+
+    li {
+      width: 100%;
+    }
   }
 `;
 

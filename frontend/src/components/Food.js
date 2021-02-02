@@ -85,6 +85,10 @@ export const Food = () => {
 
 const FoodInnerWrapper = styled(InnerWrapper)`
   margin: 150px auto;
+
+  @media (max-width: 900px) {
+    margin: 150px auto 0 auto;
+  }
 `;
 
 const FoodIntro = styled.p`
@@ -94,12 +98,22 @@ const FoodIntro = styled.p`
   font-weight: 300;
   line-height: 1.6;
   margin-bottom: 50px;
+
+  @media (max-width: 900px) {
+    font-size: 24px;
+  }
 `;
 
 const RecipesWrapper = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 50px 20px;
+
+  @media (max-width: 900px) {
+    grid-template-columns: 1fr;
+    gap: 40px;
+    text-align: center;
+  }
 `;
 
 const Recipe = styled.div`

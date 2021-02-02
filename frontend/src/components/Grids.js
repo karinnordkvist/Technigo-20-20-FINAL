@@ -138,5 +138,11 @@ const G6_ImageWrapper = styled(baseGrid)`
     font-size: 28px;
     font-style: italic;
     margin-top: 550px;
+
+    @media (max-width: 900px) {
+      font-size: 18px;
+      margin-top: 100px;
+      grid-column: 7 / span 7;
+    }
   }
 `;
