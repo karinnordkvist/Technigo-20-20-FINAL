@@ -4,6 +4,8 @@ import { Link, useLocation } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import sanityClient from '../client.js';
 
+import { ThumbnailGallery } from './ThumbnailGallery';
+
 // Styling
 import { InnerWrapper } from '../assets/GlobalStyles';
 
@@ -21,7 +23,16 @@ export const Stories = () => {
     dispatch(location.actions.setLocation(currentLocation.pathname));
     sanityClient
       .fetch(
-        `*[_type == 'project' && selected_story == true]|order(_createdAt desc){title, slug, "thumbnail":thumbnail.asset->{url, tags, title}, date, intro, "images": images[] {"image":asset->{tags, url}}.image, layout }`
+        `*[_type == 'project' && selected_story == true]|order(_createdAt desc){
+          title,
+          client, 
+          slug,
+          tags, 
+          "thumbnail":thumbnail.asset->{url, tags, title}, 
+          date, 
+          intro, 
+          "grids": grids[]{"images":images[]{"image":asset->{tags, url}}.image},
+          layout }`
       )
       .then((data) => setStoryData(data))
       .catch(console.error);
@@ -38,17 +49,23 @@ export const Stories = () => {
         storyData.map((project) => {
           return (
             <StoryWrapper key={project.title}>
-              <StoryThumbnail src={project.thumbnail.url} />
+              <ThumbnailGallery project={project} />
               <StoryTextWrapper>
-                <StoryCategory>Story:</StoryCategory>
                 <Link
                   to={'/stories/' + project.slug.current}
                   key={project.slug.current}
                 >
                   <StoryTitle>{project.title}</StoryTitle>
                 </Link>
+                <StoryClient>För {project.client}</StoryClient>
                 <StoryIntro>{project.intro}</StoryIntro>
-                <StoryLink to="/stories">Link to the project</StoryLink>
+                <StoryTagsWrapper>
+                  {project.tags &&
+                    project.tags.map((tag, index) => (
+                      <Tag key={index}>{tag}</Tag>
+                    ))}
+                </StoryTagsWrapper>
+                <StoryLink to="/stories">Read more..</StoryLink>
               </StoryTextWrapper>
             </StoryWrapper>
           );
@@ -76,31 +93,35 @@ const StoryWrapper = styled.div`
   display: flex;
   align-items: center;
   margin: 20px 0;
+  padding-bottom: 20px;
+
+  &:not(:last-child) {
+    border-bottom: 1px solid #e6e3dc;
+  }
 `;
 
 // Single story ----------------
-const StoryCategory = styled.p`
-  font-family: 'Fraunces';
-  font-style: italic;
-  font-size: 14px;
-`;
-
-const StoryThumbnail = styled.img`
-  width: 220px;
-  height: 150px;
-  object-fit: cover;
-  max-width: 100%;
-`;
-
 const StoryTextWrapper = styled.div`
   display: flex;
+  align-items: center;
+  width: 50%;
   flex-direction: column;
   margin-left: 50px;
+  text-align: center;
 `;
 
 const StoryTitle = styled.h2`
   font-family: 'Fraunces';
+  font-size: 36px;
   font-weight: 300;
+  margin: 5px auto;
+`;
+
+const StoryClient = styled.p`
+  font-family: 'Fraunces';
+  font-style: italic;
+  text-transform: uppercase;
+  font-size: 14px;
   margin-top: 5px;
 `;
 
@@ -112,4 +133,19 @@ const StoryIntro = styled.p`
 const StoryLink = styled(Link)`
   margin-top: 20px;
   font-size: 14px;
+  font-style: italic;
+  letter-spacing: 0.4px;
+`;
+
+const StoryTagsWrapper = styled.div`
+  margin: 20px auto 10px auto;
+`;
+
+const Tag = styled.span`
+  font-family: 'Fraunces';
+  font-style: italic;
+  font-size: 12px;
+  padding: 2px 5px;
+  background: #e6e3dc;
+  margin-right: 3px;
 `;

@@ -106,15 +106,6 @@ const StoriesInnerWrapper = styled(InnerWrapper)`
   padding: 100px 0;
 `;
 
-const StoriesIntro = styled.p`
-  font-family: 'Fraunces';
-  font-style: italic;
-  font-size: 30px;
-  font-weight: 300;
-  line-height: 1.6;
-  margin-bottom: 50px;
-`;
-
 const StoryWrapper = styled.div`
   display: flex;
   margin: 25px 0;

@@ -6,7 +6,6 @@ import { InnerWrapper } from '../assets/GlobalStyles';
 
 // ----------------------------------------------------------------
 const now = new Date().toLocaleDateString().substring(0, 4);
-console.log(now);
 
 export const Footer = () => {
   return (
