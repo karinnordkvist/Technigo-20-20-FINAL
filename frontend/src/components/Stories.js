@@ -52,7 +52,7 @@ export const Stories = () => {
               <ThumbnailGallery project={project} />
               <StoryTextWrapper>
                 <Link
-                  to={'/stories/' + project.slug.current}
+                  to={'/projects/' + project.slug.current}
                   key={project.slug.current}
                 >
                   <StoryTitle>{project.title}</StoryTitle>

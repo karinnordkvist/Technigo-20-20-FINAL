@@ -27,8 +27,8 @@ export const ThumbnailGallery = ({ project }) => {
   return (
     <StoryImageWrapper>
       <StoryImageNavWrapper>
-        <button onClick={() => changeImage('decrease')}>◀︎</button>
-        <button onClick={() => changeImage('increase')}>▶︎</button>
+        <button onClick={() => changeImage('decrease')}>&#60;</button>
+        <button onClick={() => changeImage('increase')}>&#62;</button>
       </StoryImageNavWrapper>
       <StoryThumbnail src={imageList[currentImage]} />
     </StoryImageWrapper>
@@ -51,6 +51,8 @@ const StoryImageNavWrapper = styled.div`
   justify-content: space-between;
 
   button {
+    font-family: 'Pearl';
+    font-size: 25px;
     background: none;
     border: none;
     color: #fff;
