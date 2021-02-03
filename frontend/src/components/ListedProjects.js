@@ -26,6 +26,8 @@ export const ListedProjects = () => {
     useSelector((store) => store.location.project_category)
   );
 
+  // dispatch(location.actions.setProjectCategory(value));
+
   useEffect(() => {
     // dispatch(location.actions.setProjectCategory(''));
     dispatch(location.actions.setLocation(currentLocation.pathname));
@@ -64,11 +66,30 @@ export const ListedProjects = () => {
     }
   }, [category]);
 
+  const onChangeHandler = (category) => {
+    dispatch(location.actions.setProjectCategory(category));
+  };
+
   return (
     <StoriesInnerWrapper>
       <FlexWrapper>
+        <ResponsiveCategories>
+          <p>Sortera på:</p>
+          <CategorySelect
+            onChange={(event) => onChangeHandler(event.target.value)}
+          >
+            <option value="">Alla</option>
+            <option value="photography">Fotografi</option>
+            <option value="pr">PR</option>
+            <option value="styling">Styling</option>
+            <option value="editorial">Editorial</option>
+            <option value="motion">Rörligt</option>
+          </CategorySelect>
+        </ResponsiveCategories>
+      </FlexWrapper>
+      <FlexWrapper>
         <BreadCrumbs>
-          Showing: {categoryRaw === '' ? 'All projects' : categoryRaw}
+          Visar: {categoryRaw === '' ? 'All projects' : categoryRaw}
         </BreadCrumbs>
         <BackButton>Tillbaka</BackButton>
       </FlexWrapper>
@@ -106,7 +127,7 @@ const StoriesInnerWrapper = styled(InnerWrapper)`
   padding: 100px 0;
 
   @media (max-width: 900px) {
-    padding: 90px 0 0 0;
+    padding: 50px 0 0 0;
   }
 `;
 
@@ -117,6 +138,32 @@ const StoryWrapper = styled.div`
   @media (max-width: 900px) {
     flex-direction: column;
   }
+`;
+
+const ResponsiveCategories = styled.div`
+  display: none;
+  flex-wrap: wrap;
+  width: 100%;
+  margin-bottom: 20px;
+
+  p {
+    width: 33%;
+    font-family: 'Fraunces';
+    font-size: 13px;
+    line-height: 1.6;
+    padding: 5px 0;
+  }
+
+  @media (max-width: 900px) {
+    display: flex;
+  }
+`;
+
+const CategorySelect = styled.select`
+  font-family: 'Fraunces';
+  width: 100%;
+  padding: 10px;
+  background: none;
 `;
 
 // Single story ----------------

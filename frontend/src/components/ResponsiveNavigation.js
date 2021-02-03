@@ -58,7 +58,7 @@ export const ResponsiveNavigation = () => {
             location={currentLocation}
             onClick={() => setSubMenu(!subMenu)}
           >
-            Show menu
+            Meny
           </NavButton>
         </LinkWrapper>
       </LinksOuterWrapper>
