@@ -32,7 +32,7 @@ export const Contact = () => {
             email,
           }`
       )
-      .then((data) => setContactInfo(data[0]))
+      .then((data) => setContactInfo(data[1]))
       .catch(console.error);
   }, []);
 

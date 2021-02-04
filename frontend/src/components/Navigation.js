@@ -21,7 +21,7 @@ export const Navigation = () => {
   const tags = [
     'alla projekt',
     'fotografi',
-    'pr',
+    'PR',
     'styling',
     'editorial',
     'rörligt',

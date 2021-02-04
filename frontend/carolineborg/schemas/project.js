@@ -30,10 +30,9 @@ export default {
     },
     {
       name: 'tags',
-      title:
-        'Type of project* (tags: photography, styling, pr, editorial or motion)',
+      title: 'Type of project*',
       description:
-        'Add all tags needed and make sure you spell it right, in lower case.',
+        'Add all tags needed and make sure you spell it right, and use right case (upper/lower) to be able to sort them later. Choose from: fotografi, styling, PR(upper case), editorial or rörligt.',
       type: 'array',
       of: [{ type: 'string' }],
       options: {

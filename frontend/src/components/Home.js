@@ -37,7 +37,7 @@ export const Home = () => {
       .fetch(
         `*[_type == 'home']{ "hero_image":hero_image.asset->{url, tags, title, byline}, hero_title, hero_text, intro_text}`
       )
-      .then((data) => setHomeData(data[0]))
+      .then((data) => setHomeData(data[1]))
       .catch(console.error);
 
     // Fetch most recently uploaded project/recipe

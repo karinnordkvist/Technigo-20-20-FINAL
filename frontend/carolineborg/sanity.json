@@ -28,6 +28,10 @@
     {
       "implements": "part:@sanity/base/brand-logo",
       "path": "./logo/logo.js"
+    },
+    {
+      "name": "part:@sanity/desk-tool/structure",
+      "path": "./deskStructure.js"
     }
   ]
 }
