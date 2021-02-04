@@ -97,6 +97,13 @@ export const Recipe = () => {
               recipeData.ingredients.map((ingredient, index) => {
                 return <li key={index}>{ingredient}</li>;
               })}
+            <li style={{ fontStyle: 'italic', marginTop: '20px' }}>
+              Toppings:
+            </li>
+            {recipeData.toppings &&
+              recipeData.toppings.map((topping, index) => {
+                return <li key={index}>{topping}</li>;
+              })}
           </IngredientsList>
         </Ingredients>
 
@@ -124,7 +131,7 @@ export const Recipe = () => {
 // ----------------------------------------------------------------
 
 const RecipeTopWrapper = styled(InnerWrapper)`
-  margin: 150px auto 0;
+  margin: 150px auto 0 auto;
 
   @media (max-width: 900px) {
     margin: 150px auto 0 auto;

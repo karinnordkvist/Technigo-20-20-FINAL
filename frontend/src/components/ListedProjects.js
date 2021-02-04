@@ -26,10 +26,7 @@ export const ListedProjects = () => {
     useSelector((store) => store.location.project_category)
   );
 
-  // dispatch(location.actions.setProjectCategory(value));
-
   useEffect(() => {
-    // dispatch(location.actions.setProjectCategory(''));
     dispatch(location.actions.setLocation(currentLocation.pathname));
     if (!categoryRaw) {
       sanityClient
@@ -79,8 +76,8 @@ export const ListedProjects = () => {
             onChange={(event) => onChangeHandler(event.target.value)}
           >
             <option value="">Alla</option>
-            <option value="photography">Fotografi</option>
-            <option value="pr">PR</option>
+            <option value="fotografi">Fotografi</option>
+            <option value="PR">PR</option>
             <option value="styling">Styling</option>
             <option value="editorial">Editorial</option>
             <option value="motion">Rörligt</option>
@@ -89,7 +86,7 @@ export const ListedProjects = () => {
       </FlexWrapper>
       <FlexWrapper>
         <BreadCrumbs>
-          Visar: {categoryRaw === '' ? 'All projects' : categoryRaw}
+          Visar: {categoryRaw === '' ? 'Alla projekt' : categoryRaw}
         </BreadCrumbs>
         <BackButton>Tillbaka</BackButton>
       </FlexWrapper>

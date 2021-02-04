@@ -18,7 +18,14 @@ export const Navigation = () => {
   const [projectsActive, setProjectsActive] = useState(false);
   const [storiesActive, setStoriesActive] = useState(false);
   const currentLocation = useSelector((store) => store.location.location);
-  const tags = ['all', 'photography', 'pr', 'styling', 'editorial', 'motion'];
+  const tags = [
+    'alla projekt',
+    'fotografi',
+    'pr',
+    'styling',
+    'editorial',
+    'rörligt',
+  ];
   const [stories, setStories] = useState([]);
 
   // Send category choice to redux for listed projects-page, navigate to projects
@@ -116,7 +123,7 @@ export const Navigation = () => {
                     <DropdownButton
                       location={currentLocation}
                       onClick={() =>
-                        projectsClickHandler(tag === 'all' ? '' : tag)
+                        projectsClickHandler(tag === 'alla projekt' ? '' : tag)
                       }
                       key={index}
                     >
