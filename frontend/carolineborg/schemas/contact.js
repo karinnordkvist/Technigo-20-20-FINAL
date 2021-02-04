@@ -6,9 +6,24 @@ export default {
   type: 'document',
   fields: [
     {
-      name: 'hero_image',
-      title: 'Hero Image',
+      name: 'main_image',
+      title: 'Main Image',
       type: 'image',
+    },
+    {
+      name: 'main_text',
+      title: 'Text',
+      type: 'string',
+    },
+    {
+      name: 'phone',
+      title: 'Telefonnummer',
+      type: 'string',
+    },
+    {
+      name: 'email',
+      title: 'Email-adress',
+      type: 'string',
     },
   ],
 };

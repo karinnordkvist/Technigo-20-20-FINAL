@@ -51,14 +51,14 @@ export default {
       to: { type: 'creator' },
     },
     {
-      name: 'main_image',
-      type: 'image',
-      validation: (Rule) => Rule.required(),
-    },
-    {
       name: 'secondary_byline',
       description: 'If anyone else was part of creating the recipe',
       type: 'string',
+    },
+    {
+      name: 'main_image',
+      type: 'image',
+      validation: (Rule) => Rule.required(),
     },
     {
       name: 'intro',

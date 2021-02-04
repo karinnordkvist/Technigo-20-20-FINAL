@@ -10,6 +10,7 @@ import home from './home';
 import creator from './creator';
 import project from './project';
 import recipe from './recipe';
+import contact from './contact';
 import grid from './grid';
 
 // Then we give our schema to the builder and provide the result to Sanity
@@ -25,6 +26,7 @@ export default createSchema({
     project,
     recipe,
     creator,
+    contact,
     grid,
     // When added to this list, object types can be used as
     // { type: 'typename' } in other document schemas

@@ -230,6 +230,7 @@ const DropdownLinkWrapper = styled(LinkWrapper)`
 `;
 
 const DropdownButton = styled.button`
+  width: 250px;
   font-family: 'Fraunces';
   color: ${(props) => (props.location === '/' ? '#fff' : '#000')};
   font-size: 16px;
