@@ -25,8 +25,8 @@ export default {
       type: 'string',
       options: {
         list: [
-          { value: 'Bakning', title: 'Bakning' },
-          { value: 'Middag', title: 'Middag' },
+          { value: 'Sött', title: 'Sött' },
+          { value: 'Mat', title: 'Mat' },
         ],
       },
       validation: (Rule) => Rule.required(),
@@ -76,13 +76,6 @@ export default {
       type: 'array',
       of: [{ type: 'string' }],
     },
-    // {
-    //   name: 'steps',
-    //   description: 'How to cook the recipe',
-    //   type: 'array',
-    //   of: [{ type: 'string' }],
-    //   validation: (Rule) => Rule.required(),
-    // },
     {
       name: 'steps',
       description: 'How to cook the recipe',
@@ -99,12 +92,6 @@ export default {
     {
       name: 'break_out_text',
       type: 'string',
-    },
-    {
-      name: 'images',
-      title: 'Images',
-      type: 'array',
-      of: [{ type: 'image' }],
     },
   ],
 };

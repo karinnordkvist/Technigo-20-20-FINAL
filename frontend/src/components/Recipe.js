@@ -180,7 +180,6 @@ const RecipeMainWrapper = styled(InnerWrapper)`
 
   @media (max-width: 900px) {
     width: 80vw;
-
     flex-direction: column;
     margin-top: 0;
     margin-bottom: 0;
@@ -194,7 +193,6 @@ const Ingredients = styled.div`
 
   @media (max-width: 900px) {
     width: 80vw;
-
     width: 100%;
     margin-top: 20px;
   }

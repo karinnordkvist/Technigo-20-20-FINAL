@@ -66,7 +66,7 @@ export const Stories = () => {
                     ))}
                 </StoryTagsWrapper>
                 <StoryLink to={'/projects/' + project.slug.current}>
-                  Read more &#187;
+                  Läs mer &#187;
                 </StoryLink>
               </StoryTextWrapper>
             </StoryWrapper>

@@ -43,5 +43,19 @@ export default {
       of: [{ type: 'string' }],
       validation: (Rule) => Rule.min(3).max(3),
     },
+    {
+      name: 'single_category_image',
+      title: 'Single Category Image',
+      description:
+        'Full width category-field. Add one image, and a title below.',
+      type: 'image',
+    },
+    {
+      name: 'single_category_title',
+      title: 'Single Category Title',
+      description:
+        'Title for above image. Choose from Alla projekt, Fotografi, PR, Styling, Editorial or Rörligt.',
+      type: 'string',
+    },
   ],
 };

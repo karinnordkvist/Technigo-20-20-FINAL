@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import styled from 'styled-components/macro';
-import { useLocation, useHistory } from 'react-router-dom';
+import { useLocation, useHistory, Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 
 // Components
@@ -50,7 +50,9 @@ export const Home = () => {
           hero_text, 
           intro_text,
           "category_images": category_images[] {"image":asset->{tags, url, title,byline}}.image,
-          category_titles
+          category_titles,
+          "single_category_image": single_category_image.asset->{url, tags, title, byline},
+          single_category_title
         }`
       )
       .then((data) => setHomeData(data[1]))
@@ -59,7 +61,16 @@ export const Home = () => {
     // Fetch most recently uploaded project/recipe
     sanityClient
       .fetch(
-        `*[_type == 'recipe' || _type == 'project']| order(_createdAt desc)`
+        `*[_type == 'recipe' || _type == 'project']| order(_createdAt desc){
+          "thumbnail":thumbnail.asset->{url, tags, title}, 
+          _type, 
+          title,
+          client, 
+          category,
+          slug,
+          intro,
+          secondary_byline,
+        }`
       )
       .then((data) => setLatest(data[0]));
   }, []);
@@ -76,16 +87,20 @@ export const Home = () => {
   return (
     <HomeOuterWrapper>
       <HeroBG img={homeData.hero_image.url}></HeroBG>
+
+      {/* Hero section */}
       <HeroWrapper ref={ref}>
         <HeroTitle>{homeData.hero_title}</HeroTitle>
         <HeroSubtitle>{homeData.hero_text}</HeroSubtitle>
       </HeroWrapper>
 
+      {/* About section */}
       <SectionWrapper>
-        <AboutHeader>About</AboutHeader>
+        <HomePearlHeader>About</HomePearlHeader>
         <AboutText>{homeData.intro_text}</AboutText>
       </SectionWrapper>
 
+      {/* Triple categories - full width */}
       <CategoryWrapper>
         {homeData.category_images &&
           homeData.category_images.map((image, index) => {
@@ -100,6 +115,61 @@ export const Home = () => {
             );
           })}
       </CategoryWrapper>
+
+      {/* Latest recipe/project section */}
+      <SectionWrapper>
+        <HomePearlHeader style={{ marginBottom: '50px' }}>
+          Latest project
+        </HomePearlHeader>
+
+        {/* Latest project/recipe */}
+        <LatestWrapper style={{ background: '#e6e3dc' }}>
+          {latest.thumbnail && <img src={latest.thumbnail.url} />}
+          <div>
+            {latest.category && (
+              <Category>
+                {latest._type === 'recipe' ? 'Recept' : 'Projekt'} /{' '}
+                {latest.category}
+              </Category>
+            )}
+            {latest.slug.current && (
+              <Link
+                to={
+                  latest._type === 'recipe'
+                    ? `/food/${latest.slug.current}`
+                    : `/project/${latest.slug.current}`
+                }
+              >
+                <h2>{latest.title}</h2>
+              </Link>
+            )}
+            {latest.client && <p>För {latest.client}</p>}
+            {/* {latest.intro && <p>{latest.intro}</p>} */}
+            {latest.slug.current && (
+              <Link
+                to={
+                  latest._type === 'recipe'
+                    ? `/food/${latest.slug.current}`
+                    : `/project/${latest.slug.current}`
+                }
+              >
+                <p>Läs mer &#187;</p>
+              </Link>
+            )}
+          </div>
+        </LatestWrapper>
+      </SectionWrapper>
+
+      {/* Single category - full width */}
+      <CategoryWrapper style={{ gridTemplateColumns: '1fr' }}>
+        {homeData.single_category_image && (
+          <CategoryImage
+            url={homeData.single_category_image.url}
+            title={homeData.single_category_title}
+            onCategoryClickHandler={onCategoryClickHandler}
+          />
+        )}
+      </CategoryWrapper>
     </HomeOuterWrapper>
   );
 };
@@ -113,8 +183,12 @@ const LoaderWrapper = styled.div`
 `;
 const HomeOuterWrapper = styled.div``;
 
+const HeroWrapper = styled.div`
+  height: 100vh;
+`;
+
 const SectionWrapper = styled(InnerWrapper)`
-  padding: 250px auto;
+  padding: 200px auto;
   margin: 150px auto;
 `;
 
@@ -123,10 +197,51 @@ const CategoryWrapper = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   gap: 20px;
+
+  @media (max-width: 900px) {
+    grid-template-columns: 1fr;
+  }
 `;
 
-const HeroWrapper = styled.div`
-  height: 100vh;
+const LatestWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  text-align: center;
+  font-family: 'Fraunces';
+
+  div {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 60%;
+  }
+
+  img {
+    width: 40%;
+  }
+
+  h2 {
+    font-weight: normal;
+    font-size: 20px;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+
+  @media (max-width: 900px) {
+    flex-direction: column;
+    img {
+      margin-top: 50px;
+    }
+    div {
+      margin-bottom: 50px;
+    }
+  }
+`;
+
+const Category = styled.p`
+  font-family: 'Fraunces';
+  font-style: italic;
+  margin-bottom: 5px;
 `;
 
 const HeroTitle = styled.h1`
@@ -173,7 +288,7 @@ const HeroBG = styled.div`
   z-index: -1;
 `;
 
-const AboutHeader = styled.h2`
+const HomePearlHeader = styled.h2`
   font-family: 'Pearl';
   font-weight: normal;
   font-size: 20px;
