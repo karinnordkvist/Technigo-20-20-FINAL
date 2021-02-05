@@ -25,5 +25,23 @@ export default {
       title: 'Intro',
       type: 'text',
     },
+    {
+      name: 'category_images',
+      title: 'Category Images',
+      description:
+        'Add 3 images for the Category-section. Make sure the image goes with the headline specified in below list.',
+      type: 'array',
+      of: [{ type: 'image' }],
+      validation: (Rule) => Rule.min(3).max(3),
+    },
+    {
+      name: 'category_titles',
+      title: 'Category Titles',
+      description:
+        'Add 3 titles for the Category-section. Make sure the title goes with the images above. Choose from Alla projekt, Fotografi, PR, Styling, Editorial or Rörligt.',
+      type: 'array',
+      of: [{ type: 'string' }],
+      validation: (Rule) => Rule.min(3).max(3),
+    },
   ],
 };

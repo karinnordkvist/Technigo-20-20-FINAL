@@ -1,7 +1,10 @@
 import React, { useState, useRef, useEffect } from 'react';
 import styled from 'styled-components/macro';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
+
+// Components
+import { CategoryImage } from './CategoryImage';
 
 // Data
 import sanityClient from '../client.js';
@@ -15,12 +18,18 @@ import { location } from '../reducers/location';
 // ----------------------------------------------------------------
 
 export const Home = () => {
-  const ref = useRef();
   const currentLocation = useLocation();
   const dispatch = useDispatch();
-  // const [offsetTop, setOffsetTop] = useState();
+  const history = useHistory();
+  const ref = useRef();
   const [projects, setProjects] = useState([]);
   const [homeData, setHomeData] = useState(null);
+  const [latest, setLatest] = useState([]);
+
+  const onCategoryClickHandler = (category) => {
+    dispatch(location.actions.setProjectCategory(category));
+    history.push('/projects');
+  };
 
   useEffect(() => {
     // Send current location to reducer
@@ -35,7 +44,14 @@ export const Home = () => {
     // Fetch all home-data
     sanityClient
       .fetch(
-        `*[_type == 'home']{ "hero_image":hero_image.asset->{url, tags, title, byline}, hero_title, hero_text, intro_text}`
+        `*[_type == 'home']{
+          "hero_image":hero_image.asset->{url, tags, title, byline}, 
+          hero_title, 
+          hero_text, 
+          intro_text,
+          "category_images": category_images[] {"image":asset->{tags, url, title,byline}}.image,
+          category_titles
+        }`
       )
       .then((data) => setHomeData(data[1]))
       .catch(console.error);
@@ -45,12 +61,10 @@ export const Home = () => {
       .fetch(
         `*[_type == 'recipe' || _type == 'project']| order(_createdAt desc)`
       )
-      .then((data) => console.log(data[0]));
+      .then((data) => setLatest(data[0]));
   }, []);
 
-  // useEffect(() => {
-  //   setOffsetTop(ref.current.offsetTop);
-  // }, [offsetTop]);
+  console.log(latest);
 
   if (!homeData) {
     return (
@@ -68,11 +82,24 @@ export const Home = () => {
       </HeroWrapper>
 
       <SectionWrapper>
-        {/* <AboutImage src="" /> */}
         <AboutHeader>About</AboutHeader>
         <AboutText>{homeData.intro_text}</AboutText>
       </SectionWrapper>
-      <SectionWrapper></SectionWrapper>
+
+      <CategoryWrapper>
+        {homeData.category_images &&
+          homeData.category_images.map((image, index) => {
+            const titles = homeData.category_titles;
+            return (
+              <CategoryImage
+                key={index}
+                url={image.url}
+                title={titles[index]}
+                onCategoryClickHandler={onCategoryClickHandler}
+              />
+            );
+          })}
+      </CategoryWrapper>
     </HomeOuterWrapper>
   );
 };
@@ -85,6 +112,18 @@ const LoaderWrapper = styled.div`
   justify-content: center;
 `;
 const HomeOuterWrapper = styled.div``;
+
+const SectionWrapper = styled(InnerWrapper)`
+  padding: 250px auto;
+  margin: 150px auto;
+`;
+
+const CategoryWrapper = styled.div`
+  margin: 150px auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 20px;
+`;
 
 const HeroWrapper = styled.div`
   height: 100vh;
@@ -132,15 +171,6 @@ const HeroBG = styled.div`
   background-size: cover;
   background-position: center;
   z-index: -1;
-`;
-
-const SectionWrapper = styled(InnerWrapper)`
-  padding: 50px auto;
-`;
-
-const AboutImage = styled.img`
-  width: 30vw;
-  margin: 50px auto;
 `;
 
 const AboutHeader = styled.h2`
