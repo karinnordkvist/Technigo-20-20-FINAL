@@ -61,7 +61,7 @@ export const ListedProjects = () => {
         .then((data) => setProjects(data))
         .catch(console.error);
     }
-  }, [category]);
+  }, [category, currentLocation.pathname, dispatch, categoryRaw]);
 
   const onChangeHandler = (category) => {
     dispatch(location.actions.setProjectCategory(category));
@@ -216,9 +216,4 @@ const StoryIntro = styled.p`
   margin: 15px auto 5px auto;
   font-size: 14px;
   line-height: 1.5;
-`;
-
-const StoryLink = styled(Link)`
-  margin-top: 20px;
-  font-size: 14px;
 `;

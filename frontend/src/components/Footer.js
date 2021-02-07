@@ -1,9 +1,6 @@
 import React from 'react';
 import styled from 'styled-components/macro';
 
-// Styling
-import { InnerWrapper } from '../assets/GlobalStyles';
-
 // ----------------------------------------------------------------
 const now = new Date().toLocaleDateString().substring(0, 4);
 

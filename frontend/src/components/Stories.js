@@ -36,7 +36,7 @@ export const Stories = () => {
       )
       .then((data) => setStoryData(data))
       .catch(console.error);
-  }, []);
+  }, [currentLocation.pathname, dispatch]);
 
   return (
     <StoriesInnerWrapper>

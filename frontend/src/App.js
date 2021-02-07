@@ -71,6 +71,4 @@ export const App = () => {
 };
 
 // ----------------------------------------------------------------
-const OuterWrapper = styled.div`
-  z-index: -2;
-`;
+const OuterWrapper = styled.div``;

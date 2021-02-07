@@ -26,10 +26,6 @@ export const Recipe = () => {
 
   // For back-button & breadcrumbs
   const history = useHistory();
-  const formattedLocation = currentLocation.pathname
-    .substring(1)
-    .replaceAll('/', ' · ')
-    .replaceAll('-', ' ');
 
   // Fetch story data
   useEffect(() => {
@@ -49,14 +45,12 @@ export const Recipe = () => {
             intro,
             ingredients,
             toppings,
-            "steps" : steps[] {"image":asset->{tags,url}, "text": text},
+            "steps" : steps[] {"image":asset->{tags,url, alt}, "text": text},
            }`
       )
       .then((data) => setRecipeData(data[0]))
       .catch(console.error);
-  }, []);
-
-  console.log(recipeData);
+  }, [dispatch, currentLocation.pathname, slug]);
 
   if (!recipeData) {
     return (
@@ -117,9 +111,15 @@ export const Recipe = () => {
                   return <li key={index}>{step.text}</li>;
                 }
                 if (step.image) {
-                  return <img key={index} src={step.image.url} />;
+                  return (
+                    <img
+                      key={index}
+                      src={step.image.url}
+                      alt={step.image.alt ? step.image.alt : 'Recipe image'}
+                    />
+                  );
                 }
-                // return <li key={index}>{step}</li>;
+                return null;
               })}
           </StepsList>
         </Steps>

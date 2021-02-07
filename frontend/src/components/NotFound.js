@@ -17,10 +17,22 @@ export const NotFound = () => {
 
   useEffect(() => {
     dispatch(location.actions.setLocation(currentLocation.pathname));
-  }, [currentLocation]);
+  }, [currentLocation, dispatch]);
   return (
-    <InnerWrapper>
-      <p>404-page</p>
-    </InnerWrapper>
+    <NotFoundWrapper>
+      <p>Oops! Nothing here!</p>
+    </NotFoundWrapper>
   );
 };
+
+const NotFoundWrapper = styled(InnerWrapper)`
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  p {
+    font-family: 'Pearl';
+  }
+`;

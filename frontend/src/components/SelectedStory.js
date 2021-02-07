@@ -53,7 +53,7 @@ export const SelectedStory = () => {
       )
       .then((data) => setStoryData(data[0]))
       .catch(console.error);
-  }, [currentLocation]);
+  }, [currentLocation, dispatch, slug]);
 
   console.log(storyData);
 
@@ -129,7 +129,7 @@ const GridWrapper = styled.div``;
 const GridImageWrapper = styled.div`
   display: grid;
   grid-template-columns: ${(props) =>
-    props.gridType == 'grid-2' ? '1fr 1fr' : '1fr'};
+    props.gridType === 'grid-2' ? '1fr 1fr' : '1fr'};
   gap: 20px;
   img {
   }

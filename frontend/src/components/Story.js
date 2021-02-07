@@ -5,7 +5,7 @@ import { useDispatch } from 'react-redux';
 
 import sanityClient from '../client.js';
 
-import { Grid_1, Grid_2, Grid_3, Grid_4, Grid_5, Grid_6 } from './Grids';
+import { Grid1, Grid2, Grid3, Grid4, Grid5, Grid6 } from './Grids';
 // Styling
 import {
   InnerWrapper,
@@ -57,9 +57,7 @@ export const Story = () => {
       )
       .then((data) => setStoryData(data[0]))
       .catch(console.error);
-  }, [currentLocation]);
-
-  console.log(storyData);
+  }, [currentLocation, slug, dispatch]);
 
   if (!storyData) {
     return (
@@ -106,54 +104,51 @@ export const Story = () => {
         {storyData.grids &&
           storyData.grids.map((grid, index) => {
             if (grid.name === 'grid-1') {
-              return <Grid_1 image1={grid.images[0].url} key={index} />;
+              return <Grid1 image1={grid.images[0]} key={index} />;
             }
             if (grid.name === 'grid-2') {
               return (
-                <Grid_2
-                  image1={grid.images[0].url}
-                  image2={grid.images[1].url}
+                <Grid2
+                  image1={grid.images[0]}
+                  image2={grid.images[1]}
                   key={index}
                 />
               );
             }
             if (grid.name === 'grid-3') {
               return (
-                <Grid_3
-                  image1={grid.images[0].url}
-                  image2={grid.images[1].url}
+                <Grid3
+                  image1={grid.images[0]}
+                  image2={grid.images[1]}
                   key={index}
                 />
               );
             }
             if (grid.name === 'grid-4') {
               return (
-                <Grid_4
-                  image1={grid.images[0].url}
-                  image2={grid.images[1].url}
-                  image3={grid.images[2].url}
+                <Grid4
+                  image1={grid.images[0]}
+                  image2={grid.images[1]}
+                  image3={grid.images[2]}
                   key={index}
                 />
               );
             }
             if (grid.name === 'grid-5') {
               return (
-                <Grid_5
-                  image1={grid.images[0].url}
-                  image2={grid.images[1].url}
+                <Grid5
+                  image1={grid.images[0]}
+                  image2={grid.images[1]}
                   key={index}
                 />
               );
             }
             if (grid.name === 'grid-6') {
               return (
-                <Grid_6
-                  image1={grid.images[0].url}
-                  text={grid.text}
-                  key={index}
-                />
+                <Grid6 image1={grid.images[0]} text={grid.text} key={index} />
               );
             }
+            return null;
           })}
       </StoryGridWrapper>
     </StoryInnerWrapper>

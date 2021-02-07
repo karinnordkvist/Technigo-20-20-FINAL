@@ -1,57 +1,57 @@
 import React from 'react';
 import styled from 'styled-components';
 
-export const Grid_1 = ({ image1 }) => {
+export const Grid1 = ({ image1 }) => {
   return (
-    <G1_ImageWrapper>
-      <img src={image1} />
-    </G1_ImageWrapper>
+    <G1ImageWrapper>
+      <img src={image1.url} alt={image1.alt ? image1.alt : 'Grid Image'} />
+    </G1ImageWrapper>
   );
 };
 
-export const Grid_2 = ({ image1, image2 }) => {
+export const Grid2 = ({ image1, image2 }) => {
   return (
-    <G2_ImageWrapper>
-      <img src={image1} />
-      <img src={image2} />
-    </G2_ImageWrapper>
+    <G2ImageWrapper>
+      <img src={image1.url} alt={image1.alt ? image1.alt : 'Grid Image'} />
+      <img src={image2.url} alt={image2.alt ? image2.alt : 'Grid Image'} />
+    </G2ImageWrapper>
   );
 };
 
-export const Grid_3 = ({ image1, image2 }) => {
+export const Grid3 = ({ image1, image2 }) => {
   return (
-    <G3_ImageWrapper>
-      <img src={image1} />
-      <img src={image2} />
-    </G3_ImageWrapper>
+    <G3ImageWrapper>
+      <img src={image1.url} alt={image1.alt ? image1.alt : 'Grid Image'} />
+      <img src={image2.url} alt={image2.alt ? image2.alt : 'Grid Image'} />
+    </G3ImageWrapper>
   );
 };
 
-export const Grid_4 = ({ image1, image2, image3 }) => {
+export const Grid4 = ({ image1, image2, image3 }) => {
   return (
-    <G4_ImageWrapper>
-      <img src={image1} />
-      <img src={image2} />
-      <img src={image3} />
-    </G4_ImageWrapper>
+    <G4ImageWrapper>
+      <img src={image1.url} alt={image1.alt ? image1.alt : 'Grid Image'} />
+      <img src={image2.url} alt={image2.alt ? image2.alt : 'Grid Image'} />
+      <img src={image3.url} alt={image3.alt ? image3.alt : 'Grid Image'} />
+    </G4ImageWrapper>
   );
 };
 
-export const Grid_5 = ({ image1, image2, image3 }) => {
+export const Grid5 = ({ image1, image2 }) => {
   return (
-    <G5_ImageWrapper>
-      <img src={image1} />
-      <img src={image2} />
-    </G5_ImageWrapper>
+    <G5ImageWrapper>
+      <img src={image1.url} alt={image1.alt ? image1.alt : 'Grid Image'} />
+      <img src={image2.url} alt={image2.alt ? image2.alt : 'Grid Image'} />
+    </G5ImageWrapper>
   );
 };
 
-export const Grid_6 = ({ image1, text }) => {
+export const Grid6 = ({ image1, text }) => {
   return (
-    <G6_ImageWrapper>
-      <img src={image1} />
+    <G6ImageWrapper>
+      <img src={image1.url} alt={image1.alt ? image1.alt : 'Grid Image'} />
       <p>{text}</p>
-    </G6_ImageWrapper>
+    </G6ImageWrapper>
   );
 };
 
@@ -63,7 +63,7 @@ const baseGrid = styled.div`
   margin: 20px auto;
 `;
 
-const G1_ImageWrapper = styled(baseGrid)`
+const G1ImageWrapper = styled(baseGrid)`
   grid-template-columns: 1fr;
 
   img {
@@ -71,7 +71,7 @@ const G1_ImageWrapper = styled(baseGrid)`
   }
 `;
 
-const G2_ImageWrapper = styled(baseGrid)`
+const G2ImageWrapper = styled(baseGrid)`
   grid-template-columns: 1fr 1fr;
 
   img {
@@ -79,7 +79,7 @@ const G2_ImageWrapper = styled(baseGrid)`
   }
 `;
 
-const G3_ImageWrapper = styled(baseGrid)`
+const G3ImageWrapper = styled(baseGrid)`
   grid-template-columns: repeat(12, 1fr);
 
   img:first-child {
@@ -96,7 +96,7 @@ const G3_ImageWrapper = styled(baseGrid)`
   }
 `;
 
-const G4_ImageWrapper = styled(baseGrid)`
+const G4ImageWrapper = styled(baseGrid)`
   grid-template-columns: repeat(3, 1fr);
 
   img {
@@ -104,7 +104,7 @@ const G4_ImageWrapper = styled(baseGrid)`
   }
 `;
 
-const G5_ImageWrapper = styled(baseGrid)`
+const G5ImageWrapper = styled(baseGrid)`
   grid-template-columns: repeat(12, 1fr);
 
   img:first-child {
@@ -122,7 +122,7 @@ const G5_ImageWrapper = styled(baseGrid)`
   }
 `;
 
-const G6_ImageWrapper = styled(baseGrid)`
+const G6ImageWrapper = styled(baseGrid)`
   grid-template-columns: repeat(12, 1fr);
 
   img {

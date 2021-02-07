@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components/macro';
-import { useHistory, useLocation, Link } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 
 import sanityClient from '../client.js';
@@ -34,7 +34,7 @@ export const Contact = () => {
       )
       .then((data) => setContactInfo(data[1]))
       .catch(console.error);
-  }, []);
+  }, [dispatch, currentLocation.pathname]);
 
   return (
     <ContactInnerWrapper>

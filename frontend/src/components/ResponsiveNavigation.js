@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components/macro';
 import { NavLink, useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import sanityClient from '../client.js';
 
 // Reducer
 import { location } from '../reducers/location';
@@ -15,11 +14,7 @@ import { InnerWrapper } from '../assets/GlobalStyles';
 export const ResponsiveNavigation = () => {
   const dispatch = useDispatch();
   const history = useHistory();
-  const [projectsActive, setProjectsActive] = useState(false);
-  const [storiesActive, setStoriesActive] = useState(false);
   const currentLocation = useSelector((store) => store.location.location);
-  const tags = ['all', 'photography', 'pr', 'styling', 'editorial', 'motion'];
-  const [stories, setStories] = useState([]);
 
   const [subMenu, setSubMenu] = useState(false);
 
@@ -27,23 +22,8 @@ export const ResponsiveNavigation = () => {
   const projectsClickHandler = (value) => {
     dispatch(location.actions.setProjectCategory(value));
     history.push('/projects');
+    setSubMenu(false);
   };
-
-  // Navigate to selected story
-  const storiesClickHandler = (slug) => {
-    history.push('/projects/' + slug);
-  };
-
-  useEffect(() => {
-    sanityClient
-      .fetch(
-        `*[_type == 'project' && selected_story == true]| order(_createdAt desc){
-              title, slug, client }`
-      )
-      .then((data) => setStories(data))
-      .catch(console.error);
-  }, []);
-
   return (
     <NavInnerWrapper>
       <LinksOuterWrapper>
@@ -94,7 +74,6 @@ export const ResponsiveNavigation = () => {
               to="/projects"
               activeStyle={{ fontStyle: 'italic', letterSpacing: '.3px' }}
               onClick={() => projectsClickHandler('')}
-              onClick={() => setSubMenu(false)}
             >
               Projekt
             </NavLink>
@@ -174,32 +153,4 @@ const LinkWrapper = styled.div`
     color: ${(props) => (props.location === '/' ? '#fff' : '#000')};
   }
   font-size: 13px;
-`;
-
-const DropdownButton = styled.button`
-  font-family: 'Fraunces';
-  color: ${(props) => (props.location === '/' ? '#fff' : '#000')};
-  font-size: 16px;
-  border: none;
-  background: none;
-  margin-left: 46px;
-  text-align: left;
-  padding: 4px 0;
-  text-transform: uppercase;
-  cursor: pointer;
-
-  &:hover {
-    font-style: italic;
-    letter-spacing: '.3px';
-  }
-`;
-
-const StoriesDropdownButton = styled(DropdownButton)`
-  margin-left: 0;
-  width: 400px;
-`;
-
-const DownArrow = styled.span`
-  font-size: 6px;
-  margin-left: 2px;
 `;

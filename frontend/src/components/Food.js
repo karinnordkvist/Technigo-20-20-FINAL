@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components/macro';
-import { useParams, useHistory, useLocation, Link } from 'react-router-dom';
+import { useLocation, Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 
 import sanityClient from '../client.js';
@@ -16,14 +16,7 @@ import { location } from '../reducers/location';
 export const Food = () => {
   const currentLocation = useLocation();
   const dispatch = useDispatch();
-  const { slug } = useParams();
   const [recipe, setRecipe] = useState(null);
-
-  // For back-button & breadcrumbs
-  const history = useHistory();
-  const formattedLocation = currentLocation.pathname
-    .substring(1)
-    .replaceAll('/', ' · ');
 
   // Fetch recipe
   useEffect(() => {
@@ -44,8 +37,7 @@ export const Food = () => {
       )
       .then((data) => setRecipe(data))
       .catch(console.error);
-  }, []);
-  console.log(recipe);
+  }, [dispatch, currentLocation.pathname]);
 
   if (!recipe) {
     return (

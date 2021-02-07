@@ -1,9 +1,14 @@
 import React from 'react';
 import styled from 'styled-components';
 
-export const CategoryImage = ({ url, title, onCategoryClickHandler }) => {
+export const CategoryImage = ({
+  url,
+  title,
+  onCategoryClickHandler,
+  height,
+  fontSize,
+}) => {
   const formattedTitle = title.toLowerCase();
-
   return (
     <ImageWrapper
       url={url}
@@ -12,8 +17,10 @@ export const CategoryImage = ({ url, title, onCategoryClickHandler }) => {
           formattedTitle === 'alla projekt' ? '' : formattedTitle
         )
       }
+      height={height}
+      fontSize={fontSize}
     >
-      <p>{title}</p>;
+      <p fontSize={fontSize}>{title}</p>;
     </ImageWrapper>
   );
 };
@@ -22,7 +29,7 @@ const ImageWrapper = styled.div`
   background: url(${(props) => props.url});
   background-size: cover;
   background-position: center;
-  height: 40vh;
+  height: ${(props) => props.height};
   display: flex;
   align-items: center;
   justify-content: center;
@@ -32,6 +39,6 @@ const ImageWrapper = styled.div`
     color: #fff;
     font-family: 'Pearl';
     text-align: center;
-    font-size: 24px;
+    font-size: ${(props) => props.fontSize};
   }
 `;

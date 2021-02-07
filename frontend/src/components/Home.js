@@ -22,7 +22,6 @@ export const Home = () => {
   const dispatch = useDispatch();
   const history = useHistory();
   const ref = useRef();
-  const [projects, setProjects] = useState([]);
   const [homeData, setHomeData] = useState(null);
   const [latest, setLatest] = useState([]);
 
@@ -34,12 +33,6 @@ export const Home = () => {
   useEffect(() => {
     // Send current location to reducer
     dispatch(location.actions.setLocation(currentLocation.pathname));
-
-    // Fetch all projects
-    sanityClient
-      .fetch(`*[_type == 'project']`)
-      .then((data) => setProjects(data))
-      .catch(console.error);
 
     // Fetch all home-data
     sanityClient
@@ -72,10 +65,8 @@ export const Home = () => {
           secondary_byline,
         }`
       )
-      .then((data) => setLatest(data[0]));
-  }, []);
-
-  console.log(latest);
+      .then((data) => setLatest(data));
+  }, [dispatch, currentLocation.pathname]);
 
   if (!homeData) {
     return (
@@ -111,54 +102,59 @@ export const Home = () => {
                 url={image.url}
                 title={titles[index]}
                 onCategoryClickHandler={onCategoryClickHandler}
+                height="40vh"
+                fontSize="24px"
               />
             );
           })}
       </CategoryWrapper>
 
       {/* Latest recipe/project section */}
-      <SectionWrapper>
+      <LatestOuterWrapper>
         <HomePearlHeader style={{ marginBottom: '50px' }}>
-          Latest project
+          Aktuellt
         </HomePearlHeader>
-
-        {/* Latest project/recipe */}
-        <LatestWrapper style={{ background: '#e6e3dc' }}>
-          {latest.thumbnail && <img src={latest.thumbnail.url} />}
-          <div>
-            {latest.category && (
-              <Category>
-                {latest._type === 'recipe' ? 'Recept' : 'Projekt'} /{' '}
-                {latest.category}
-              </Category>
-            )}
-            {latest.slug.current && (
-              <Link
-                to={
-                  latest._type === 'recipe'
-                    ? `/food/${latest.slug.current}`
-                    : `/project/${latest.slug.current}`
-                }
-              >
-                <h2>{latest.title}</h2>
-              </Link>
-            )}
-            {latest.client && <p>För {latest.client}</p>}
-            {/* {latest.intro && <p>{latest.intro}</p>} */}
-            {latest.slug.current && (
-              <Link
-                to={
-                  latest._type === 'recipe'
-                    ? `/food/${latest.slug.current}`
-                    : `/project/${latest.slug.current}`
-                }
-              >
-                <p>Läs mer &#187;</p>
-              </Link>
-            )}
-          </div>
-        </LatestWrapper>
-      </SectionWrapper>
+        {latest &&
+          latest.map((project, index) => {
+            if (index < 5) {
+              return (
+                <LatestWrapper style={{ background: '#e6e3dc' }} key={index}>
+                  {project.thumbnail.url && (
+                    <img src={project.thumbnail.url} alt="Project thumbnail" />
+                  )}
+                  <div>
+                    {project.category && (
+                      <Category>
+                        {project._type === 'recipe' ? 'Recept' : 'Projekt'} /{' '}
+                        {project.category}
+                      </Category>
+                    )}
+                    <Link
+                      to={
+                        project._type === 'recipe'
+                          ? `/food/${project.slug.current}`
+                          : `/project/${project.slug.current}`
+                      }
+                    >
+                      <h2>{project.title}</h2>
+                    </Link>
+                    {project.client && <p>För {project.client}</p>}
+                    <Link
+                      to={
+                        project._type === 'recipe'
+                          ? `/food/${project.slug.current}`
+                          : `/project/${project.slug.current}`
+                      }
+                    >
+                      <p>Läs mer &#187;</p>
+                    </Link>
+                  </div>
+                </LatestWrapper>
+              );
+            }
+            return null;
+          })}
+      </LatestOuterWrapper>
 
       {/* Single category - full width */}
       <CategoryWrapper style={{ gridTemplateColumns: '1fr' }}>
@@ -167,6 +163,8 @@ export const Home = () => {
             url={homeData.single_category_image.url}
             title={homeData.single_category_title}
             onCategoryClickHandler={onCategoryClickHandler}
+            height="80vh"
+            fontSize="42px"
           />
         )}
       </CategoryWrapper>
@@ -181,6 +179,7 @@ const LoaderWrapper = styled.div`
   align-items: center;
   justify-content: center;
 `;
+
 const HomeOuterWrapper = styled.div``;
 
 const HeroWrapper = styled.div`
@@ -190,6 +189,10 @@ const HeroWrapper = styled.div`
 const SectionWrapper = styled(InnerWrapper)`
   padding: 200px auto;
   margin: 150px auto;
+
+  @media (max-width: 900px) {
+    margin: 100px auto;
+  }
 `;
 
 const CategoryWrapper = styled.div`
@@ -200,6 +203,14 @@ const CategoryWrapper = styled.div`
 
   @media (max-width: 900px) {
     grid-template-columns: 1fr;
+    margin: 100px auto;
+  }
+`;
+
+const LatestOuterWrapper = styled(SectionWrapper)`
+  margin: 150px auto;
+  @media (max-width: 900px) {
+    margin: 100px auto;
   }
 `;
 
@@ -208,6 +219,7 @@ const LatestWrapper = styled.div`
   align-items: center;
   text-align: center;
   font-family: 'Fraunces';
+  margin: 20px auto;
 
   div {
     display: flex;
@@ -218,18 +230,22 @@ const LatestWrapper = styled.div`
 
   img {
     width: 40%;
+    height: 250px;
+    object-fit: cover;
   }
 
   h2 {
     font-weight: normal;
     font-size: 20px;
     text-transform: uppercase;
-    margin-bottom: 20px;
+    max-width: 80%;
+    margin: 20px auto 20px auto;
   }
 
   @media (max-width: 900px) {
     flex-direction: column;
     img {
+      width: 80%;
       margin-top: 50px;
     }
     div {
@@ -242,6 +258,10 @@ const Category = styled.p`
   font-family: 'Fraunces';
   font-style: italic;
   margin-bottom: 5px;
+
+  @media (max-width: 900px) {
+    margin-top: 20px;
+  }
 `;
 
 const HeroTitle = styled.h1`
