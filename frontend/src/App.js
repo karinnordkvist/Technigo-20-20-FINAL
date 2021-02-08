@@ -8,6 +8,7 @@ import {
 import { Provider } from 'react-redux';
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import styled from 'styled-components/macro';
+import { AnimatePresence } from 'framer-motion';
 
 // Styling
 import GlobalStyles from './assets/GlobalStyles';
@@ -45,24 +46,26 @@ export const App = () => {
         <OuterWrapper>
           <Navigation />
           <ResponsiveNavigation />
-          <Switch>
-            <Route component={Home} path="/" exact />
-            <Route component={SelectedStory} path="/stories/:slug" />
-            <Route component={Stories} path="/stories" />
-            <Route component={Recipe} path="/food/:slug" />
-            <Route component={Food} path="/food" />
-            <Route component={Story} path="/projects/:slug" />
-            <Route component={ListedProjects} path="/projects" />
-            <Route component={Contact} path="/contact" />
+          <AnimatePresence initial={true} exitBeforeEnter>
+            <Switch>
+              <Route component={Home} path="/" exact />
+              <Route component={SelectedStory} path="/stories/:slug" />
+              <Route component={Stories} path="/stories" />
+              <Route component={Recipe} path="/food/:slug" />
+              <Route component={Food} path="/food" />
+              <Route component={Story} path="/projects/:slug" />
+              <Route component={ListedProjects} path="/projects" />
+              <Route component={Contact} path="/contact" />
 
-            {/* Route to 404-page */}
-            <Route exact path="/404">
-              <NotFound />
-            </Route>
+              {/* Route to 404-page */}
+              <Route exact path="/404">
+                <NotFound />
+              </Route>
 
-            {/* Redirect to 404-page */}
-            <Redirect to="/404" />
-          </Switch>
+              {/* Redirect to 404-page */}
+              <Redirect to="/404" />
+            </Switch>
+          </AnimatePresence>
           <Footer />
         </OuterWrapper>
       </Router>

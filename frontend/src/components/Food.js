@@ -6,7 +6,7 @@ import { useDispatch } from 'react-redux';
 import sanityClient from '../client.js';
 
 // Styling
-import { InnerWrapper } from '../assets/GlobalStyles';
+import { InnerWrapper, LoaderWrapper } from '../assets/GlobalStyles';
 
 // Reducers
 import { location } from '../reducers/location';
@@ -41,9 +41,9 @@ export const Food = () => {
 
   if (!recipe) {
     return (
-      <InnerWrapper>
+      <LoaderWrapper>
         <p>Loading...</p>
-      </InnerWrapper>
+      </LoaderWrapper>
     );
   }
   return (

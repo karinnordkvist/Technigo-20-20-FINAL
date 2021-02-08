@@ -43,6 +43,15 @@ a {
 
 // Other global styling components
 
+export const LoaderWrapper = styled.div`
+  font-family: 'Pearl';
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
 export const InnerWrapper = styled.div`
   width: 80vw;
   max-width: 800px;

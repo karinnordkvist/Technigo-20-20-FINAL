@@ -26,6 +26,11 @@ export default {
       type: 'text',
     },
     {
+      name: 'intro_image',
+      title: 'Intro Image',
+      type: 'image',
+    },
+    {
       name: 'category_images',
       title: 'Category Images',
       description:

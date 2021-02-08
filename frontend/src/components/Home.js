@@ -1,7 +1,8 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components/macro';
 import { useLocation, useHistory, Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
+import { motion } from 'framer-motion';
 
 // Components
 import { CategoryImage } from './CategoryImage';
@@ -10,7 +11,7 @@ import { CategoryImage } from './CategoryImage';
 import sanityClient from '../client.js';
 
 // Styling
-import { InnerWrapper } from '../assets/GlobalStyles';
+import { InnerWrapper, LoaderWrapper } from '../assets/GlobalStyles';
 
 // Reducers
 import { location } from '../reducers/location';
@@ -21,7 +22,6 @@ export const Home = () => {
   const currentLocation = useLocation();
   const dispatch = useDispatch();
   const history = useHistory();
-  const ref = useRef();
   const [homeData, setHomeData] = useState(null);
   const [latest, setLatest] = useState([]);
 
@@ -29,6 +29,8 @@ export const Home = () => {
     dispatch(location.actions.setProjectCategory(category));
     history.push('/projects');
   };
+
+  const transition = { duration: 0.6, ease: [0.43, 0.13, 0.23, 0.96] };
 
   useEffect(() => {
     // Send current location to reducer
@@ -42,6 +44,7 @@ export const Home = () => {
           hero_title, 
           hero_text, 
           intro_text,
+          "intro_image": intro_image.asset->{url, tags, title, byline},
           "category_images": category_images[] {"image":asset->{tags, url, title,byline}}.image,
           category_titles,
           "single_category_image": single_category_image.asset->{url, tags, title, byline},
@@ -80,16 +83,23 @@ export const Home = () => {
       <HeroBG img={homeData.hero_image.url}></HeroBG>
 
       {/* Hero section */}
-      <HeroWrapper ref={ref}>
+      <HeroWrapper>
         <HeroTitle>{homeData.hero_title}</HeroTitle>
         <HeroSubtitle>{homeData.hero_text}</HeroSubtitle>
       </HeroWrapper>
 
       {/* About section */}
-      <SectionWrapper>
-        <HomePearlHeader>About</HomePearlHeader>
+      <AboutWrapper>
+        <ImageWrapper>
+          <motion.img
+            whileHover={{ scale: 1.1 }}
+            transition={transition}
+            src={homeData.intro_image.url}
+          />
+        </ImageWrapper>
+        <HomePearlHeader>Om Caroline</HomePearlHeader>
         <AboutText>{homeData.intro_text}</AboutText>
-      </SectionWrapper>
+      </AboutWrapper>
 
       {/* Triple categories - full width */}
       <CategoryWrapper>
@@ -122,7 +132,10 @@ export const Home = () => {
                   {project.thumbnail.url && (
                     <img src={project.thumbnail.url} alt="Project thumbnail" />
                   )}
-                  <div>
+                  <motion.div
+                    exit={{ opactiy: 0 }}
+                    transition={{ duration: '3s' }}
+                  >
                     <Category>
                       {project._type === 'recipe' ? 'Recept' : 'Projekt'} /{' '}
                       {project.category}
@@ -146,7 +159,7 @@ export const Home = () => {
                     >
                       <p>Läs mer &#187;</p>
                     </Link>
-                  </div>
+                  </motion.div>
                 </LatestWrapper>
               );
             }
@@ -170,19 +183,14 @@ export const Home = () => {
   );
 };
 
-const LoaderWrapper = styled.div`
-  font-family: 'Pearl';
-  width: 100vw;
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
-
 const HomeOuterWrapper = styled.div``;
 
 const HeroWrapper = styled.div`
   height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
 `;
 
 const SectionWrapper = styled(InnerWrapper)`
@@ -191,6 +199,19 @@ const SectionWrapper = styled(InnerWrapper)`
 
   @media (max-width: 900px) {
     margin: 100px auto;
+  }
+`;
+
+const AboutWrapper = styled(SectionWrapper)`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
+  img {
+    width: 20vw;
+    margin-bottom: 50px;
+    text-align: center;
   }
 `;
 
@@ -276,7 +297,6 @@ const HeroTitle = styled.h1`
   font-size: 100px;
   color: #fff;
   font-weight: normal;
-  padding-top: 300px;
 
   @media (max-width: 900px) {
     font-size: 60px;
@@ -294,7 +314,7 @@ const HeroSubtitle = styled.h3`
   text-align: center;
   color: #fff;
   font-weight: normal;
-  margin: 10px 20px;
+  margin-top: 10px;
 
   @media (max-width: 900px) {
     font-size: 18px;
@@ -329,4 +349,15 @@ const AboutText = styled.p`
   line-height: 1.6;
   text-align: center;
   font-style: italic;
+`;
+
+const ImageWrapper = styled.div`
+  width: 300px;
+  height: 370px;
+  overflow: hidden;
+  margin-bottom: 50px;
+
+  img {
+    width: 100%;
+  }
 `;

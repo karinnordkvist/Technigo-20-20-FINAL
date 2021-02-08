@@ -37,6 +37,7 @@ export const ResponsiveNavigation = () => {
           <NavButton
             location={currentLocation}
             onClick={() => setSubMenu(!subMenu)}
+            style={{ fontSize: '18px' }}
           >
             Meny
           </NavButton>
