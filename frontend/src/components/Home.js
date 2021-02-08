@@ -123,22 +123,20 @@ export const Home = () => {
                     <img src={project.thumbnail.url} alt="Project thumbnail" />
                   )}
                   <div>
-                    {project.category && (
-                      <Category>
-                        {project._type === 'recipe' ? 'Recept' : 'Projekt'} /{' '}
-                        {project.category}
-                      </Category>
-                    )}
+                    <Category>
+                      {project._type === 'recipe' ? 'Recept' : 'Projekt'} /{' '}
+                      {project.category}
+                    </Category>
+                    {project.client && <Client>för {project.client}</Client>}
                     <Link
                       to={
                         project._type === 'recipe'
                           ? `/food/${project.slug.current}`
-                          : `/project/${project.slug.current}`
+                          : `/projects/${project.slug.current}`
                       }
                     >
                       <h2>{project.title}</h2>
                     </Link>
-                    {project.client && <p>För {project.client}</p>}
                     <Link
                       to={
                         project._type === 'recipe'
@@ -173,6 +171,7 @@ export const Home = () => {
 };
 
 const LoaderWrapper = styled.div`
+  font-family: 'Pearl';
   width: 100vw;
   height: 100vh;
   display: flex;
@@ -230,7 +229,7 @@ const LatestWrapper = styled.div`
 
   img {
     width: 40%;
-    height: 250px;
+    height: 330px;
     object-fit: cover;
   }
 
@@ -262,6 +261,13 @@ const Category = styled.p`
   @media (max-width: 900px) {
     margin-top: 20px;
   }
+`;
+
+const Client = styled.p`
+  font-family: 'Fraunces';
+  font-style: italic;
+  margin-bottom: 5px;
+  font-size: 12px;
 `;
 
 const HeroTitle = styled.h1`

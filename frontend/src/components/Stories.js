@@ -129,7 +129,7 @@ const StoryWrapper = styled.div`
       margin-left: 0;
     }
 
-    &:nth-child(2) {
+    &:nth-child(even) {
       flex-direction: row;
 
       ${StoryTextWrapper} {

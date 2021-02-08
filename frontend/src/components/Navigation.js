@@ -250,7 +250,7 @@ const DropdownButton = styled.button`
 
 const StoriesDropdownButton = styled(DropdownButton)`
   margin-left: 0;
-  width: 400px;
+  width: 300px;
 `;
 
 const DownArrow = styled.span`

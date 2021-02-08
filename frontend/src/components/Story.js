@@ -30,7 +30,9 @@ export const Story = () => {
   const formattedLocation = currentLocation.pathname
     .substring(1)
     .replaceAll('/', ' · ')
-    .replaceAll('-', ' ');
+    .replaceAll('-', ' ')
+    .replaceAll('ae', 'ä')
+    .replaceAll('oe', 'ö');
 
   // Fetch story data
   useEffect(() => {
@@ -75,9 +77,11 @@ export const Story = () => {
       <MainImage src={storyData.main_image.url} />
       <StoryClient>{storyData.client}</StoryClient>
       <StoryTitle>{storyData.title}</StoryTitle>
-      <StoryByline>
-        ----- projekt skapat med {storyData.secondary_byline}
-      </StoryByline>
+      {storyData.secondary_byline && (
+        <StoryByline>
+          ----- projekt skapat med {storyData.secondary_byline}
+        </StoryByline>
+      )}
       <StoryIntro>{storyData.intro}</StoryIntro>
 
       <StoryTextWrapper>
@@ -88,7 +92,8 @@ export const Story = () => {
           </li>
           <li>Team:</li>
           <li style={{ fontStyle: 'italic', marginBottom: '10px' }}>
-            Caroline Borg, {storyData.secondary_byline}
+            Caroline Borg {storyData.secondary_byline && ','}{' '}
+            {storyData.secondary_byline}
           </li>
           <li>Tags:</li>
           <li style={{ fontStyle: 'italic', marginBottom: '10px' }}>
@@ -202,7 +207,7 @@ const StoryIntro = styled.p`
   line-height: 1.6;
   margin: 40px auto;
   text-align: center;
-  max-width: 70%;
+  max-width: 90%;
 
   @media (max-width: 900px) {
     max-width: 95%;
