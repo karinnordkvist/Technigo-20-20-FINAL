@@ -3,6 +3,7 @@ import styled from 'styled-components/macro';
 import { Link, useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import sanityClient from '../client.js';
+import Fade from 'react-reveal/Fade';
 
 // Styling
 import {
@@ -76,62 +77,64 @@ export const ListedProjects = () => {
   }
 
   return (
-    <StoriesInnerWrapper>
-      {/* Responsive sorting menu */}
-      <FlexWrapper>
-        <ResponsiveCategories>
-          <p>Sortera på:</p>
-          <CategorySelect
-            onChange={(event) => onChangeHandler(event.target.value)}
-          >
-            <option value="">Alla</option>
-            <option value="fotografi">Fotografi</option>
-            <option value="PR">PR</option>
-            <option value="styling">Styling</option>
-            <option value="editorial">Editorial</option>
-            <option value="motion">Rörligt</option>
-          </CategorySelect>
-        </ResponsiveCategories>
-      </FlexWrapper>
+    <Fade>
+      <StoriesInnerWrapper>
+        {/* Responsive sorting menu */}
+        <FlexWrapper>
+          <ResponsiveCategories>
+            <p>Sortera på:</p>
+            <CategorySelect
+              onChange={(event) => onChangeHandler(event.target.value)}
+            >
+              <option value="">Alla</option>
+              <option value="fotografi">Fotografi</option>
+              <option value="PR">PR</option>
+              <option value="styling">Styling</option>
+              <option value="editorial">Editorial</option>
+              <option value="motion">Rörligt</option>
+            </CategorySelect>
+          </ResponsiveCategories>
+        </FlexWrapper>
 
-      {/* Breadcrumbs + back-button */}
-      <FlexWrapper>
-        <BreadCrumbs>
-          Visar: {categoryRaw === '' ? 'Alla projekt' : categoryRaw}
-        </BreadCrumbs>
-      </FlexWrapper>
+        {/* Breadcrumbs + back-button */}
+        <FlexWrapper>
+          <BreadCrumbs>
+            Visar: {categoryRaw === '' ? 'Alla projekt' : categoryRaw}
+          </BreadCrumbs>
+        </FlexWrapper>
 
-      {/* Listed projects */}
-      {projects &&
-        projects.map((project) => {
-          return (
-            <StoryWrapper key={project.title}>
-              <StoryThumbnail src={project.thumbnail.url} />
-              <StoryTextWrapper>
-                <Link
-                  to={'/projects/' + project.slug.current}
-                  key={project.slug.current}
-                >
-                  <StoryTitle>{project.title}</StoryTitle>
-                  {project.client && (
-                    <StoryCategory>för {project.client}</StoryCategory>
-                  )}
-                </Link>
-                <StoryIntro>{project.intro}</StoryIntro>
-                <StoryLink to={'/projects/' + project.slug.current}>
-                  Läs mer &#187;
-                </StoryLink>
-                <StoryCategory>
-                  {project.tags &&
-                    project.tags.map((tag, index) => (
-                      <Tag key={index}>{tag}</Tag>
-                    ))}
-                </StoryCategory>
-              </StoryTextWrapper>
-            </StoryWrapper>
-          );
-        })}
-    </StoriesInnerWrapper>
+        {/* Listed projects */}
+        {projects &&
+          projects.map((project) => {
+            return (
+              <StoryWrapper key={project.title}>
+                <StoryThumbnail src={project.thumbnail.url} />
+                <StoryTextWrapper>
+                  <Link
+                    to={'/projects/' + project.slug.current}
+                    key={project.slug.current}
+                  >
+                    <StoryTitle>{project.title}</StoryTitle>
+                    {project.client && (
+                      <StoryCategory>för {project.client}</StoryCategory>
+                    )}
+                  </Link>
+                  <StoryIntro>{project.intro}</StoryIntro>
+                  <StoryLink to={'/projects/' + project.slug.current}>
+                    Läs mer &#187;
+                  </StoryLink>
+                  <StoryCategory>
+                    {project.tags &&
+                      project.tags.map((tag, index) => (
+                        <Tag key={index}>{tag}</Tag>
+                      ))}
+                  </StoryCategory>
+                </StoryTextWrapper>
+              </StoryWrapper>
+            );
+          })}
+      </StoriesInnerWrapper>
+    </Fade>
   );
 };
 

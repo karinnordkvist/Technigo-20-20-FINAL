@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components/macro';
 import { useParams, useHistory, useLocation } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
+import Fade from 'react-reveal/Fade';
 
 import sanityClient from '../client.js';
 
@@ -69,98 +70,102 @@ export const Story = () => {
     );
   }
   return (
-    <StoryInnerWrapper>
-      <FlexWrapper>
-        <BackButton onClick={history.goBack}>Tillbaka</BackButton>
-        <BreadCrumbs>{formattedLocation}</BreadCrumbs>
-      </FlexWrapper>
-      <MainImage src={storyData.main_image.url} />
-      <StoryClient>{storyData.client}</StoryClient>
-      <StoryTitle>{storyData.title}</StoryTitle>
-      {storyData.secondary_byline && (
-        <StoryByline>
-          ----- projekt skapat med {storyData.secondary_byline}
-        </StoryByline>
-      )}
-      <StoryIntro>{storyData.intro}</StoryIntro>
+    <Fade>
+      <StoryInnerWrapper>
+        <FlexWrapper>
+          <BackButton onClick={history.goBack}>Tillbaka</BackButton>
+          <BreadCrumbs>{formattedLocation}</BreadCrumbs>
+        </FlexWrapper>
+        <MainImage src={storyData.main_image.url} />
+        <StoryClient>{storyData.client}</StoryClient>
+        <StoryTitle>{storyData.title}</StoryTitle>
+        {storyData.secondary_byline && (
+          <StoryByline>
+            ----- projekt skapat med {storyData.secondary_byline}
+          </StoryByline>
+        )}
+        <StoryIntro>{storyData.intro}</StoryIntro>
 
-      <StoryTextWrapper>
-        <StoryInfo>
-          <li>Client:</li>
-          <li style={{ fontStyle: 'italic', marginBottom: '10px' }}>
-            {storyData.client}
-          </li>
-          <li>Team:</li>
-          <li style={{ fontStyle: 'italic', marginBottom: '10px' }}>
-            Caroline Borg {storyData.secondary_byline && ','}{' '}
-            {storyData.secondary_byline}
-          </li>
-          <li>Tags:</li>
-          <li style={{ fontStyle: 'italic', marginBottom: '10px' }}>
-            {storyData.tags &&
-              storyData.tags.map((tag, index) => <Tag key={index}>{tag}</Tag>)}
-          </li>
-        </StoryInfo>
-        <StoryMainText>{storyData.text}</StoryMainText>
-      </StoryTextWrapper>
+        <StoryTextWrapper>
+          <StoryInfo>
+            <li>Client:</li>
+            <li style={{ fontStyle: 'italic', marginBottom: '10px' }}>
+              {storyData.client}
+            </li>
+            <li>Team:</li>
+            <li style={{ fontStyle: 'italic', marginBottom: '10px' }}>
+              Caroline Borg {storyData.secondary_byline && ','}{' '}
+              {storyData.secondary_byline}
+            </li>
+            <li>Tags:</li>
+            <li style={{ fontStyle: 'italic', marginBottom: '10px' }}>
+              {storyData.tags &&
+                storyData.tags.map((tag, index) => (
+                  <Tag key={index}>{tag}</Tag>
+                ))}
+            </li>
+          </StoryInfo>
+          <StoryMainText>{storyData.text}</StoryMainText>
+        </StoryTextWrapper>
 
-      {/* Image-grids */}
-      <StoryGridWrapper>
-        {storyData.grids &&
-          storyData.grids.map((grid, index) => {
-            if (grid.name === 'grid-1') {
-              return <Grid1 image1={grid.images[0]} key={index} />;
-            }
-            if (grid.name === 'grid-2') {
-              return (
-                <Grid2
-                  image1={grid.images[0]}
-                  image2={grid.images[1]}
-                  key={index}
-                />
-              );
-            }
-            if (grid.name === 'grid-3') {
-              return (
-                <Grid3
-                  image1={grid.images[0]}
-                  image2={grid.images[1]}
-                  key={index}
-                />
-              );
-            }
-            if (grid.name === 'grid-4') {
-              return (
-                <Grid4
-                  image1={grid.images[0]}
-                  image2={grid.images[1]}
-                  image3={grid.images[2]}
-                  key={index}
-                />
-              );
-            }
-            if (grid.name === 'grid-5') {
-              return (
-                <Grid5
-                  image1={grid.images[0]}
-                  image2={grid.images[1]}
-                  key={index}
-                />
-              );
-            }
-            if (grid.name === 'grid-6') {
-              return (
-                <Grid6 image1={grid.images[0]} text={grid.text} key={index} />
-              );
-            }
-            return null;
-          })}
-      </StoryGridWrapper>
-      <FlexWrapper style={{ marginTop: '50px' }}>
-        <BackButton onClick={history.goBack}>Tillbaka</BackButton>
-        <BreadCrumbs>{formattedLocation}</BreadCrumbs>
-      </FlexWrapper>
-    </StoryInnerWrapper>
+        {/* Image-grids */}
+        <StoryGridWrapper>
+          {storyData.grids &&
+            storyData.grids.map((grid, index) => {
+              if (grid.name === 'grid-1') {
+                return <Grid1 image1={grid.images[0]} key={index} />;
+              }
+              if (grid.name === 'grid-2') {
+                return (
+                  <Grid2
+                    image1={grid.images[0]}
+                    image2={grid.images[1]}
+                    key={index}
+                  />
+                );
+              }
+              if (grid.name === 'grid-3') {
+                return (
+                  <Grid3
+                    image1={grid.images[0]}
+                    image2={grid.images[1]}
+                    key={index}
+                  />
+                );
+              }
+              if (grid.name === 'grid-4') {
+                return (
+                  <Grid4
+                    image1={grid.images[0]}
+                    image2={grid.images[1]}
+                    image3={grid.images[2]}
+                    key={index}
+                  />
+                );
+              }
+              if (grid.name === 'grid-5') {
+                return (
+                  <Grid5
+                    image1={grid.images[0]}
+                    image2={grid.images[1]}
+                    key={index}
+                  />
+                );
+              }
+              if (grid.name === 'grid-6') {
+                return (
+                  <Grid6 image1={grid.images[0]} text={grid.text} key={index} />
+                );
+              }
+              return null;
+            })}
+        </StoryGridWrapper>
+        <FlexWrapper style={{ marginTop: '50px' }}>
+          <BackButton onClick={history.goBack}>Tillbaka</BackButton>
+          <BreadCrumbs>{formattedLocation}</BreadCrumbs>
+        </FlexWrapper>
+      </StoryInnerWrapper>
+    </Fade>
   );
 };
 

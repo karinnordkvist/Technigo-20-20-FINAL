@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components/macro';
 import { useParams, useHistory, useLocation } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
+import Fade from 'react-reveal/Fade';
 
 import sanityClient from '../client.js';
 
@@ -61,7 +62,7 @@ export const Recipe = () => {
     );
   }
   return (
-    <>
+    <Fade>
       {/* Top-bar (breadcrumbs + nav) */}
       <RecipeTopWrapper>
         <FlexWrapper>
@@ -133,7 +134,7 @@ export const Recipe = () => {
         <BackButton onClick={history.goBack}>Tillbaka</BackButton>
         <BreadCrumbs>Food · {recipeData.title}</BreadCrumbs>
       </FlexWrapper>
-    </>
+    </Fade>
   );
 };
 

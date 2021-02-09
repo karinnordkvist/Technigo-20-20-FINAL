@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components/macro';
 import { useLocation } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
+import Fade from 'react-reveal/Fade';
 
 import sanityClient from '../client.js';
 
@@ -35,7 +36,7 @@ export const Contact = () => {
       .catch(console.error);
   }, [dispatch, currentLocation.pathname]);
 
-  if (!contactInfo) {
+  if (!contactInfo.main_image) {
     return (
       <LoaderWrapper>
         <p>Loading...</p>
@@ -44,36 +45,41 @@ export const Contact = () => {
   }
 
   return (
-    <ContactInnerWrapper>
-      {contactInfo.main_image && (
-        <ContactImage src={contactInfo.main_image.url} />
-      )}
-      <ContactSubtitle>Kontakt</ContactSubtitle>
-      {contactInfo.main_text && (
-        <ContactText>{contactInfo.main_text}</ContactText>
-      )}
-      <ContactInfo>
-        Telefon:
-        {contactInfo.phone && <div>{contactInfo.phone}</div>}
-      </ContactInfo>
-      <ContactInfo>
-        Email:
-        {contactInfo.email && (
-          <a href={`mailto:${contactInfo.email}`} style={{ marginLeft: '5px' }}>
-            {contactInfo.email}
-          </a>
+    <Fade>
+      <ContactInnerWrapper>
+        {contactInfo.main_image && (
+          <ContactImage src={contactInfo.main_image.url} />
         )}
-      </ContactInfo>
-      <ContactInfo>
-        Instagram:
-        <a
-          href="https://www.instagram.com/carolineborg/"
-          style={{ marginLeft: '5px' }}
-        >
-          @carolineborg
-        </a>
-      </ContactInfo>
-    </ContactInnerWrapper>
+        <ContactSubtitle>Kontakt</ContactSubtitle>
+        {contactInfo.main_text && (
+          <ContactText>{contactInfo.main_text}</ContactText>
+        )}
+        <ContactInfo>
+          Telefon:
+          {contactInfo.phone && <div>{contactInfo.phone}</div>}
+        </ContactInfo>
+        <ContactInfo>
+          Email:
+          {contactInfo.email && (
+            <a
+              href={`mailto:${contactInfo.email}`}
+              style={{ marginLeft: '5px' }}
+            >
+              {contactInfo.email}
+            </a>
+          )}
+        </ContactInfo>
+        <ContactInfo>
+          Instagram:
+          <a
+            href="https://www.instagram.com/carolineborg/"
+            style={{ marginLeft: '5px' }}
+          >
+            @carolineborg
+          </a>
+        </ContactInfo>
+      </ContactInnerWrapper>
+    </Fade>
   );
 };
 
@@ -117,7 +123,7 @@ const ContactText = styled.p`
 const ContactInfo = styled.div`
   font-family: 'Fraunces';
   font-size: 16px;
-  font-style: italic;
+
   text-align: center;
   margin-bottom: 15px;
 `;

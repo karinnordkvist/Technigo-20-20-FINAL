@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components/macro';
 import { useLocation, Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
+import Fade from 'react-reveal/Fade';
 
 import sanityClient from '../client.js';
 
@@ -47,29 +48,32 @@ export const Food = () => {
     );
   }
   return (
-    <FoodInnerWrapper>
-      <FoodIntro>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Dictum
-        consectetur ultrices turpis lectus. Amet commodo curabitur rutrum proin
-        pulvinar rhoncus semper donec. Sit integer morbi vestibulum felis.
-      </FoodIntro>
-      <RecipesWrapper>
-        {recipe &&
-          recipe.map((recipe, index) => {
-            return (
-              <Recipe key={index}>
-                <Link to={'/food/' + recipe.slug.current}>
-                  <RecipeThumbnail src={recipe.thumbnail.url} />
-                </Link>
-                <RecipeCategory>{recipe.category}</RecipeCategory>
-                <RecipeTitle to={'/food/' + recipe.slug.current}>
-                  {recipe.title}
-                </RecipeTitle>
-              </Recipe>
-            );
-          })}
-      </RecipesWrapper>
-    </FoodInnerWrapper>
+    <Fade>
+      <FoodInnerWrapper>
+        <FoodIntro>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Dictum
+          consectetur ultrices turpis lectus. Amet commodo curabitur rutrum
+          proin pulvinar rhoncus semper donec. Sit integer morbi vestibulum
+          felis.
+        </FoodIntro>
+        <RecipesWrapper>
+          {recipe &&
+            recipe.map((recipe, index) => {
+              return (
+                <Recipe key={index}>
+                  <Link to={'/food/' + recipe.slug.current}>
+                    <RecipeThumbnail src={recipe.thumbnail.url} />
+                  </Link>
+                  <RecipeCategory>{recipe.category}</RecipeCategory>
+                  <RecipeTitle to={'/food/' + recipe.slug.current}>
+                    {recipe.title}
+                  </RecipeTitle>
+                </Recipe>
+              );
+            })}
+        </RecipesWrapper>
+      </FoodInnerWrapper>
+    </Fade>
   );
 };
 

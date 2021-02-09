@@ -3,6 +3,7 @@ import styled from 'styled-components/macro';
 import { useLocation, useHistory, Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { motion } from 'framer-motion';
+import Fade from 'react-reveal/Fade';
 
 // Components
 import { CategoryImage } from './CategoryImage';
@@ -31,6 +32,7 @@ export const Home = () => {
   };
 
   const transition = { duration: 0.6, ease: [0.43, 0.13, 0.23, 0.96] };
+  const longTransition = { duration: 5 };
 
   useEffect(() => {
     // Send current location to reducer
@@ -80,128 +82,131 @@ export const Home = () => {
       </LoaderWrapper>
     );
   }
+
   return (
-    <HomeOuterWrapper>
-      <HeroBG img={homeData.hero_image.url}></HeroBG>
+    <Fade>
+      <HomeOuterWrapper>
+        <HeroBG img={homeData.hero_image.url}></HeroBG>
 
-      {/* Hero section */}
-      <HeroWrapper>
-        <HeroTitle>{homeData.hero_title}</HeroTitle>
-        <HeroSubtitle>{homeData.hero_text}</HeroSubtitle>
-      </HeroWrapper>
+        {/* Hero section */}
+        <HeroWrapper>
+          <HeroTitle>{homeData.hero_title}</HeroTitle>
+          <HeroSubtitle>{homeData.hero_text}</HeroSubtitle>
+        </HeroWrapper>
 
-      {/* About section */}
-      <AboutWrapper>
-        <ImageWrapper>
-          <motion.img
-            whileHover={{ scale: 1.1 }}
-            transition={transition}
-            src={homeData.intro_image.url}
-          />
-        </ImageWrapper>
-        <HomePearlHeader>Om Caroline</HomePearlHeader>
-        <AboutText>{homeData.intro_text}</AboutText>
-      </AboutWrapper>
+        {/* About section */}
+        <AboutWrapper>
+          <ImageWrapper>
+            <motion.img
+              whileHover={{ scale: 1.1 }}
+              transition={transition}
+              src={homeData.intro_image.url}
+            />
+          </ImageWrapper>
+          <HomePearlHeader>Om Caroline</HomePearlHeader>
+          <AboutText>{homeData.intro_text}</AboutText>
+        </AboutWrapper>
 
-      {/* Triple categories - full width */}
-      <CategoryWrapper>
-        {homeData.category_images &&
-          homeData.category_images.map((image, index) => {
-            const titles = homeData.category_titles;
-            return (
-              <CategoryImage
-                key={index}
-                url={image.url}
-                title={titles[index]}
-                onCategoryClickHandler={onCategoryClickHandler}
-                height="40vh"
-                fontSize="24px"
-              />
-            );
-          })}
-      </CategoryWrapper>
-
-      {/* Latest recipe/project section */}
-      <LatestOuterWrapper>
-        <HomePearlHeader style={{ marginBottom: '50px' }}>
-          Aktuellt
-        </HomePearlHeader>
-        {latest &&
-          latest.map((project, index) => {
-            if (index < 5) {
+        {/* Triple categories - full width */}
+        <CategoryWrapper>
+          {homeData.category_images &&
+            homeData.category_images.map((image, index) => {
+              const titles = homeData.category_titles;
               return (
-                <LatestWrapper style={{ background: '#e6e3dc' }} key={index}>
-                  {project.thumbnail.url && (
-                    <img
-                      src={project.thumbnail.url}
-                      alt="Project thumbnail"
-                      onClick={() =>
-                        history.push(
+                <CategoryImage
+                  key={index}
+                  url={image.url}
+                  title={titles[index]}
+                  onCategoryClickHandler={onCategoryClickHandler}
+                  height="40vh"
+                  fontSize="24px"
+                />
+              );
+            })}
+        </CategoryWrapper>
+
+        {/* Latest recipe/project section */}
+        <LatestOuterWrapper>
+          <HomePearlHeader style={{ marginBottom: '50px' }}>
+            Aktuellt
+          </HomePearlHeader>
+          {latest &&
+            latest.map((project, index) => {
+              if (index < 5) {
+                return (
+                  <LatestWrapper style={{ background: '#e6e3dc' }} key={index}>
+                    {project.thumbnail.url && (
+                      <img
+                        src={project.thumbnail.url}
+                        alt="Project thumbnail"
+                        onClick={() =>
+                          history.push(
+                            project._type === 'recipe'
+                              ? `/food/${project.slug.current}`
+                              : `/projects/${project.slug.current}`
+                          )
+                        }
+                      />
+                    )}
+                    <div>
+                      <Category>
+                        {project._type === 'recipe' ? 'Recept' : 'Projekt'} /{' '}
+                        {project.category}
+                      </Category>
+                      {project.client && <Client>för {project.client}</Client>}
+                      <Link
+                        to={
                           project._type === 'recipe'
                             ? `/food/${project.slug.current}`
                             : `/projects/${project.slug.current}`
-                        )
-                      }
-                    />
-                  )}
-                  <div>
-                    <Category>
-                      {project._type === 'recipe' ? 'Recept' : 'Projekt'} /{' '}
-                      {project.category}
-                    </Category>
-                    {project.client && <Client>för {project.client}</Client>}
-                    <Link
-                      to={
-                        project._type === 'recipe'
-                          ? `/food/${project.slug.current}`
-                          : `/projects/${project.slug.current}`
-                      }
-                    >
-                      <h2>{project.title}</h2>
-                    </Link>
-                    <Link
-                      to={
-                        project._type === 'recipe'
-                          ? `/food/${project.slug.current}`
-                          : `/projects/${project.slug.current}`
-                      }
-                    >
-                      <p>Läs mer &#187;</p>
-                    </Link>
-                  </div>
-                </LatestWrapper>
-              );
-            }
-            return null;
-          })}
-      </LatestOuterWrapper>
+                        }
+                      >
+                        <h2>{project.title}</h2>
+                      </Link>
+                      <Link
+                        to={
+                          project._type === 'recipe'
+                            ? `/food/${project.slug.current}`
+                            : `/projects/${project.slug.current}`
+                        }
+                      >
+                        <p>Läs mer &#187;</p>
+                      </Link>
+                    </div>
+                  </LatestWrapper>
+                );
+              }
+              return null;
+            })}
+        </LatestOuterWrapper>
 
-      {/* Single category - full width */}
-      <CategoryWrapper style={{ gridTemplateColumns: '1fr' }}>
-        {homeData.single_category_image && (
-          <CategoryImage
-            url={homeData.single_category_image.url}
-            title={homeData.single_category_title}
-            onCategoryClickHandler={onCategoryClickHandler}
-            height="80vh"
-            fontSize="42px"
-          />
-        )}
-      </CategoryWrapper>
+        {/* Single category - full width */}
+        <CategoryWrapper style={{ gridTemplateColumns: '1fr' }}>
+          {homeData.single_category_image && (
+            <CategoryImage
+              url={homeData.single_category_image.url}
+              title={homeData.single_category_title}
+              onCategoryClickHandler={onCategoryClickHandler}
+              height="80vh"
+              fontSize="42px"
+            />
+          )}
+        </CategoryWrapper>
 
-      {/* Work with me- section */}
-      <WorkWrapper>
-        <WorkPearlHeader>{homeData.work_title}</WorkPearlHeader>
-        <AboutText>{homeData.work_text}</AboutText>
-        <WorkLink to="/contact">Kontakta mig &#187;</WorkLink>
-      </WorkWrapper>
-    </HomeOuterWrapper>
+        {/* Work with me- section */}
+        <WorkWrapper>
+          <WorkPearlHeader>{homeData.work_title}</WorkPearlHeader>
+          <AboutText>{homeData.work_text}</AboutText>
+          <WorkLink to="/contact">Kontakta mig &#187;</WorkLink>
+        </WorkWrapper>
+      </HomeOuterWrapper>
+    </Fade>
   );
 };
 
-const HomeOuterWrapper = styled.div``;
+const HomeOuterWrapper = styled(motion.div)``;
 
-const HeroWrapper = styled.div`
+const HeroWrapper = styled(motion.div)`
   height: 100vh;
   display: flex;
   align-items: center;

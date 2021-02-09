@@ -45,7 +45,7 @@ export const App = () => {
         <OuterWrapper>
           <Navigation />
           <ResponsiveNavigation />
-          <AnimatePresence initial={true} exitBeforeEnter>
+          <AnimatePresence exitBeforeEnter>
             <Switch>
               <Route component={Home} path="/" exact />
               <Route component={Stories} path="/stories" />

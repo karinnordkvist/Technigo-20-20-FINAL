@@ -2,8 +2,9 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components/macro';
 import { Link, useLocation } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import sanityClient from '../client.js';
+import Fade from 'react-reveal/Fade';
 
+import sanityClient from '../client.js';
 import { ThumbnailGallery } from './ThumbnailGallery';
 
 // Styling
@@ -53,33 +54,35 @@ export const Stories = () => {
         consectetur ultrices turpis lectus. Amet commodo curabitur rutrum proin
         pulvinar rhoncus semper donec. Sit integer morbi vestibulum felis.
       </StoriesIntro>
-      {storyData &&
-        storyData.map((project) => {
-          return (
-            <StoryWrapper key={project.title}>
-              <ThumbnailGallery project={project} />
-              <StoryTextWrapper>
-                <Link
-                  to={'/projects/' + project.slug.current}
-                  key={project.slug.current}
-                >
-                  <StoryTitle>{project.title}</StoryTitle>
-                </Link>
-                <StoryClient>För {project.client}</StoryClient>
-                <StoryIntro>{project.intro}</StoryIntro>
-                <StoryTagsWrapper>
-                  {project.tags &&
-                    project.tags.map((tag, index) => (
-                      <Tag key={index}>{tag}</Tag>
-                    ))}
-                </StoryTagsWrapper>
-                <StoryLink to={'/projects/' + project.slug.current}>
-                  Läs mer &#187;
-                </StoryLink>
-              </StoryTextWrapper>
-            </StoryWrapper>
-          );
-        })}
+      <Fade>
+        {storyData &&
+          storyData.map((project) => {
+            return (
+              <StoryWrapper key={project.title}>
+                <ThumbnailGallery project={project} />
+                <StoryTextWrapper>
+                  <Link
+                    to={'/projects/' + project.slug.current}
+                    key={project.slug.current}
+                  >
+                    <StoryTitle>{project.title}</StoryTitle>
+                  </Link>
+                  <StoryClient>För {project.client}</StoryClient>
+                  <StoryIntro>{project.intro}</StoryIntro>
+                  <StoryTagsWrapper>
+                    {project.tags &&
+                      project.tags.map((tag, index) => (
+                        <Tag key={index}>{tag}</Tag>
+                      ))}
+                  </StoryTagsWrapper>
+                  <StoryLink to={'/projects/' + project.slug.current}>
+                    Läs mer &#187;
+                  </StoryLink>
+                </StoryTextWrapper>
+              </StoryWrapper>
+            );
+          })}
+      </Fade>
     </StoriesInnerWrapper>
   );
 };
@@ -137,7 +140,7 @@ const StoryWrapper = styled.div`
       margin-left: 0;
     }
 
-    &:nth-child(even) {
+    &:nth-child(odd) {
       flex-direction: row;
 
       ${StoryTextWrapper} {
