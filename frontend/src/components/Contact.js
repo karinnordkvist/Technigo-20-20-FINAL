@@ -6,7 +6,7 @@ import { useDispatch } from 'react-redux';
 import sanityClient from '../client.js';
 
 // Styling
-import { InnerWrapper } from '../assets/GlobalStyles';
+import { InnerWrapper, LoaderWrapper } from '../assets/GlobalStyles';
 
 // Reducers
 import { location } from '../reducers/location';
@@ -16,7 +16,6 @@ import { location } from '../reducers/location';
 export const Contact = () => {
   const currentLocation = useLocation();
   const dispatch = useDispatch();
-
   const [contactInfo, setContactInfo] = useState([]);
 
   // Fetch data
@@ -36,6 +35,14 @@ export const Contact = () => {
       .catch(console.error);
   }, [dispatch, currentLocation.pathname]);
 
+  if (!contactInfo) {
+    return (
+      <LoaderWrapper>
+        <p>Loading...</p>
+      </LoaderWrapper>
+    );
+  }
+
   return (
     <ContactInnerWrapper>
       {contactInfo.main_image && (
@@ -51,7 +58,20 @@ export const Contact = () => {
       </ContactInfo>
       <ContactInfo>
         Email:
-        {contactInfo.email && <div>{contactInfo.email}</div>}
+        {contactInfo.email && (
+          <a href={`mailto:${contactInfo.email}`} style={{ marginLeft: '5px' }}>
+            {contactInfo.email}
+          </a>
+        )}
+      </ContactInfo>
+      <ContactInfo>
+        Instagram:
+        <a
+          href="https://www.instagram.com/carolineborg/"
+          style={{ marginLeft: '5px' }}
+        >
+          @carolineborg
+        </a>
       </ContactInfo>
     </ContactInnerWrapper>
   );
@@ -88,6 +108,10 @@ const ContactText = styled.p`
   text-align: center;
   max-width: 60%;
   margin: 20px 0 30px;
+
+  @media (max-width: 900px) {
+    max-width: 90%;
+  }
 `;
 
 const ContactInfo = styled.div`

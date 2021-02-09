@@ -48,7 +48,9 @@ export const Home = () => {
           "category_images": category_images[] {"image":asset->{tags, url, title,byline}}.image,
           category_titles,
           "single_category_image": single_category_image.asset->{url, tags, title, byline},
-          single_category_title
+          single_category_title,
+          work_title,
+          work_text
         }`
       )
       .then((data) => setHomeData(data[1]))
@@ -130,12 +132,19 @@ export const Home = () => {
               return (
                 <LatestWrapper style={{ background: '#e6e3dc' }} key={index}>
                   {project.thumbnail.url && (
-                    <img src={project.thumbnail.url} alt="Project thumbnail" />
+                    <img
+                      src={project.thumbnail.url}
+                      alt="Project thumbnail"
+                      onClick={() =>
+                        history.push(
+                          project._type === 'recipe'
+                            ? `/food/${project.slug.current}`
+                            : `/projects/${project.slug.current}`
+                        )
+                      }
+                    />
                   )}
-                  <motion.div
-                    exit={{ opactiy: 0 }}
-                    transition={{ duration: '3s' }}
-                  >
+                  <div>
                     <Category>
                       {project._type === 'recipe' ? 'Recept' : 'Projekt'} /{' '}
                       {project.category}
@@ -154,12 +163,12 @@ export const Home = () => {
                       to={
                         project._type === 'recipe'
                           ? `/food/${project.slug.current}`
-                          : `/project/${project.slug.current}`
+                          : `/projects/${project.slug.current}`
                       }
                     >
                       <p>Läs mer &#187;</p>
                     </Link>
-                  </motion.div>
+                  </div>
                 </LatestWrapper>
               );
             }
@@ -179,6 +188,13 @@ export const Home = () => {
           />
         )}
       </CategoryWrapper>
+
+      {/* Work with me- section */}
+      <WorkWrapper>
+        <WorkPearlHeader>{homeData.work_title}</WorkPearlHeader>
+        <AboutText>{homeData.work_text}</AboutText>
+        <WorkLink to="/contact">Kontakta mig &#187;</WorkLink>
+      </WorkWrapper>
     </HomeOuterWrapper>
   );
 };
@@ -239,7 +255,7 @@ const LatestWrapper = styled.div`
   align-items: center;
   text-align: center;
   font-family: 'Fraunces';
-  margin: 20px auto;
+  margin: 30px auto;
 
   div {
     display: flex;
@@ -250,8 +266,9 @@ const LatestWrapper = styled.div`
 
   img {
     width: 40%;
-    height: 330px;
+    height: 300px;
     object-fit: cover;
+    cursor: pointer;
   }
 
   h2 {
@@ -272,6 +289,13 @@ const LatestWrapper = styled.div`
       margin-bottom: 50px;
     }
   }
+`;
+
+const WorkWrapper = styled(SectionWrapper)`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 `;
 
 const Category = styled.p`
@@ -342,6 +366,14 @@ const HomePearlHeader = styled.h2`
   text-transform: uppercase;
 `;
 
+const WorkPearlHeader = styled(HomePearlHeader)`
+  font-size: 38px;
+
+  @media (max-width: 900px) {
+    font-size: 30px;
+  }
+`;
+
 const AboutText = styled.p`
   margin-top: 30px;
   font-family: 'Fraunces';
@@ -360,4 +392,10 @@ const ImageWrapper = styled.div`
   img {
     width: 100%;
   }
+`;
+
+const WorkLink = styled(Link)`
+  font-family: 'Fraunces';
+  text-align: center;
+  margin-top: 40px;
 `;

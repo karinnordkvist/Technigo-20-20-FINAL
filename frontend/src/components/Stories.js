@@ -7,7 +7,7 @@ import sanityClient from '../client.js';
 import { ThumbnailGallery } from './ThumbnailGallery';
 
 // Styling
-import { InnerWrapper } from '../assets/GlobalStyles';
+import { InnerWrapper, LoaderWrapper } from '../assets/GlobalStyles';
 
 // Reducers
 import { location } from '../reducers/location';
@@ -37,6 +37,14 @@ export const Stories = () => {
       .then((data) => setStoryData(data))
       .catch(console.error);
   }, [currentLocation.pathname, dispatch]);
+
+  if (!storyData) {
+    return (
+      <LoaderWrapper>
+        <p>Loading...</p>
+      </LoaderWrapper>
+    );
+  }
 
   return (
     <StoriesInnerWrapper>

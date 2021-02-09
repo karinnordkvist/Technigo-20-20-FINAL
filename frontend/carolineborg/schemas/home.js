@@ -62,5 +62,15 @@ export default {
         'Title for above image. Choose from Alla projekt, Fotografi, PR, Styling, Editorial or Rörligt.',
       type: 'string',
     },
+    {
+      name: 'work_title',
+      title: 'Work Together - Title',
+      type: 'string',
+    },
+    {
+      name: 'work_text',
+      title: 'Work Together - Text',
+      type: 'text',
+    },
   ],
 };

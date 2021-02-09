@@ -8,8 +8,8 @@ import sanityClient from '../client.js';
 import {
   InnerWrapper,
   BreadCrumbs,
-  BackButton,
   FlexWrapper,
+  LoaderWrapper,
 } from '../assets/GlobalStyles';
 
 // Reducers
@@ -67,8 +67,17 @@ export const ListedProjects = () => {
     dispatch(location.actions.setProjectCategory(category));
   };
 
+  if (!projects) {
+    return (
+      <LoaderWrapper>
+        <p>Loading...</p>
+      </LoaderWrapper>
+    );
+  }
+
   return (
     <StoriesInnerWrapper>
+      {/* Responsive sorting menu */}
       <FlexWrapper>
         <ResponsiveCategories>
           <p>Sortera på:</p>
@@ -84,12 +93,15 @@ export const ListedProjects = () => {
           </CategorySelect>
         </ResponsiveCategories>
       </FlexWrapper>
+
+      {/* Breadcrumbs + back-button */}
       <FlexWrapper>
         <BreadCrumbs>
           Visar: {categoryRaw === '' ? 'Alla projekt' : categoryRaw}
         </BreadCrumbs>
-        <BackButton>Tillbaka</BackButton>
       </FlexWrapper>
+
+      {/* Listed projects */}
       {projects &&
         projects.map((project) => {
           return (
@@ -106,6 +118,9 @@ export const ListedProjects = () => {
                   )}
                 </Link>
                 <StoryIntro>{project.intro}</StoryIntro>
+                <StoryLink to={'/projects/' + project.slug.current}>
+                  Läs mer &#187;
+                </StoryLink>
                 <StoryCategory>
                   {project.tags &&
                     project.tags.map((tag, index) => (
@@ -130,6 +145,7 @@ const StoriesInnerWrapper = styled(InnerWrapper)`
 
 const StoryWrapper = styled.div`
   display: flex;
+  align-items: center;
   margin: 25px 0;
 
   @media (max-width: 900px) {
@@ -180,7 +196,7 @@ const Tag = styled.span`
 
 const StoryThumbnail = styled.img`
   width: 240px;
-  height: 170px;
+  height: 220px;
   object-fit: cover;
   max-width: 100%;
 
@@ -204,7 +220,6 @@ const StoryTextWrapper = styled.div`
 const StoryTitle = styled.h2`
   font-family: 'Fraunces';
   font-weight: 300;
-  margin-top: 5px;
 
   @media (max-width: 900px) {
     margin-top: 20px;
@@ -216,4 +231,10 @@ const StoryIntro = styled.p`
   margin: 15px auto 5px auto;
   font-size: 14px;
   line-height: 1.5;
+`;
+const StoryLink = styled(Link)`
+  margin: 5px 0 10px 0;
+  font-size: 14px;
+  font-style: italic;
+  letter-spacing: 0.4px;
 `;

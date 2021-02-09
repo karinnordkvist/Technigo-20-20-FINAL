@@ -18,7 +18,6 @@ import { Navigation } from './components/Navigation';
 import { ResponsiveNavigation } from './components/ResponsiveNavigation';
 import { Home } from './components/Home';
 import { Story } from './components/Story';
-import { SelectedStory } from './components/SelectedStory';
 import { Stories } from './components/Stories';
 import { Contact } from './components/Contact';
 import { Recipe } from './components/Recipe';
@@ -49,7 +48,6 @@ export const App = () => {
           <AnimatePresence initial={true} exitBeforeEnter>
             <Switch>
               <Route component={Home} path="/" exact />
-              <Route component={SelectedStory} path="/stories/:slug" />
               <Route component={Stories} path="/stories" />
               <Route component={Recipe} path="/food/:slug" />
               <Route component={Food} path="/food" />

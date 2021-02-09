@@ -11,6 +11,7 @@ import {
   BreadCrumbs,
   BackButton,
   FlexWrapper,
+  LoaderWrapper,
 } from '../assets/GlobalStyles';
 
 // Reducers
@@ -54,9 +55,9 @@ export const Recipe = () => {
 
   if (!recipeData) {
     return (
-      <InnerWrapper>
+      <LoaderWrapper>
         <p>Loading...</p>
-      </InnerWrapper>
+      </LoaderWrapper>
     );
   }
   return (
@@ -91,9 +92,11 @@ export const Recipe = () => {
               recipeData.ingredients.map((ingredient, index) => {
                 return <li key={index}>{ingredient}</li>;
               })}
-            <li style={{ fontStyle: 'italic', marginTop: '20px' }}>
-              Toppings:
-            </li>
+            {recipeData.toppings && (
+              <li style={{ fontStyle: 'italic', marginTop: '20px' }}>
+                Toppings:
+              </li>
+            )}
             {recipeData.toppings &&
               recipeData.toppings.map((topping, index) => {
                 return <li key={index}>{topping}</li>;
@@ -124,6 +127,12 @@ export const Recipe = () => {
           </StepsList>
         </Steps>
       </RecipeMainWrapper>
+      <FlexWrapper
+        style={{ width: '80vw', maxWidth: '800px', margin: '0 auto 100px' }}
+      >
+        <BackButton onClick={history.goBack}>Tillbaka</BackButton>
+        <BreadCrumbs>Food · {recipeData.title}</BreadCrumbs>
+      </FlexWrapper>
     </>
   );
 };
@@ -159,6 +168,7 @@ const RecipeHeaderTextWrapper = styled.div`
   @media (max-width: 900px) {
     width: 80vw;
     max-width: 80vw;
+    margin: 50px 0 0 0;
   }
 `;
 
@@ -223,7 +233,7 @@ const StepsList = styled.ol`
   list-style-position: inside;
 
   @media (max-width: 900px) {
-    margin-left: 0;
+    margin: 50px 0;
   }
 
   img {
@@ -244,7 +254,7 @@ const RecipeTitle = styled.h1`
   font-size: 46px;
 
   @media (max-width: 900px) {
-    font-size: 32px;
+    font-size: 38px;
   }
 `;
 
@@ -265,13 +275,19 @@ const RecipeIntro = styled.p`
 
   @media (max-width: 900px) {
     max-width: 100%;
+    margin-right: 0;
   }
 `;
 
 const RecipeByline = styled.p`
   font-family: 'Fraunces';
   margin-top: 10px;
-  font-size: 10px;
+  font-size: 12px;
   font-style: italic;
   margin-right: 50px;
+
+  @media (max-width: 900px) {
+    font-size: 14px;
+    margin-right: 0;
+  }
 `;

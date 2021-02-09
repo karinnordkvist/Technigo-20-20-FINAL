@@ -156,6 +156,10 @@ export const Story = () => {
             return null;
           })}
       </StoryGridWrapper>
+      <FlexWrapper style={{ marginTop: '50px' }}>
+        <BackButton onClick={history.goBack}>Tillbaka</BackButton>
+        <BreadCrumbs>{formattedLocation}</BreadCrumbs>
+      </FlexWrapper>
     </StoryInnerWrapper>
   );
 };
@@ -163,7 +167,7 @@ export const Story = () => {
 // ----------------------------------------------------------------
 
 const StoryInnerWrapper = styled(InnerWrapper)`
-  margin: 150px auto;
+  margin: 150px auto 50px auto;
 
   @media (max-width: 900px) {
     margin: 150px auto 0 auto;
