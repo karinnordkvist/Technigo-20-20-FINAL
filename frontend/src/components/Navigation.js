@@ -73,7 +73,11 @@ export const Navigation = () => {
             >
               Stories <DownArrow>▼</DownArrow>
             </NavLink>
-            <Dropdown showing={storiesActive}>
+            <Dropdown
+              showing={storiesActive}
+              style={{ transform: 'translateX(-28px)' }}
+              location={currentLocation}
+            >
               {stories &&
                 stories.map((story, index) => {
                   return (
@@ -116,7 +120,11 @@ export const Navigation = () => {
             >
               Projekt <DownArrow>▼</DownArrow>
             </NavLink>
-            <Dropdown showing={projectsActive}>
+            <Dropdown
+              showing={projectsActive}
+              style={{ transform: 'translateX(35px)' }}
+              location={currentLocation}
+            >
               {tags &&
                 tags.map((tag, index) => {
                   return (
@@ -169,33 +177,9 @@ const LinksOuterWrapper = styled.div`
   justify-content: space-between;
 `;
 
-// Left side of the menu
-const Left = styled.div`
-  display: flex;
-  align-items: center;
-
-  div {
-    width: 80px;
-    margin-right: 20px;
-    text-align: left;
-  }
-`;
-
 const NavImage = styled.img`
   width: 20px;
   filter: invert(1);
-`;
-
-// Right side of the menu
-const Right = styled(Left)`
-  display: flex;
-
-  div {
-    width: 130px;
-    margin-left: 20px;
-    margin-right: 0;
-    text-align: right;
-  }
 `;
 
 // Separate div to be able to use props for navlinks
@@ -208,13 +192,42 @@ const LinkWrapper = styled.div`
   }
 `;
 
+// Left side of the menu
+const Left = styled.div`
+  display: flex;
+  align-items: center;
+
+  ${LinkWrapper} {
+    width: 80px;
+    margin-right: 20px;
+    text-align: left;
+  }
+`;
+
+// Right side of the menu
+const Right = styled(Left)`
+  display: flex;
+
+  ${LinkWrapper} {
+    width: 130px;
+    margin-left: 20px;
+    margin-right: 0;
+    text-align: right;
+  }
+`;
+
 const Dropdown = styled.div`
   display: ${(props) => (props.showing ? 'flex' : 'none')};
   position: absolute;
   z-index: 5;
-  padding-top: 10px;
   flex-direction: column;
   align-items: flex-start;
+  background: ${(props) =>
+    props.location === '/' ? 'none' : 'rgba(252, 251, 248, 1)'};
+  padding: ${(props) =>
+    props.location === '/' ? '10px 30px 20px 30px' : '20px 30px'};
+  box-shadow: ${(props) =>
+    props.location === '/' ? 'none' : '2px 15px 15px rgba(0, 0, 0, 0.1)'};
 `;
 
 const NavClient = styled.span`
@@ -230,13 +243,12 @@ const DropdownLinkWrapper = styled(LinkWrapper)`
 `;
 
 const DropdownButton = styled.button`
-  width: 250px;
+  /* width: 250px; */
   font-family: 'Fraunces';
   color: ${(props) => (props.location === '/' ? '#fff' : '#000')};
   font-size: 16px;
   border: none;
   background: none;
-  margin-left: 46px;
   text-align: left;
   padding: 4px 0;
   text-transform: uppercase;

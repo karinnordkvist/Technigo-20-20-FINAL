@@ -14,17 +14,19 @@ import { AnimatePresence } from 'framer-motion';
 import GlobalStyles from './assets/GlobalStyles';
 
 // Components
-import { Navigation } from './components/Navigation';
-import { ResponsiveNavigation } from './components/ResponsiveNavigation';
-import { Home } from './components/Home';
-import { Story } from './components/Story';
-import { Stories } from './components/Stories';
-import { Contact } from './components/Contact';
-import { Recipe } from './components/Recipe';
-import { Food } from './components/Food';
-import { ListedProjects } from './components/ListedProjects';
-import { NotFound } from './components/NotFound';
-import { Footer } from './components/Footer';
+import {
+  Home,
+  Navigation,
+  ResponsiveNavigation,
+  Story,
+  Stories,
+  Contact,
+  Recipe,
+  Food,
+  Projects,
+  NotFound,
+  Footer,
+} from './index';
 
 // Reducers
 import { location } from './reducers/location';
@@ -52,7 +54,7 @@ export const App = () => {
               <Route component={Recipe} path="/food/:slug" />
               <Route component={Food} path="/food" />
               <Route component={Story} path="/projects/:slug" />
-              <Route component={ListedProjects} path="/projects" />
+              <Route component={Projects} path="/projects" />
               <Route component={Contact} path="/contact" />
 
               {/* Route to 404-page */}

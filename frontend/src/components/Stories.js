@@ -5,7 +5,7 @@ import { useDispatch } from 'react-redux';
 import Fade from 'react-reveal/Fade';
 
 import sanityClient from '../client.js';
-import { ThumbnailGallery } from './ThumbnailGallery';
+import { ThumbnailGallery } from '../index';
 
 // Styling
 import { InnerWrapper, LoaderWrapper } from '../assets/GlobalStyles';

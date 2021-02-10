@@ -3,7 +3,6 @@ import styled from 'styled-components/macro';
 import { useLocation } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import Fade from 'react-reveal/Fade';
-
 import sanityClient from '../client.js';
 
 // Styling

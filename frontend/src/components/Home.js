@@ -6,7 +6,7 @@ import { motion } from 'framer-motion';
 import Fade from 'react-reveal/Fade';
 
 // Components
-import { CategoryImage } from './CategoryImage';
+import { CategoryImage } from '../index';
 
 // Data
 import sanityClient from '../client.js';
@@ -32,7 +32,6 @@ export const Home = () => {
   };
 
   const transition = { duration: 0.6, ease: [0.43, 0.13, 0.23, 0.96] };
-  const longTransition = { duration: 5 };
 
   useEffect(() => {
     // Send current location to reducer

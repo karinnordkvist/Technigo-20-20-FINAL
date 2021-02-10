@@ -18,7 +18,7 @@ import { location } from '../reducers/location';
 
 // ----------------------------------------------------------------
 
-export const ListedProjects = () => {
+export const Projects = () => {
   const currentLocation = useLocation();
   const dispatch = useDispatch();
   const [projects, setProjects] = useState(null);

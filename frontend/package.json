@@ -4,7 +4,7 @@
   "private": true,
   "dependencies": {
     "@reduxjs/toolkit": "^1.5.0",
-    "@sanity/client": "^2.1.4",
+    "@sanity/client": "^2.2.6",
     "babel-eslint": "^10.1.0",
     "eslint": "^6.7.1",
     "eslint-config-airbnb": "^18.2.1",
