@@ -29,7 +29,6 @@ const FooterImage = styled.img`
 `;
 
 const FooterText = styled.p`
-  font-family: 'Fraunces';
   font-size: 12px;
   font-style: italic;
 `;

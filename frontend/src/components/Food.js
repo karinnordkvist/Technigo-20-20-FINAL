@@ -88,7 +88,6 @@ const FoodInnerWrapper = styled(InnerWrapper)`
 `;
 
 const FoodIntro = styled.p`
-  font-family: 'Fraunces';
   font-style: italic;
   font-size: 30px;
   font-weight: 300;
@@ -127,7 +126,6 @@ const RecipeThumbnail = styled.img`
 `;
 
 const RecipeTitle = styled(Link)`
-  font-family: 'Fraunces';
   font-size: 20px;
   font-weight: 300;
   line-height: 1.2;
@@ -136,7 +134,6 @@ const RecipeTitle = styled(Link)`
 
 const RecipeCategory = styled.p`
   font-size: 16px;
-  font-family: 'Fraunces';
   font-style: italic;
   margin-bottom: 5px;
 

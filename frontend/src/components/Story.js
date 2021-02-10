@@ -13,6 +13,7 @@ import {
   BreadCrumbs,
   BackButton,
   FlexWrapper,
+  LoaderWrapper,
 } from '../assets/GlobalStyles';
 
 // Reducers
@@ -64,9 +65,9 @@ export const Story = () => {
 
   if (!storyData) {
     return (
-      <StoryInnerWrapper>
-        <Loader>Loading...</Loader>
-      </StoryInnerWrapper>
+      <LoaderWrapper>
+        <p>Loading...</p>
+      </LoaderWrapper>
     );
   }
   return (
@@ -179,12 +180,6 @@ const StoryInnerWrapper = styled(InnerWrapper)`
   }
 `;
 
-const Loader = styled.p`
-  font-family: 'Pearl';
-  text-align: center;
-  padding: 300px auto;
-`;
-
 const MainImage = styled.img`
   margin: 30px 0 50px;
   width: 100%;
@@ -194,14 +189,12 @@ const MainImage = styled.img`
 `;
 
 const StoryClient = styled.p`
-  font-family: 'Fraunces';
   font-size: 16px;
   text-align: center;
   text-transform: uppercase;
 `;
 
 const StoryTitle = styled.h1`
-  font-family: 'Fraunces';
   font-size: 36px;
   font-weight: 300;
   text-align: center;
@@ -209,7 +202,6 @@ const StoryTitle = styled.h1`
 `;
 
 const StoryIntro = styled.p`
-  font-family: 'Fraunces';
   font-size: 24px;
   font-style: italic;
   font-weight: 300;
@@ -224,7 +216,6 @@ const StoryIntro = styled.p`
 `;
 
 const StoryByline = styled.p`
-  font-family: 'Fraunces';
   font-size: 16px;
   text-align: center;
   font-style: italic;
@@ -242,7 +233,6 @@ const StoryTextWrapper = styled.div`
 
 const StoryInfo = styled.ul`
   list-style: none;
-  font-family: 'Fraunces';
   font-size: 16px;
 
   li {
@@ -266,7 +256,6 @@ const Tag = styled.span`
 `;
 
 const StoryMainText = styled.p`
-  font-family: 'Fraunces';
   font-size: 16px;
   line-height: 1.6;
 `;

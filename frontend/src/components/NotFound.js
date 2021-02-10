@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import styled from 'styled-components/macro';
-import { useLocation } from 'react-router-dom';
+import { useLocation, Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 
 // Styling
@@ -21,6 +21,7 @@ export const NotFound = () => {
   return (
     <NotFoundWrapper>
       <p>Oops! Nothing here!</p>
+      <NotFoundLink to="/">Go to Home</NotFoundLink>
     </NotFoundWrapper>
   );
 };
@@ -31,8 +32,15 @@ const NotFoundWrapper = styled(InnerWrapper)`
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
 
   p {
     font-family: 'Pearl';
+    display: block;
   }
+`;
+
+const NotFoundLink = styled(Link)`
+  display: block;
+  margin: 20px auto;
 `;

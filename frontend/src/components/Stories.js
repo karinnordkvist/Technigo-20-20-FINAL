@@ -99,7 +99,6 @@ const StoriesInnerWrapper = styled(InnerWrapper)`
 `;
 
 const StoriesIntro = styled.p`
-  font-family: 'Fraunces';
   font-style: italic;
   font-size: 30px;
   font-weight: 300;
@@ -163,14 +162,12 @@ const StoryWrapper = styled.div`
 // Single story ----------------
 
 const StoryTitle = styled.h2`
-  font-family: 'Fraunces';
   font-size: 36px;
   font-weight: 300;
   margin: 5px auto;
 `;
 
 const StoryClient = styled.p`
-  font-family: 'Fraunces';
   font-style: italic;
   text-transform: uppercase;
   font-size: 14px;
@@ -178,7 +175,6 @@ const StoryClient = styled.p`
 `;
 
 const StoryIntro = styled.p`
-  font-family: 'Fraunces';
   margin-top: 15px;
 `;
 
@@ -194,7 +190,6 @@ const StoryTagsWrapper = styled.div`
 `;
 
 const Tag = styled.span`
-  font-family: 'Fraunces';
   font-style: italic;
   font-size: 12px;
   padding: 2px 5px;

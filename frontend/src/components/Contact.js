@@ -107,7 +107,6 @@ const ContactSubtitle = styled.h2`
 `;
 
 const ContactText = styled.p`
-  font-family: 'Fraunces';
   font-size: 20px;
   font-style: italic;
   text-align: center;
@@ -120,9 +119,7 @@ const ContactText = styled.p`
 `;
 
 const ContactInfo = styled.div`
-  font-family: 'Fraunces';
   font-size: 16px;
-
   text-align: center;
   margin-bottom: 15px;
 `;

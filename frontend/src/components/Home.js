@@ -258,7 +258,6 @@ const LatestWrapper = styled.div`
   display: flex;
   align-items: center;
   text-align: center;
-  font-family: 'Fraunces';
   margin: 30px auto;
 
   div {
@@ -303,7 +302,6 @@ const WorkWrapper = styled(SectionWrapper)`
 `;
 
 const Category = styled.p`
-  font-family: 'Fraunces';
   font-style: italic;
   margin-bottom: 5px;
 
@@ -313,7 +311,6 @@ const Category = styled.p`
 `;
 
 const Client = styled.p`
-  font-family: 'Fraunces';
   font-style: italic;
   margin-bottom: 5px;
   font-size: 12px;
@@ -380,7 +377,6 @@ const WorkPearlHeader = styled(HomePearlHeader)`
 
 const AboutText = styled.p`
   margin-top: 30px;
-  font-family: 'Fraunces';
   font-size: 20px;
   line-height: 1.6;
   text-align: center;
@@ -399,7 +395,6 @@ const ImageWrapper = styled.div`
 `;
 
 const WorkLink = styled(Link)`
-  font-family: 'Fraunces';
   text-align: center;
   margin-top: 40px;
 `;

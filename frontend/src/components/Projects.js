@@ -164,7 +164,6 @@ const ResponsiveCategories = styled.div`
 
   p {
     width: 33%;
-    font-family: 'Fraunces';
     font-size: 13px;
     line-height: 1.6;
     padding: 5px 0;
@@ -184,7 +183,6 @@ const CategorySelect = styled.select`
 
 // Single story ----------------
 const StoryCategory = styled.p`
-  font-family: 'Fraunces';
   font-style: italic;
   font-size: 14px;
   margin-top: 5px;
@@ -221,7 +219,6 @@ const StoryTextWrapper = styled.div`
 `;
 
 const StoryTitle = styled.h2`
-  font-family: 'Fraunces';
   font-weight: 300;
 
   @media (max-width: 900px) {
@@ -230,7 +227,6 @@ const StoryTitle = styled.h2`
 `;
 
 const StoryIntro = styled.p`
-  font-family: 'Fraunces';
   margin: 15px auto 5px auto;
   font-size: 14px;
   line-height: 1.5;

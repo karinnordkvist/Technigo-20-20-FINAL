@@ -108,7 +108,7 @@ export const Recipe = () => {
         {/* Steps */}
         <Steps>
           <StepsList>
-            <p style={{ fontStyle: 'italic' }}>Gör såhär:</p>
+            <p>Gör såhär:</p>
             {recipeData.steps &&
               recipeData.steps.map((step, index) => {
                 if (step.text) {
@@ -213,7 +213,6 @@ const IngredientsList = styled.ul`
   list-style-type: none;
 
   li {
-    font-family: 'Fraunces';
     line-height: 1.6;
     text-align: right;
     margin-right: 40px;
@@ -225,7 +224,6 @@ const IngredientsList = styled.ul`
 `;
 
 const Steps = styled.div`
-  font-family: 'Fraunces';
   line-height: 1.6;
 `;
 
@@ -244,13 +242,17 @@ const StepsList = styled.ol`
     object-position: 50% 50%;
     margin: 20px 0;
   }
+
   li {
     margin: 20px 0;
+  }
+
+  p {
+    font-style: italic;
   }
 `;
 
 const RecipeTitle = styled.h1`
-  font-family: 'Fraunces';
   font-weight: 300;
   font-size: 46px;
 
@@ -266,7 +268,6 @@ const RecipeCategory = styled.p`
 `;
 
 const RecipeIntro = styled.p`
-  font-family: 'Fraunces';
   margin-bottom: 40px;
   max-width: 60%;
   font-size: 18px;
@@ -281,7 +282,6 @@ const RecipeIntro = styled.p`
 `;
 
 const RecipeByline = styled.p`
-  font-family: 'Fraunces';
   margin-top: 10px;
   font-size: 12px;
   font-style: italic;

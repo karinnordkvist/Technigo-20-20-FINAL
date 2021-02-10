@@ -135,8 +135,6 @@ const NavButton = styled.button`
   border: none;
   background: none;
   color: ${(props) => (props.location === '/' ? '#fff' : '#000')};
-
-  font-family: 'Fraunces';
   cursor: pointer;
 
   &:hover {

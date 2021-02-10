@@ -16,10 +16,15 @@ html {
   height: 100%;
 }
 
+:root {
+  --color-text: black;
+  --color-background: lightgray;
+}
+
 body {
   margin: 0;
   background: #fcfbf8;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+  font-family: 'Fraunces', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -27,7 +32,6 @@ body {
 }
 
 a {
-  font-family: 'Fraunces';
   text-decoration: none;
   color: #000;
   cursor: pointer;
@@ -36,6 +40,10 @@ a {
     font-style: italic;
     letter-spacing: 0.4px;
   }
+}
+
+button {
+  font-family: 'Fraunces';
 }
 `;
 
@@ -69,7 +77,6 @@ export const BackButton = styled.button`
   background: none;
   border: none;
   cursor: pointer;
-  font-family: 'Fraunces';
 
   &:hover {
     font-style: italic;
@@ -78,7 +85,6 @@ export const BackButton = styled.button`
 `;
 
 export const BreadCrumbs = styled.p`
-  font-family: 'Fraunces';
   font-style: italic;
   font-size: 14px;
   text-transform: capitalize;

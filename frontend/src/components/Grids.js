@@ -134,7 +134,6 @@ const G6ImageWrapper = styled(baseGrid)`
   p {
     grid-column: 6 / span 7;
     grid-row: 1;
-    font-family: 'Fraunces';
     font-size: 28px;
     font-style: italic;
     margin-top: 550px;
