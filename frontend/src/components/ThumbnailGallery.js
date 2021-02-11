@@ -65,8 +65,9 @@ const StoryImageNavWrapper = styled.div`
     background: none;
     border: none;
     color: #fff;
-    padding: 10px;
+    padding: 15px;
     cursor: pointer;
+    outline-color: #fff;
   }
 `;
 

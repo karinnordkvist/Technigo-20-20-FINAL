@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components/macro';
+import { GoToTopButton } from './GoToTopButton';
 
 // ----------------------------------------------------------------
 const now = new Date().toLocaleDateString().substring(0, 4);
@@ -7,7 +8,11 @@ const now = new Date().toLocaleDateString().substring(0, 4);
 export const Footer = () => {
   return (
     <FooterWrapper>
-      <FooterImage src={process.env.PUBLIC_URL + '/images/cb.png'} />
+      <GoToTopButton />
+      <FooterImage
+        src={process.env.PUBLIC_URL + '/images/cb.png'}
+        style={{ marginTop: '80px' }}
+      />
       <FooterText>© Caroline Borg – {now}</FooterText>
     </FooterWrapper>
   );
@@ -21,6 +26,7 @@ const FooterWrapper = styled.div`
   justify-content: center;
   flex-direction: column;
   padding: 20px 0 30px;
+  z-index: 5;
 `;
 
 const FooterImage = styled.img`

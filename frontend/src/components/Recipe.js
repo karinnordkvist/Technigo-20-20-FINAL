@@ -31,6 +31,7 @@ export const Recipe = () => {
 
   // Fetch story data
   useEffect(() => {
+    window.scrollTo(0, 0);
     dispatch(location.actions.setLocation(currentLocation.pathname));
 
     sanityClient
@@ -173,6 +174,19 @@ const RecipeHeaderTextWrapper = styled.div`
   }
 `;
 
+const RecipeMainWrapper = styled(InnerWrapper)`
+  display: flex;
+  align-items: flex-start;
+
+  @media (max-width: 900px) {
+    width: 80vw;
+    flex-direction: column;
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-bottom: 0;
+  }
+`;
+
 const MainImage = styled.img`
   margin-top: 50px;
   width: 50vw;
@@ -181,20 +195,6 @@ const MainImage = styled.img`
 
   @media (max-width: 900px) {
     width: 100vw;
-  }
-`;
-
-const RecipeMainWrapper = styled(InnerWrapper)`
-  display: flex;
-  align-items: flex-start;
-  padding-bottom: 50px;
-
-  @media (max-width: 900px) {
-    width: 80vw;
-    flex-direction: column;
-    margin-top: 0;
-    margin-bottom: 0;
-    padding-bottom: 0;
   }
 `;
 

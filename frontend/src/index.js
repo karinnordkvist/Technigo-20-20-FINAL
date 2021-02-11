@@ -17,6 +17,7 @@ import { Projects } from './components/Projects';
 import { NotFound } from './components/NotFound';
 import { Footer } from './components/Footer';
 import { ThumbnailGallery } from './components/ThumbnailGallery';
+import { GoToTopButton } from './components/GoToTopButton';
 
 export {
   Home,
@@ -32,6 +33,7 @@ export {
   NotFound,
   Footer,
   ThumbnailGallery,
+  GoToTopButton,
 };
 
 ReactDOM.render(<App />, document.getElementById('root'));

@@ -44,6 +44,14 @@ a {
 
 button {
   font-family: 'Fraunces';
+  border: none;
+  background: none;
+  cursor: pointer;
+
+  &:hover {
+    font-style: italic;
+    letter-spacing: 0.4px;
+  }
 }
 `;
 
@@ -71,6 +79,12 @@ export const FlexWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+`;
+
+export const ButtonWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 
 export const BackButton = styled.button`

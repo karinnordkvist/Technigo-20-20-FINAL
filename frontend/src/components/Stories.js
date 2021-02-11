@@ -48,13 +48,14 @@ export const Stories = () => {
   }
 
   return (
-    <StoriesInnerWrapper>
-      <StoriesIntro>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Dictum
-        consectetur ultrices turpis lectus. Amet commodo curabitur rutrum proin
-        pulvinar rhoncus semper donec. Sit integer morbi vestibulum felis.
-      </StoriesIntro>
-      <Fade>
+    <Fade>
+      <StoriesInnerWrapper>
+        <StoriesIntro>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Dictum
+          consectetur ultrices turpis lectus. Amet commodo curabitur rutrum
+          proin pulvinar rhoncus semper donec. Sit integer morbi vestibulum
+          felis.
+        </StoriesIntro>
         {storyData &&
           storyData.map((project) => {
             return (
@@ -82,18 +83,18 @@ export const Stories = () => {
               </StoryWrapper>
             );
           })}
-      </Fade>
-    </StoriesInnerWrapper>
+      </StoriesInnerWrapper>
+    </Fade>
   );
 };
 
 // ----------------------------------------------------------------
 
 const StoriesInnerWrapper = styled(InnerWrapper)`
-  padding: 100px 0;
+  padding: 100px 0 0;
 
   @media (max-width: 900px) {
-    padding: 60px 0 0;
+    padding: 30px 0 0;
     margin: 90px auto 20px auto;
   }
 `;
@@ -126,7 +127,7 @@ const StoryWrapper = styled.div`
   display: flex;
   align-items: center;
   flex-direction: row-reverse;
-  margin: 20px 0;
+  margin: 30px 0;
   padding-bottom: 20px;
 
   &:not(:last-child) {
@@ -165,6 +166,11 @@ const StoryTitle = styled.h2`
   font-size: 36px;
   font-weight: 300;
   margin: 5px auto;
+
+  @media (max-width: 900px) {
+    font-size: 28px;
+    margin: 20px auto 5px;
+  }
 `;
 
 const StoryClient = styled.p`

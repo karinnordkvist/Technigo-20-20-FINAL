@@ -139,7 +139,7 @@ export const Projects = () => {
 };
 
 const StoriesInnerWrapper = styled(InnerWrapper)`
-  padding: 100px 0;
+  padding: 100px 0 0;
 
   @media (max-width: 900px) {
     padding: 50px 0 0 0;

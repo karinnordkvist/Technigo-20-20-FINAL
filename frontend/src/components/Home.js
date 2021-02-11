@@ -203,7 +203,7 @@ export const Home = () => {
   );
 };
 
-const HomeOuterWrapper = styled(motion.div)``;
+const HomeOuterWrapper = styled.div``;
 
 const HeroWrapper = styled(motion.div)`
   height: 100vh;
@@ -215,7 +215,7 @@ const HeroWrapper = styled(motion.div)`
 
 const SectionWrapper = styled(InnerWrapper)`
   padding: 200px auto;
-  margin: 150px auto;
+  margin: 150px auto 0 auto;
 
   @media (max-width: 900px) {
     margin: 100px auto;
@@ -265,6 +265,10 @@ const LatestWrapper = styled.div`
     align-items: center;
     flex-direction: column;
     width: 60%;
+
+    @media (max-width: 900px) {
+      width: 90%;
+    }
   }
 
   img {
@@ -299,6 +303,7 @@ const WorkWrapper = styled(SectionWrapper)`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  margin-bottom: 80px;
 `;
 
 const Category = styled.p`
@@ -357,6 +362,7 @@ const HeroBG = styled.div`
   background-size: cover;
   background-position: center;
   z-index: -1;
+  background-attachment: fixed;
 `;
 
 const HomePearlHeader = styled.h2`

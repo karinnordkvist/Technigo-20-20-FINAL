@@ -80,10 +80,11 @@ export const Food = () => {
 // ----------------------------------------------------------------
 
 const FoodInnerWrapper = styled(InnerWrapper)`
-  margin: 150px auto;
+  padding: 100px 0 0 0;
 
   @media (max-width: 900px) {
-    margin: 150px auto 0 auto;
+    padding: 30px 0 0;
+    margin: 90px auto 20px auto;
   }
 `;
 

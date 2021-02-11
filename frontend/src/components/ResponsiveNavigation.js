@@ -46,7 +46,7 @@ export const ResponsiveNavigation = () => {
 
       {/* SUBMENU ---------------------------------------------------------------- */}
       {subMenu && (
-        <SubLinksOuterWrapper>
+        <SubLinksOuterWrapper location={currentLocation}>
           {/* Selected Stories ------------------------------------ */}
           <LinkWrapper location={currentLocation}>
             <NavLink
@@ -117,13 +117,35 @@ const LinksOuterWrapper = styled.div`
   justify-content: space-between;
 `;
 
+// Separate div to be able to use props for navlinks
+const LinkWrapper = styled.div`
+  img {
+    filter: ${(props) => (props.location === '/' ? 'invert(1)' : 'invert(0)')};
+  }
+  a {
+    color: ${(props) => (props.location === '/' ? '#fff' : '#000')};
+  }
+  font-size: 18px;
+`;
+
 const SubLinksOuterWrapper = styled.div`
-  margin-top: 20px;
-  width: 100%;
+  width: 40%;
+  position: absolute;
+  right: 0;
   display: flex;
   align-items: flex-end;
+  flex-direction: column;
   text-align: right;
-  justify-content: space-between;
+  transform: translateX(30px);
+  background: ${(props) =>
+    props.location === '/' ? 'none' : 'rgba(252, 251, 248, 1)'};
+  padding: ${(props) => (props.location === '/' ? '20px 30px' : '20px 30px')};
+  box-shadow: ${(props) =>
+    props.location === '/' ? 'none' : '2px 15px 15px rgba(0, 0, 0, 0.1)'};
+
+  ${LinkWrapper} {
+    padding: 5px 0;
+  }
 `;
 
 const NavImage = styled.img`
@@ -141,15 +163,4 @@ const NavButton = styled.button`
     font-style: italic;
     letter-spacing: 0.4px;
   }
-`;
-
-// Separate div to be able to use props for navlinks
-const LinkWrapper = styled.div`
-  img {
-    filter: ${(props) => (props.location === '/' ? 'invert(1)' : 'invert(0)')};
-  }
-  a {
-    color: ${(props) => (props.location === '/' ? '#fff' : '#000')};
-  }
-  font-size: 13px;
 `;

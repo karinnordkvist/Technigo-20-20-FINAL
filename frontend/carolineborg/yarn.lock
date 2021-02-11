@@ -842,11 +842,11 @@
     "@reach/utils" "0.10.5"
     tslib "^2.0.0"
 
-"@reach/auto-id@^0.12.1":
-  version "0.12.1"
-  resolved "https://registry.npmjs.org/@reach/auto-id/-/auto-id-0.12.1.tgz#2e4a7250d2067ec16a9b4ea732695bc75572405c"
+"@reach/auto-id@^0.13.0":
+  version "0.13.0"
+  resolved "https://registry.npmjs.org/@reach/auto-id/-/auto-id-0.13.0.tgz#0dfa4c1af46d1ad68d8282c786c03362ae35e335"
   dependencies:
-    "@reach/utils" "0.12.1"
+    "@reach/utils" "0.13.0"
     tslib "^2.0.0"
 
 "@reach/utils@0.10.5":
@@ -857,9 +857,9 @@
     tslib "^2.0.0"
     warning "^4.0.3"
 
-"@reach/utils@0.12.1":
-  version "0.12.1"
-  resolved "https://registry.npmjs.org/@reach/utils/-/utils-0.12.1.tgz#02b9c15ba5cddf23e16f2d2ca77aef98a9702607"
+"@reach/utils@0.13.0":
+  version "0.13.0"
+  resolved "https://registry.npmjs.org/@reach/utils/-/utils-0.13.0.tgz#2da775a910d8894bb34e1e94fe95842674f71844"
   dependencies:
     "@types/warning" "^3.0.0"
     tslib "^2.0.0"
@@ -913,9 +913,9 @@
     semver-compare "^1.0.0"
     shallow-equals "^1.0.0"
 
-"@sanity/base@2.3.4", "@sanity/base@^2.3.4":
-  version "2.3.4"
-  resolved "https://registry.npmjs.org/@sanity/base/-/base-2.3.4.tgz#ce004275b2addeccdf73dc30c001f624230833ce"
+"@sanity/base@2.3.6", "@sanity/base@^2.3.6":
+  version "2.3.6"
+  resolved "https://registry.npmjs.org/@sanity/base/-/base-2.3.6.tgz#8a21cbd250f64ce460cd4f0584a60edccda48efa"
   dependencies:
     "@popperjs/core" "^2.5.4"
     "@reach/auto-id" "^0.10.5"
@@ -932,7 +932,7 @@
     "@sanity/structure" "2.2.6"
     "@sanity/transaction-collator" "2.2.6"
     "@sanity/types" "2.2.6"
-    "@sanity/ui" "^0.33.0"
+    "@sanity/ui" "^0.33.1"
     "@sanity/util" "2.2.6"
     "@sanity/validation" "2.2.6"
     boundless-arrow-key-navigation "^1.1.0"
@@ -1123,13 +1123,13 @@
     "@sanity/generate-help-url" "2.2.6"
     lodash "^4.17.15"
 
-"@sanity/default-layout@^2.3.4":
-  version "2.3.4"
-  resolved "https://registry.npmjs.org/@sanity/default-layout/-/default-layout-2.3.4.tgz#e207de2294ded9f4b0dd3a55dbae4ef9eb505899"
+"@sanity/default-layout@^2.3.6":
+  version "2.3.6"
+  resolved "https://registry.npmjs.org/@sanity/default-layout/-/default-layout-2.3.6.tgz#326fcf39d1bcca8fd6cf86727c6b335289edcf06"
   dependencies:
-    "@sanity/base" "2.3.4"
+    "@sanity/base" "2.3.6"
     "@sanity/generate-help-url" "2.2.6"
-    "@sanity/ui" "^0.33.0"
+    "@sanity/ui" "^0.33.1"
     "@sanity/util" "2.2.6"
     classnames "^2.2.5"
     is-hotkey "^0.1.4"
@@ -1147,23 +1147,23 @@
     prop-types "^15.6.0"
     rxjs "^6.5.3"
 
-"@sanity/desk-tool@^2.3.4":
-  version "2.3.4"
-  resolved "https://registry.npmjs.org/@sanity/desk-tool/-/desk-tool-2.3.4.tgz#4305c599eed39145246b3992419e88fc90aca2a8"
+"@sanity/desk-tool@^2.3.6":
+  version "2.3.6"
+  resolved "https://registry.npmjs.org/@sanity/desk-tool/-/desk-tool-2.3.6.tgz#1269af2e3806a6250e2e1092dca736aa08e0ee93"
   dependencies:
     "@popperjs/core" "^2.5.4"
     "@reach/auto-id" "^0.10.5"
-    "@sanity/base" "2.3.4"
+    "@sanity/base" "2.3.6"
     "@sanity/data-aspects" "2.2.6"
     "@sanity/diff" "2.2.6"
-    "@sanity/field" "2.3.4"
-    "@sanity/form-builder" "2.3.4"
+    "@sanity/field" "2.3.6"
+    "@sanity/form-builder" "2.3.6"
     "@sanity/generate-help-url" "2.2.6"
     "@sanity/mutator" "2.2.6"
     "@sanity/react-hooks" "2.2.6"
     "@sanity/structure" "2.2.6"
     "@sanity/types" "2.2.6"
-    "@sanity/ui" "^0.33.0"
+    "@sanity/ui" "^0.33.1"
     "@sanity/util" "2.2.6"
     "@sanity/uuid" "^3.0.1"
     boundless-arrow-key-navigation "^1.1.0"
@@ -1220,26 +1220,26 @@
     simple-get "^4.0.0"
     split2 "^3.2.2"
 
-"@sanity/field@2.3.4":
-  version "2.3.4"
-  resolved "https://registry.npmjs.org/@sanity/field/-/field-2.3.4.tgz#f75c04bcee0139e245d2bd823ef618540cf09a8b"
+"@sanity/field@2.3.6":
+  version "2.3.6"
+  resolved "https://registry.npmjs.org/@sanity/field/-/field-2.3.6.tgz#50b0389c9a848b7bf718fbd6d196c607b5e55b88"
   dependencies:
     "@sanity/asset-utils" "^1.1.2"
-    "@sanity/base" "2.3.4"
+    "@sanity/base" "2.3.6"
     "@sanity/diff" "2.2.6"
     "@sanity/react-hooks" "2.2.6"
     "@sanity/types" "2.2.6"
-    "@sanity/ui" "^0.33.0"
+    "@sanity/ui" "^0.33.1"
     "@sanity/util" "2.2.6"
     date-fns "^2.16.1"
     sanity-diff-patch "^1.0.9"
     styled-components "^5.2.1"
 
-"@sanity/form-builder@2.3.4":
-  version "2.3.4"
-  resolved "https://registry.npmjs.org/@sanity/form-builder/-/form-builder-2.3.4.tgz#9d4927c3c806109ea715aa13dd41543fdadf0e18"
+"@sanity/form-builder@2.3.6":
+  version "2.3.6"
+  resolved "https://registry.npmjs.org/@sanity/form-builder/-/form-builder-2.3.6.tgz#836013df45b4b5e199994a7d79f83a00f0053d96"
   dependencies:
-    "@sanity/base" "2.3.4"
+    "@sanity/base" "2.3.6"
     "@sanity/block-tools" "2.2.6"
     "@sanity/generate-help-url" "2.2.6"
     "@sanity/icons" "^1.0.1"
@@ -1247,7 +1247,7 @@
     "@sanity/mutator" "2.2.6"
     "@sanity/portable-text-editor" "0.1.25"
     "@sanity/types" "2.2.6"
-    "@sanity/ui" "^0.33.0"
+    "@sanity/ui" "^0.33.1"
     "@sanity/util" "2.2.6"
     "@sanity/uuid" "^3.0.1"
     attr-accept "^1.1.0"
@@ -1580,16 +1580,16 @@
   dependencies:
     "@types/react" "^17.0.0"
 
-"@sanity/ui@^0.33.0":
-  version "0.33.0"
-  resolved "https://registry.npmjs.org/@sanity/ui/-/ui-0.33.0.tgz#3296b1ae9354441cae305bff923e363643cb4ef7"
+"@sanity/ui@^0.33.1":
+  version "0.33.1"
+  resolved "https://registry.npmjs.org/@sanity/ui/-/ui-0.33.1.tgz#ca637de1ab7f5750ef4cb591a55f15e45217f91f"
   dependencies:
     "@juggle/resize-observer" "^3.2.0"
     "@popperjs/core" "^2.6.0"
-    "@reach/auto-id" "^0.12.1"
+    "@reach/auto-id" "^0.13.0"
     "@sanity/color" "^2.0.12"
     "@sanity/icons" "^1.0.2"
-    framer-motion "^3.2.1"
+    framer-motion "^3.3.0"
     popper-max-size-modifier "^0.2.0"
     react-is "^17.0.1"
     react-popper "^2.2.4"
@@ -3548,8 +3548,8 @@ ee-first@1.1.1:
   resolved "https://registry.npmjs.org/ee-first/-/ee-first-1.1.1.tgz#590c61156b0ae2f4f0255732a158b266bc56b21d"
 
 electron-to-chromium@^1.3.30, electron-to-chromium@^1.3.649:
-  version "1.3.660"
-  resolved "https://registry.npmjs.org/electron-to-chromium/-/electron-to-chromium-1.3.660.tgz#bfa8ce23735391cbd1c75c38f483e3179d0e0370"
+  version "1.3.662"
+  resolved "https://registry.npmjs.org/electron-to-chromium/-/electron-to-chromium-1.3.662.tgz#43305bcf88a3340feb553b815d6fd7466659d5ee"
 
 element-resize-detector@1.1.13:
   version "1.1.13"
@@ -4188,7 +4188,7 @@ fragment-cache@^0.2.1:
   dependencies:
     map-cache "^0.2.2"
 
-framer-motion@^3.2.1:
+framer-motion@^3.3.0:
   version "3.3.0"
   resolved "https://registry.npmjs.org/framer-motion/-/framer-motion-3.3.0.tgz#e355824369f03c8cd07a87ef59b7a8348c33fafd"
   dependencies:
@@ -4876,7 +4876,7 @@ is-color-stop@^1.0.0:
     rgb-regex "^1.0.1"
     rgba-regex "^1.0.0"
 
-is-core-module@^2.1.0:
+is-core-module@^2.2.0:
   version "2.2.0"
   resolved "https://registry.npmjs.org/is-core-module/-/is-core-module-2.2.0.tgz#97037ef3d52224d85163f5597b2b63d9afed981a"
   dependencies:
@@ -7712,10 +7712,10 @@ resolve-url@^0.2.1:
   resolved "https://registry.npmjs.org/resolve-url/-/resolve-url-0.2.1.tgz#2c637fe77c893afd2a663fe21aa9080068e2052a"
 
 resolve@^1.1.7, resolve@^1.10.0, resolve@^1.3.3:
-  version "1.19.0"
-  resolved "https://registry.npmjs.org/resolve/-/resolve-1.19.0.tgz#1af5bf630409734a067cae29318aac7fa29a267c"
+  version "1.20.0"
+  resolved "https://registry.npmjs.org/resolve/-/resolve-1.20.0.tgz#629a013fb3f70755d6f0b7935cc1c2c5378b1975"
   dependencies:
-    is-core-module "^2.1.0"
+    is-core-module "^2.2.0"
     path-parse "^1.0.6"
 
 ret@~0.1.10:

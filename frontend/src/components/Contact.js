@@ -20,6 +20,7 @@ export const Contact = () => {
 
   // Fetch data
   useEffect(() => {
+    window.scrollTo(0, 0);
     dispatch(location.actions.setLocation(currentLocation.pathname));
 
     sanityClient
