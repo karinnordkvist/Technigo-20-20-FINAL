@@ -6,7 +6,7 @@ import Fade from 'react-reveal/Fade';
 
 import sanityClient from '../client.js';
 
-import { Grid1, Grid2, Grid3, Grid4, Grid5, Grid6 } from './Grids';
+import { Grid1, Grid2, Grid3, Grid4, Grid5, Grid6 } from '../components/Grids';
 // Styling
 import {
   InnerWrapper,

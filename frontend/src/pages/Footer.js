@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components/macro';
-import { GoToTopButton } from './GoToTopButton';
+import { GoToTopButton } from '../components/GoToTopButton';
 
 // ----------------------------------------------------------------
 const now = new Date().toLocaleDateString().substring(0, 4);

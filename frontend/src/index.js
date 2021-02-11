@@ -4,18 +4,18 @@ import './index.css';
 import { App } from './App';
 
 // Importing all components in here for smoother imports in the App
-import { Home } from './components/Home';
+import { Home } from './pages/Home';
 import { Navigation } from './components/Navigation';
 import { ResponsiveNavigation } from './components/ResponsiveNavigation';
 import { CategoryImage } from './components/CategoryImage';
-import { Story } from './components/Story';
-import { Stories } from './components/Stories';
-import { Contact } from './components/Contact';
-import { Recipe } from './components/Recipe';
-import { Food } from './components/Food';
-import { Projects } from './components/Projects';
-import { NotFound } from './components/NotFound';
-import { Footer } from './components/Footer';
+import { Story } from './pages/Story';
+import { Stories } from './pages/Stories';
+import { Contact } from './pages/Contact';
+import { Recipe } from './pages/Recipe';
+import { Food } from './pages/Food';
+import { Projects } from './pages/Projects';
+import { NotFound } from './pages/NotFound';
+import { Footer } from './pages/Footer';
 import { ThumbnailGallery } from './components/ThumbnailGallery';
 import { GoToTopButton } from './components/GoToTopButton';
 
