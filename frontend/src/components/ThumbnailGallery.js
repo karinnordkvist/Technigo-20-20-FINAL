@@ -7,19 +7,21 @@ import { useHistory } from 'react-router-dom';
 export const ThumbnailGallery = ({ project }) => {
   const history = useHistory();
   const [currentImage, setCurrentImage] = useState(0);
-
   let imageList = [];
+
+  // Gather all images from all grids and compile to array
   project.grids.map((grid) =>
     grid.images.map((image) => (imageList = [...imageList, image.url]))
   );
 
-  const changeImage = (prop) => {
-    if (prop === 'increase') {
+  // Method-functions for switching between images
+  const changeImage = (method) => {
+    if (method === 'increase') {
       setCurrentImage(
         currentImage < imageList.length - 1 ? currentImage + 1 : 0
       );
     }
-    if (prop === 'decrease') {
+    if (method === 'decrease') {
       setCurrentImage(
         currentImage > 0 ? currentImage - 1 : imageList.length - 1
       );

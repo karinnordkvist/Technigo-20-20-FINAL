@@ -9,6 +9,7 @@ export const CategoryImage = ({
   fontSize,
 }) => {
   const formattedTitle = title.toLowerCase();
+
   return (
     <ImageWrapper
       url={url}
