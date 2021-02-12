@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { ButtonWrapper } from '../assets/GlobalStyles';
+import { FlexWrapperCenter } from '../assets/GlobalStyles';
 
 export const GoToTopButton = () => {
   const handleGoToTop = () => {
@@ -12,8 +12,8 @@ export const GoToTopButton = () => {
   };
 
   return (
-    <ButtonWrapper>
+    <FlexWrapperCenter>
       <button onClick={handleGoToTop}>Gå till toppen &#8613;</button>
-    </ButtonWrapper>
+    </FlexWrapperCenter>
   );
 };

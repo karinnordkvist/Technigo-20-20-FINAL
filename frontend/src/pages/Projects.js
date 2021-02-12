@@ -9,7 +9,7 @@ import Fade from 'react-reveal/Fade';
 import {
   InnerWrapper,
   BreadCrumbs,
-  FlexWrapper,
+  FlexWrapperSpace,
   LoaderWrapper,
 } from '../assets/GlobalStyles';
 
@@ -80,7 +80,7 @@ export const Projects = () => {
     <Fade>
       <StoriesInnerWrapper>
         {/* Responsive sorting menu */}
-        <FlexWrapper>
+        <FlexWrapperSpace>
           <ResponsiveCategories>
             <p>Sortera på:</p>
             <CategorySelect
@@ -94,14 +94,14 @@ export const Projects = () => {
               <option value="motion">Rörligt</option>
             </CategorySelect>
           </ResponsiveCategories>
-        </FlexWrapper>
+        </FlexWrapperSpace>
 
         {/* Breadcrumbs + back-button */}
-        <FlexWrapper>
+        <FlexWrapperSpace>
           <BreadCrumbs>
             Visar: {categoryRaw === '' ? 'Alla projekt' : categoryRaw}
           </BreadCrumbs>
-        </FlexWrapper>
+        </FlexWrapperSpace>
 
         {/* Listed projects */}
         {projects &&

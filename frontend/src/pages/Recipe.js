@@ -11,7 +11,7 @@ import {
   InnerWrapper,
   BreadCrumbs,
   BackButton,
-  FlexWrapper,
+  FlexWrapperSpace,
   LoaderWrapper,
 } from '../assets/GlobalStyles';
 
@@ -66,10 +66,10 @@ export const Recipe = () => {
     <Fade>
       {/* Top-bar (breadcrumbs + nav) */}
       <RecipeTopWrapper>
-        <FlexWrapper>
+        <FlexWrapperSpace>
           <BackButton onClick={history.goBack}>Tillbaka</BackButton>
           <BreadCrumbs>Food · {recipeData.title}</BreadCrumbs>
-        </FlexWrapper>
+        </FlexWrapperSpace>
       </RecipeTopWrapper>
 
       {/* Header */}
@@ -129,12 +129,12 @@ export const Recipe = () => {
           </StepsList>
         </Steps>
       </RecipeMainWrapper>
-      <FlexWrapper
+      <FlexWrapperSpace
         style={{ width: '80vw', maxWidth: '800px', margin: '0 auto 100px' }}
       >
         <BackButton onClick={history.goBack}>Tillbaka</BackButton>
         <BreadCrumbs>Food · {recipeData.title}</BreadCrumbs>
-      </FlexWrapper>
+      </FlexWrapperSpace>
     </Fade>
   );
 };

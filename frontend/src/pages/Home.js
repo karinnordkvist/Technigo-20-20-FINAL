@@ -51,7 +51,8 @@ export const Home = () => {
           "single_category_image": single_category_image.asset->{url, tags, title, byline},
           single_category_title,
           work_title,
-          work_text
+          work_text,
+          work_text2
         }`
       )
       .then((data) => setHomeData(data[1]))
@@ -195,7 +196,25 @@ export const Home = () => {
         {/* Work with me- section */}
         <WorkWrapper>
           <WorkPearlHeader>{homeData.work_title}</WorkPearlHeader>
-          <AboutText>{homeData.work_text}</AboutText>
+          <div>
+            {homeData.work_text2 &&
+              homeData.work_text2.map((part) => {
+                return (
+                  <div key={part._key}>
+                    {part.children.map((textPart) => {
+                      return (
+                        <WorkText
+                          key={textPart._key}
+                          style={{ marginBottom: '15px' }}
+                        >
+                          {textPart.text}
+                        </WorkText>
+                      );
+                    })}
+                  </div>
+                );
+              })}
+          </div>
           <WorkLink to="/contact">Kontakta mig &#187;</WorkLink>
         </WorkWrapper>
       </HomeOuterWrapper>
@@ -387,6 +406,7 @@ const AboutText = styled.p`
   line-height: 1.6;
   text-align: center;
   font-style: italic;
+  max-width: 480px;
 `;
 
 const ImageWrapper = styled.div`
@@ -403,4 +423,8 @@ const ImageWrapper = styled.div`
 const WorkLink = styled(Link)`
   text-align: center;
   margin-top: 40px;
+`;
+
+const WorkText = styled(AboutText)`
+  max-width: 600px;
 `;

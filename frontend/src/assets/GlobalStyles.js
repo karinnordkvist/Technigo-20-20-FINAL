@@ -75,28 +75,19 @@ export const InnerWrapper = styled.div`
   z-index: 2;
 `;
 
-export const FlexWrapper = styled.div`
+export const FlexWrapperSpace = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
 `;
 
-export const ButtonWrapper = styled.div`
+export const FlexWrapperCenter = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
 `;
 
-export const BackButton = styled.button`
-  background: none;
-  border: none;
-  cursor: pointer;
-
-  &:hover {
-    font-style: italic;
-    letter-spacing: 0.4px;
-  }
-`;
+export const BackButton = styled.button``;
 
 export const BreadCrumbs = styled.p`
   font-style: italic;

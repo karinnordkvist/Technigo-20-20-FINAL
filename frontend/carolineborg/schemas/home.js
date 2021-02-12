@@ -68,9 +68,10 @@ export default {
       type: 'string',
     },
     {
-      name: 'work_text',
-      title: 'Work Together - Text',
-      type: 'text',
+      name: 'work_text2',
+      title: 'Work Together - Text 2',
+      type: 'array',
+      of: [{ type: 'block' }],
     },
   ],
 };

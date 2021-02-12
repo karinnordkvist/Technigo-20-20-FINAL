@@ -12,7 +12,7 @@ import {
   InnerWrapper,
   BreadCrumbs,
   BackButton,
-  FlexWrapper,
+  FlexWrapperSpace,
   LoaderWrapper,
 } from '../assets/GlobalStyles';
 
@@ -49,6 +49,7 @@ export const Story = () => {
           slug,
           tags,
           text, 
+          text2,
           "main_image":main_image.asset->{url, tags, title}, 
           "thumbnail":thumbnail.asset->{url, tags, title}, 
           creator, 
@@ -73,10 +74,10 @@ export const Story = () => {
   return (
     <Fade>
       <StoryInnerWrapper>
-        <FlexWrapper>
+        <FlexWrapperSpace>
           <BackButton onClick={history.goBack}>Tillbaka</BackButton>
           <BreadCrumbs>{formattedLocation}</BreadCrumbs>
-        </FlexWrapper>
+        </FlexWrapperSpace>
         <MainImage src={storyData.main_image.url} />
         <StoryClient>{storyData.client}</StoryClient>
         <StoryTitle>{storyData.title}</StoryTitle>
@@ -106,7 +107,18 @@ export const Story = () => {
                 ))}
             </li>
           </StoryInfo>
-          <StoryMainText>{storyData.text}</StoryMainText>
+          <div>
+            {storyData.text2 &&
+              storyData.text2.map((part) => {
+                return part.children.map((textPart) => {
+                  return (
+                    <p style={{ marginBottom: '15px' }} key={textPart._key}>
+                      {textPart.text}
+                    </p>
+                  );
+                });
+              })}
+          </div>
         </StoryTextWrapper>
 
         {/* Image-grids */}
@@ -161,10 +173,10 @@ export const Story = () => {
               return null;
             })}
         </StoryGridWrapper>
-        <FlexWrapper style={{ marginTop: '50px' }}>
+        <FlexWrapperSpace style={{ marginTop: '50px' }}>
           <BackButton onClick={history.goBack}>Tillbaka</BackButton>
           <BreadCrumbs>{formattedLocation}</BreadCrumbs>
-        </FlexWrapper>
+        </FlexWrapperSpace>
       </StoryInnerWrapper>
     </Fade>
   );

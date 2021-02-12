@@ -77,9 +77,10 @@ export default {
       type: 'text',
     },
     {
-      name: 'text',
-      title: 'Main Text',
-      type: 'text',
+      name: 'text2',
+      title: 'Main Text2',
+      type: 'array',
+      of: [{ type: 'block' }],
     },
     {
       name: 'grids',

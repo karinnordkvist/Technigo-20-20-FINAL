@@ -163,7 +163,7 @@ const StoryWrapper = styled.div`
 // Single story ----------------
 
 const StoryTitle = styled.h2`
-  font-size: 36px;
+  font-size: 30px;
   font-weight: 300;
   margin: 5px auto;
 
