@@ -68,7 +68,9 @@ export const Stories = () => {
                   >
                     <StoryTitle>{project.title}</StoryTitle>
                   </Link>
-                  <StoryClient>För {project.client}</StoryClient>
+                  {project.client && (
+                    <StoryClient>För {project.client}</StoryClient>
+                  )}
                   <StoryIntro>{project.intro}</StoryIntro>
                   <StoryTagsWrapper>
                     {project.tags &&
