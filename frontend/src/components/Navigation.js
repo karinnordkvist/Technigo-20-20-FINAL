@@ -87,7 +87,9 @@ export const Navigation = () => {
                       key={index}
                     >
                       {story.title}
-                      <NavClient>för {story.client}</NavClient>
+                      {story.client && (
+                        <NavClient>för {story.client}</NavClient>
+                      )}
                     </StoriesDropdownButton>
                   );
                 })}
