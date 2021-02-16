@@ -18,6 +18,7 @@ export const Food = () => {
   const currentLocation = useLocation();
   const dispatch = useDispatch();
   const [recipe, setRecipe] = useState(null);
+  const [intro, setIntro] = useState('');
 
   // Fetch recipe
   useEffect(() => {
@@ -38,6 +39,16 @@ export const Food = () => {
       )
       .then((data) => setRecipe(data))
       .catch(console.error);
+
+    // Fetch intro-text
+    sanityClient
+      .fetch(
+        `*[_type == 'intros']{
+        food_intro_text,
+      }`
+      )
+      .then((data) => setIntro(data[0].food_intro_text))
+      .catch(console.error);
   }, [dispatch, currentLocation.pathname]);
 
   if (!recipe) {
@@ -50,12 +61,7 @@ export const Food = () => {
   return (
     <Fade>
       <FoodInnerWrapper>
-        <FoodIntro>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Dictum
-          consectetur ultrices turpis lectus. Amet commodo curabitur rutrum
-          proin pulvinar rhoncus semper donec. Sit integer morbi vestibulum
-          felis.
-        </FoodIntro>
+        {intro && <FoodIntro>{intro}</FoodIntro>}
         <RecipesWrapper>
           {recipe &&
             recipe.map((recipe, index) => {

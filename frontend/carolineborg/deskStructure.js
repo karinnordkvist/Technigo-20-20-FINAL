@@ -6,12 +6,18 @@ export default () =>
     .title('Content')
     .items([
       S.listItem()
-        .title('Home')
+        .title('Home Page')
         .child(S.document().schemaType('home').documentId('home')),
       S.listItem()
-        .title('Contact')
+        .title('Contact Page')
         .child(S.document().schemaType('contact').documentId('contact')),
+      S.listItem()
+        .title('Intro Pages')
+        .child(S.document().schemaType('intros').documentId('intros')),
       ...S.documentTypeListItems()
-        .filter((listItem) => !['home', 'contact'].includes(listItem.getId()))
+        .filter(
+          (listItem) =>
+            !['home', 'contact', 'intros'].includes(listItem.getId())
+        )
         .filter(hiddenDocTypes),
     ]);

@@ -2,7 +2,7 @@ import { string } from 'prop-types';
 
 export default {
   name: 'project',
-  title: 'Project',
+  title: 'Projects',
   type: 'document',
   fields: [
     {
@@ -77,8 +77,8 @@ export default {
       type: 'text',
     },
     {
-      name: 'text2',
-      title: 'Main Text2',
+      name: 'text',
+      title: 'Main Text',
       type: 'array',
       of: [{ type: 'block' }],
     },

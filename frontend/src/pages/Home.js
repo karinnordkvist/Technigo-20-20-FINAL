@@ -25,13 +25,13 @@ export const Home = () => {
   const history = useHistory();
   const [homeData, setHomeData] = useState(null);
   const [latest, setLatest] = useState([]);
+  const transition = { duration: 0.6, ease: [0.43, 0.13, 0.23, 0.96] };
 
+  // Set category for displaying projects
   const onCategoryClickHandler = (category) => {
     dispatch(location.actions.setProjectCategory(category));
     history.push('/projects');
   };
-
-  const transition = { duration: 0.6, ease: [0.43, 0.13, 0.23, 0.96] };
 
   useEffect(() => {
     // Send current location to reducer
@@ -52,13 +52,12 @@ export const Home = () => {
           single_category_title,
           work_title,
           work_text,
-          work_text2
         }`
       )
       .then((data) => setHomeData(data[1]))
       .catch(console.error);
 
-    // Fetch most recently uploaded project/recipe
+    // Fetch most recently uploaded project/recipes
     sanityClient
       .fetch(
         `*[_type == 'recipe' || _type == 'project']| order(_createdAt desc){
@@ -72,7 +71,8 @@ export const Home = () => {
           secondary_byline,
         }`
       )
-      .then((data) => setLatest(data));
+      .then((data) => setLatest(data))
+      .catch(console.error);
   }, [dispatch, currentLocation.pathname]);
 
   if (!homeData) {
@@ -197,8 +197,8 @@ export const Home = () => {
         <WorkWrapper>
           <WorkPearlHeader>{homeData.work_title}</WorkPearlHeader>
           <div>
-            {homeData.work_text2 &&
-              homeData.work_text2.map((part) => {
+            {homeData.work_text &&
+              homeData.work_text.map((part) => {
                 return (
                   <div key={part._key}>
                     {part.children.map((textPart) => {

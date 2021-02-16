@@ -19,6 +19,7 @@ export const Stories = () => {
   const currentLocation = useLocation();
   const dispatch = useDispatch();
   const [storyData, setStoryData] = useState(null);
+  const [intro, setIntro] = useState('');
 
   useEffect(() => {
     dispatch(location.actions.setLocation(currentLocation.pathname));
@@ -37,6 +38,16 @@ export const Stories = () => {
       )
       .then((data) => setStoryData(data))
       .catch(console.error);
+
+    // Fetch intro-text
+    sanityClient
+      .fetch(
+        `*[_type == 'intros']{
+        stories_intro_text,
+      }`
+      )
+      .then((data) => setIntro(data[0].stories_intro_text))
+      .catch(console.error);
   }, [currentLocation.pathname, dispatch]);
 
   if (!storyData) {
@@ -50,12 +61,7 @@ export const Stories = () => {
   return (
     <Fade>
       <StoriesInnerWrapper>
-        <StoriesIntro>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Dictum
-          consectetur ultrices turpis lectus. Amet commodo curabitur rutrum
-          proin pulvinar rhoncus semper donec. Sit integer morbi vestibulum
-          felis.
-        </StoriesIntro>
+        {intro && <StoriesIntro>{intro}</StoriesIntro>}
         {storyData &&
           storyData.map((project) => {
             return (

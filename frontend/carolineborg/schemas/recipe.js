@@ -2,7 +2,7 @@ import { string } from 'prop-types';
 
 export default {
   name: 'recipe',
-  title: 'Recipe',
+  title: 'Recipes',
   type: 'document',
   fields: [
     {

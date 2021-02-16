@@ -4,17 +4,18 @@ import schemaTypes from 'all:part:@sanity/base/schema-type';
 
 import blockContent from './blockContent';
 import home from './home';
+import intros from './intros';
 import creator from './creator';
 import project from './project';
 import recipe from './recipe';
 import contact from './contact';
 import grid from './grid';
-import testHome from './testHome';
 
 export default createSchema({
   name: 'default',
   types: schemaTypes.concat([
     home,
+    intros,
     project,
     recipe,
     creator,

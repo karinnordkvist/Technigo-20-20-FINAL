@@ -68,6 +68,14 @@ export default {
       type: 'string',
     },
     {
+      name: 'work_text',
+      title: 'Work Together - Text',
+      description:
+        'Text can be parted up into sections by creating a new paragraph.',
+      type: 'array',
+      of: [{ type: 'block' }],
+    },
+    {
       name: 'work_text2',
       title: 'Work Together - Text 2',
       type: 'array',

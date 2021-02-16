@@ -39,6 +39,7 @@ export const Story = () => {
   // Fetch story data
   useEffect(() => {
     dispatch(location.actions.setLocation(currentLocation.pathname));
+    window.scrollTo(0, 0);
 
     sanityClient
       .fetch(
@@ -108,8 +109,8 @@ export const Story = () => {
             </li>
           </StoryInfo>
           <div>
-            {storyData.text2 &&
-              storyData.text2.map((part) => {
+            {storyData.text &&
+              storyData.text.map((part) => {
                 return part.children.map((textPart) => {
                   return (
                     <p style={{ marginBottom: '15px' }} key={textPart._key}>

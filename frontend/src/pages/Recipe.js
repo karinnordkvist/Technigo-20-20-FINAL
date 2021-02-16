@@ -199,7 +199,7 @@ const MainImage = styled.img`
 `;
 
 const Ingredients = styled.div`
-  width: 400px;
+  width: 600px;
   margin-top: 50px;
 
   @media (max-width: 900px) {

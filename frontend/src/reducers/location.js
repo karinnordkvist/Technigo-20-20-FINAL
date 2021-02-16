@@ -3,6 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 const initialState = {
   location: '',
   project_category: '',
+  storiesIntro: '',
 };
 
 export const location = createSlice({
@@ -15,6 +16,10 @@ export const location = createSlice({
 
     setProjectCategory: (state, action) => {
       state.project_category = action.payload;
+    },
+
+    setStoriesIntro: (state, action) => {
+      state.storiesIntro = action.payload;
     },
   },
 });

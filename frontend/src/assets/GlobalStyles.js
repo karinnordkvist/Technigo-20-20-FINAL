@@ -16,11 +16,6 @@ html {
   height: 100%;
 }
 
-:root {
-  --color-text: black;
-  --color-background: lightgray;
-}
-
 body {
   margin: 0;
   background: #fcfbf8;
