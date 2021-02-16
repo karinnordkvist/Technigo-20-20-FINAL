@@ -33,6 +33,7 @@ export const Story = () => {
     .substring(1)
     .replaceAll('/', ' · ')
     .replaceAll('-', ' ')
+    .replaceAll('ao', 'å')
     .replaceAll('ae', 'ä')
     .replaceAll('oe', 'ö');
 
@@ -91,10 +92,12 @@ export const Story = () => {
 
         <StoryTextWrapper>
           <StoryInfo>
-            <li>Client:</li>
-            <li style={{ fontStyle: 'italic', marginBottom: '10px' }}>
-              {storyData.client}
-            </li>
+            {storyData.client && <li>Client:</li>}
+            {storyData.client && (
+              <li style={{ fontStyle: 'italic', marginBottom: '10px' }}>
+                {storyData.client}
+              </li>
+            )}
             <li>Team:</li>
             <li style={{ fontStyle: 'italic', marginBottom: '10px' }}>
               Caroline Borg {storyData.secondary_byline && ','}{' '}
