@@ -111,7 +111,7 @@ const G5ImageWrapper = styled(baseGrid)`
     width: 100%;
     grid-column: 1 / span 5;
     grid-row: 1;
-    margin-top: 70%;
+    margin-top: 60%;
     z-index: 2;
   }
 

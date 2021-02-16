@@ -253,6 +253,7 @@ const StoryInfo = styled.ul`
 
   li {
     width: 20vw;
+    max-width: 200px;
   }
 
   @media (max-width: 900px) {
