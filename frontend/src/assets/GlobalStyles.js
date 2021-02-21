@@ -88,4 +88,5 @@ export const BreadCrumbs = styled.p`
   font-style: italic;
   font-size: 14px;
   text-transform: capitalize;
+  text-align: right;
 `;

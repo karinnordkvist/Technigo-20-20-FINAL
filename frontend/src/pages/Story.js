@@ -78,7 +78,7 @@ export const Story = () => {
       <StoryInnerWrapper>
         <FlexWrapperSpace>
           <BackButton onClick={history.goBack}>Tillbaka</BackButton>
-          <BreadCrumbs>{formattedLocation}</BreadCrumbs>
+          <BreadCrumbs>Projekt/ {storyData.client}</BreadCrumbs>
         </FlexWrapperSpace>
         <MainImage src={storyData.main_image.url} />
         <StoryClient>{storyData.client}</StoryClient>
@@ -228,6 +228,7 @@ const StoryIntro = styled.p`
 
   @media (max-width: 900px) {
     max-width: 95%;
+    font-size: 18px;
   }
 `;
 

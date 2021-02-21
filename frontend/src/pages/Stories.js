@@ -22,7 +22,10 @@ export const Stories = () => {
   const [intro, setIntro] = useState('');
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     dispatch(location.actions.setLocation(currentLocation.pathname));
+
+    // Fetch all selected stories
     sanityClient
       .fetch(
         `*[_type == 'project' && selected_story == true]|order(_createdAt desc){
