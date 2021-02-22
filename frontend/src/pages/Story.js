@@ -78,7 +78,7 @@ export const Story = () => {
       <StoryInnerWrapper>
         <FlexWrapperSpace>
           <BackButton onClick={history.goBack}>Tillbaka</BackButton>
-          <BreadCrumbs>Projekt/ {storyData.client}</BreadCrumbs>
+          <BreadCrumbs>Projekt/ {storyData.title}</BreadCrumbs>
         </FlexWrapperSpace>
         <MainImage src={storyData.main_image.url} />
         <StoryClient>{storyData.client}</StoryClient>
@@ -179,7 +179,7 @@ export const Story = () => {
         </StoryGridWrapper>
         <FlexWrapperSpace style={{ marginTop: '50px' }}>
           <BackButton onClick={history.goBack}>Tillbaka</BackButton>
-          <BreadCrumbs>{formattedLocation}</BreadCrumbs>
+          <BreadCrumbs>Projekt/ {storyData.title}</BreadCrumbs>
         </FlexWrapperSpace>
       </StoryInnerWrapper>
     </Fade>
@@ -192,7 +192,7 @@ const StoryInnerWrapper = styled(InnerWrapper)`
   margin: 150px auto 50px auto;
 
   @media (max-width: 900px) {
-    margin: 150px auto 0 auto;
+    margin: 100px auto 0 auto;
   }
 `;
 

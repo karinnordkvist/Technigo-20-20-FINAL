@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components/macro';
-import { useHistory } from 'react-router-dom';
+import { useHistory, Link } from 'react-router-dom';
 
 // ----------------------------------------------------------------
 
@@ -34,10 +34,12 @@ export const ThumbnailGallery = ({ project }) => {
         <button onClick={() => changeImage('decrease')}>&#60;</button>
         <button onClick={() => changeImage('increase')}>&#62;</button>
       </StoryImageNavWrapper>
-      <StoryThumbnail
-        src={imageList[currentImage]}
-        onClick={() => history.push('/projects/' + project.slug.current)}
-      />
+      <Link to={'/food/' + project.slug.current}>
+        <StoryThumbnail
+          src={imageList[currentImage]}
+          onClick={() => history.push('/projects/' + project.slug.current)}
+        />
+      </Link>
     </StoryImageWrapper>
   );
 };
@@ -55,7 +57,7 @@ const StoryImageWrapper = styled.div`
 
 const StoryImageNavWrapper = styled.div`
   width: 100%;
-  height: 100%;
+  transform: translateY(calc(350px / 2));
   position: absolute;
   display: flex;
   align-items: center;

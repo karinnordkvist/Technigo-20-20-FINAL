@@ -145,7 +145,7 @@ const RecipeTopWrapper = styled(InnerWrapper)`
   margin: 150px auto 0 auto;
 
   @media (max-width: 900px) {
-    margin: 150px auto 0 auto;
+    margin: 100px auto 0 auto;
   }
 `;
 
@@ -195,6 +195,7 @@ const MainImage = styled.img`
 
   @media (max-width: 900px) {
     width: 100vw;
+    margin-top: 30px;
   }
 `;
 
