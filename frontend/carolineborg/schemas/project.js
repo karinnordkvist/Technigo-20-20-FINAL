@@ -61,6 +61,13 @@ export default {
       title: 'Secondary byline',
       description:
         'Add full name. If you want to add more than one person, separate the names with a comma.',
+      type: 'array',
+      of: [{ type: 'block' }],
+    },
+    {
+      name: 'infobox_byline',
+      title: 'Infobox byline',
+      description: 'Byline for the infobox.',
       type: 'string',
     },
     {

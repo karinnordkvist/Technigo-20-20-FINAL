@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@reduxjs/toolkit": "^1.5.0",
+    "@sanity/block-content-to-react": "^2.0.7",
     "@sanity/client": "^2.2.6",
     "babel-eslint": "^10.1.0",
     "eslint": "^6.7.1",

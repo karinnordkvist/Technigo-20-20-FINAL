@@ -3,6 +3,7 @@ import styled from 'styled-components/macro';
 import { useParams, useHistory, useLocation } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import Fade from 'react-reveal/Fade';
+import BlockContent from '@sanity/block-content-to-react';
 
 import sanityClient from '../client.js';
 
@@ -32,18 +33,11 @@ import { location } from '../reducers/location';
 export const Story = () => {
   const { slug } = useParams();
   const dispatch = useDispatch();
+  const history = useHistory();
   const currentLocation = useLocation();
   const [storyData, setStoryData] = useState(null);
 
-  // For back-button & breadcrumbs
-  const history = useHistory();
-  const formattedLocation = currentLocation.pathname
-    .substring(1)
-    .replaceAll('/', ' · ')
-    .replaceAll('-', ' ')
-    .replaceAll('ao', 'å')
-    .replaceAll('ae', 'ä')
-    .replaceAll('oe', 'ö');
+  const [byline, setByline] = useState(null);
 
   // Fetch story data
   useEffect(() => {
@@ -63,7 +57,8 @@ export const Story = () => {
           "main_image":main_image.asset->{url, tags, title}, 
           "thumbnail":thumbnail.asset->{url, tags, title}, 
           creator, 
-          secondary_byline, 
+          secondary_byline,
+          infobox_byline,
           intro, 
           "grids": grids[]{"images":images[]{"image":asset->{tags, url}}.image, text, name},
           "images": images[] {"image":asset->{tags, url}}.image, 
@@ -93,7 +88,7 @@ export const Story = () => {
         <StoryTitle>{storyData.title}</StoryTitle>
         {storyData.secondary_byline && (
           <StoryByline>
-            ----- projekt skapat med {storyData.secondary_byline}
+            <BlockContent blocks={storyData.secondary_byline} />
           </StoryByline>
         )}
         <StoryIntro>{storyData.intro}</StoryIntro>
@@ -106,11 +101,14 @@ export const Story = () => {
                 {storyData.client}
               </li>
             )}
-            <li>Team:</li>
-            <li style={{ fontStyle: 'italic', marginBottom: '10px' }}>
-              Caroline Borg {storyData.secondary_byline && ','}{' '}
-              {storyData.secondary_byline}
-            </li>
+            {storyData.infobox_byline && (
+              <>
+                <li>Team:</li>
+                <li style={{ fontStyle: 'italic', marginBottom: '10px' }}>
+                  {storyData.infobox_byline}
+                </li>
+              </>
+            )}
             <li>Tags:</li>
             <li style={{ fontStyle: 'italic', marginBottom: '10px' }}>
               {storyData.tags &&
@@ -249,7 +247,7 @@ const StoryIntro = styled.p`
   }
 `;
 
-const StoryByline = styled.p`
+const StoryByline = styled.div`
   font-size: 16px;
   text-align: center;
   font-style: italic;

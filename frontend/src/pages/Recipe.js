@@ -80,7 +80,7 @@ export const Recipe = () => {
           <RecipeCategory>{recipeData.category}</RecipeCategory>
           <RecipeTitle>{recipeData.title}</RecipeTitle>
           {recipeData.secondary_byline && (
-            <RecipeByline>Byline: {recipeData.secondary_byline}</RecipeByline>
+            <RecipeByline>{recipeData.secondary_byline}</RecipeByline>
           )}
         </RecipeHeaderTextWrapper>
       </RecipeHeaderWrapper>
