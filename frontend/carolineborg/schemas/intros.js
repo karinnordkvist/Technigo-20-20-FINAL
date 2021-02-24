@@ -15,5 +15,10 @@ export default {
       title: 'Food Intro - Text',
       type: 'text',
     },
+    {
+      name: 'projects_intro_text',
+      title: 'Projects Intro - Text',
+      type: 'text',
+    },
   ],
 };

@@ -60,7 +60,7 @@ export const Home = () => {
     // Fetch most recently uploaded project/recipes
     sanityClient
       .fetch(
-        `*[_type == 'recipe' || _type == 'project']| order(_createdAt desc){
+        `*[_type == 'recipe' && selected_home == true || _type == 'project' && selected_home == true] | order(_createdAt desc){
           "thumbnail":thumbnail.asset->{url, tags, title}, 
           _type, 
           title,

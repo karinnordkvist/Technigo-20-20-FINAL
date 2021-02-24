@@ -55,6 +55,10 @@ export default {
             value: 'grid-6',
             title: 'Grid 6 - 1 big image, block of text on top',
           },
+          {
+            value: 'grid-7',
+            title: 'Grid 7 - 1 big image, 1 image above the other',
+          },
         ],
       },
       validation: (Rule) => Rule.required(),

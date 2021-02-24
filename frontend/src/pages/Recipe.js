@@ -68,7 +68,7 @@ export const Recipe = () => {
       <RecipeTopWrapper>
         <FlexWrapperSpace>
           <BackButton onClick={history.goBack}>Tillbaka</BackButton>
-          <BreadCrumbs>Food · {recipeData.title}</BreadCrumbs>
+          <BreadCrumbs>Recept · {recipeData.title}</BreadCrumbs>
         </FlexWrapperSpace>
       </RecipeTopWrapper>
 
@@ -88,6 +88,7 @@ export const Recipe = () => {
       <RecipeMainWrapper>
         {/* Ingredients */}
         <Ingredients>
+          {recipeData.portions && <Portions>{recipeData.portions}</Portions>}
           <IngredientsList>
             <li style={{ fontStyle: 'italic' }}>Ingredienser:</li>
             {recipeData.ingredients &&
@@ -133,7 +134,7 @@ export const Recipe = () => {
         style={{ width: '80vw', maxWidth: '800px', margin: '0 auto 100px' }}
       >
         <BackButton onClick={history.goBack}>Tillbaka</BackButton>
-        <BreadCrumbs>Food · {recipeData.title}</BreadCrumbs>
+        <BreadCrumbs>Recept · {recipeData.title}</BreadCrumbs>
       </FlexWrapperSpace>
     </Fade>
   );
@@ -177,6 +178,7 @@ const RecipeHeaderTextWrapper = styled.div`
 const RecipeMainWrapper = styled(InnerWrapper)`
   display: flex;
   align-items: flex-start;
+  margin: 60px auto 20px;
 
   @media (max-width: 900px) {
     width: 80vw;
@@ -197,6 +199,12 @@ const MainImage = styled.img`
     width: 100vw;
     margin-top: 30px;
   }
+`;
+
+const Portions = styled.p`
+  text-align: right;
+  margin-bottom: 20px;
+  margin-right: 40px;
 `;
 
 const Ingredients = styled.div`
@@ -270,7 +278,7 @@ const RecipeCategory = styled.p`
 
 const RecipeIntro = styled.p`
   margin-bottom: 40px;
-  max-width: 60%;
+  max-width: 80%;
   font-size: 18px;
   line-height: 1.5;
   font-style: italic;

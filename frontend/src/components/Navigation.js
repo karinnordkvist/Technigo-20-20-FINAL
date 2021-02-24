@@ -26,7 +26,9 @@ export const Navigation = () => {
     'editorial',
     'rörligt',
   ];
-  const [stories, setStories] = useState([]);
+  const [stories, setStories] = useState([
+    { title: 'Alla Stories', slug: { current: 'all' } },
+  ]);
 
   // Send category choice to redux for listed projects-page, navigate to projects
   const projectsClickHandler = (value) => {
@@ -36,7 +38,11 @@ export const Navigation = () => {
 
   // Navigate to selected story
   const storiesClickHandler = (slug) => {
-    history.push('/projects/' + slug);
+    if (slug === 'all') {
+      history.push('/stories');
+    } else {
+      history.push('/projects/' + slug);
+    }
   };
 
   useEffect(() => {
@@ -45,7 +51,7 @@ export const Navigation = () => {
         `*[_type == 'project' && selected_story == true]| order(_createdAt desc){
               title, slug, client }`
       )
-      .then((data) => setStories(data))
+      .then((data) => setStories([...stories, ...data]))
       .catch(console.error);
   }, []);
 
@@ -105,7 +111,7 @@ export const Navigation = () => {
               activeStyle={{ fontStyle: 'italic', letterSpacing: '.3px' }}
               style={{ marginRight: '20px' }}
             >
-              Mat
+              Recept
             </NavLink>
           </LinkWrapper>
 
@@ -251,7 +257,7 @@ const DropdownButton = styled.button`
   border: none;
   background: none;
   text-align: left;
-  padding: 4px 0;
+  padding: 7px 0;
   text-transform: uppercase;
   cursor: pointer;
 

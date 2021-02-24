@@ -4,6 +4,9 @@ export default {
   name: 'recipe',
   title: 'Recipes',
   type: 'document',
+  initialValue: {
+    selected_home: false,
+  },
   fields: [
     {
       name: 'title',
@@ -21,11 +24,19 @@ export default {
       },
     },
     {
+      name: 'selected_home',
+      title: 'Feature on Home page',
+      description:
+        'Check this box if you want this project to be featured on the Home page.',
+      type: 'boolean',
+    },
+    {
       name: 'category',
       type: 'string',
       options: {
         list: [
           { value: 'Sött', title: 'Sött' },
+          { value: 'Bak', title: 'Bak' },
           { value: 'Mat', title: 'Mat' },
         ],
       },
@@ -58,6 +69,9 @@ export default {
     {
       name: 'main_image',
       type: 'image',
+      options: {
+        hotspot: true,
+      },
       validation: (Rule) => Rule.required(),
     },
     {
@@ -86,7 +100,12 @@ export default {
           title: 'Text',
           fields: [{ type: 'string', name: 'text' }],
         },
-        { type: 'image' },
+        {
+          type: 'image',
+          options: {
+            hotspot: true,
+          },
+        },
       ],
     },
     {

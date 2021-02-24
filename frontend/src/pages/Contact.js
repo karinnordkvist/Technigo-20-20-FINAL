@@ -74,6 +74,8 @@ export const Contact = () => {
           <a
             href="https://www.instagram.com/carolineborg/"
             style={{ marginLeft: '5px' }}
+            target="_blank"
+            rel="noopener noreferrer"
           >
             @carolineborg
           </a>

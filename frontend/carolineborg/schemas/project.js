@@ -4,6 +4,9 @@ export default {
   name: 'project',
   title: 'Projects',
   type: 'document',
+  initialValue: {
+    selected_home: false,
+  },
   fields: [
     {
       name: 'title',
@@ -16,6 +19,13 @@ export default {
       title: 'Feature in Stories',
       description:
         'Check this box if you want this project to be featured on the Stories page.',
+      type: 'boolean',
+    },
+    {
+      name: 'selected_home',
+      title: 'Feature on Home page',
+      description:
+        'Check this box if you want this project to be featured on the Home page.',
       type: 'boolean',
     },
     {
@@ -63,6 +73,9 @@ export default {
       title: 'Thumbnail*',
       type: 'image',
       validation: (Rule) => Rule.required(),
+      options: {
+        hotspot: true,
+      },
     },
     {
       name: 'main_image',
@@ -70,6 +83,9 @@ export default {
       type: 'image',
       description: 'Horizontal orientation works best here.',
       validation: (Rule) => Rule.required(),
+      options: {
+        hotspot: true,
+      },
     },
     {
       name: 'intro',

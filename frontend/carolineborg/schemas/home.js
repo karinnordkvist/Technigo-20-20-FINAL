@@ -9,6 +9,9 @@ export default {
       name: 'hero_image',
       title: 'Hero Image',
       type: 'image',
+      options: {
+        hotspot: true,
+      },
     },
     {
       name: 'hero_title',
@@ -29,6 +32,9 @@ export default {
       name: 'intro_image',
       title: 'Intro Image',
       type: 'image',
+      options: {
+        hotspot: true,
+      },
     },
     {
       name: 'category_images',
@@ -36,7 +42,14 @@ export default {
       description:
         'Add 3 images for the Category-section. Make sure the image goes with the headline specified in below list.',
       type: 'array',
-      of: [{ type: 'image' }],
+      of: [
+        {
+          type: 'image',
+          options: {
+            hotspot: true,
+          },
+        },
+      ],
       validation: (Rule) => Rule.min(3).max(3),
     },
     {
@@ -54,6 +67,9 @@ export default {
       description:
         'Full width category-field. Add one image, and a title below.',
       type: 'image',
+      options: {
+        hotspot: true,
+      },
     },
     {
       name: 'single_category_title',

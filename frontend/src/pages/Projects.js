@@ -26,6 +26,7 @@ export const Projects = () => {
   const category = JSON.stringify(
     useSelector((store) => store.location.project_category)
   );
+  const [intro, setIntro] = useState('');
 
   useEffect(() => {
     dispatch(location.actions.setLocation(currentLocation.pathname));
@@ -62,6 +63,16 @@ export const Projects = () => {
         .then((data) => setProjects(data))
         .catch(console.error);
     }
+
+    // Fetch intro-text
+    sanityClient
+      .fetch(
+        `*[_type == 'intros']{
+        projects_intro_text,
+      }`
+      )
+      .then((data) => setIntro(data[0].projects_intro_text))
+      .catch(console.error);
   }, [category, currentLocation.pathname, dispatch, categoryRaw]);
 
   const onChangeHandler = (category) => {
@@ -79,6 +90,7 @@ export const Projects = () => {
   return (
     <Fade>
       <StoriesInnerWrapper>
+        {intro && <ProjectsIntro>{intro}</ProjectsIntro>}
         {/* Responsive sorting menu */}
         <FlexWrapperSpace>
           <ResponsiveCategories>
@@ -153,6 +165,18 @@ const StoryWrapper = styled.div`
 
   @media (max-width: 900px) {
     flex-direction: column;
+  }
+`;
+
+const ProjectsIntro = styled.p`
+  font-style: italic;
+  font-size: 30px;
+  font-weight: 300;
+  line-height: 1.6;
+  margin-bottom: 50px;
+
+  @media (max-width: 900px) {
+    font-size: 24px;
   }
 `;
 

@@ -55,6 +55,15 @@ export const Grid6 = ({ image1, text }) => {
   );
 };
 
+export const Grid7 = ({ image1, image2 }) => {
+  return (
+    <G7ImageWrapper>
+      <img src={image1.url} alt={image1.alt ? image1.alt : 'Grid Image'} />
+      <img src={image2.url} alt={image2.alt ? image2.alt : 'Grid Image'} />
+    </G7ImageWrapper>
+  );
+};
+
 // STYLES --------------------------------
 
 const baseGrid = styled.div`
@@ -142,6 +151,44 @@ const G6ImageWrapper = styled(baseGrid)`
       font-size: 18px;
       margin-top: 100px;
       grid-column: 7 / span 7;
+    }
+  }
+`;
+
+const G7ImageWrapper = styled.div`
+  width: 100%;
+  position: relative;
+
+  img:first-child {
+    width: 100%;
+    height: 90vh;
+    object-fit: cover;
+    position: relative;
+
+    @media (max-width: 900px) {
+      height: 80vh;
+    }
+  }
+
+  img:last-child {
+    width: 50%;
+    max-width: 600px;
+    left: 25%;
+    top: 10vh;
+    height: 70vh;
+    object-fit: cover;
+    position: absolute;
+    box-shadow: 2px 15px 15px rgba(0, 0, 0, 0.1);
+
+    @media (max-width: 900px) {
+      width: 60%;
+      left: 20%;
+      height: 60vh;
+    }
+    @media (max-width: 500px) {
+      width: 90%;
+      left: 5%;
+      height: 60vh;
     }
   }
 `;

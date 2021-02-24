@@ -6,7 +6,15 @@ import Fade from 'react-reveal/Fade';
 
 import sanityClient from '../client.js';
 
-import { Grid1, Grid2, Grid3, Grid4, Grid5, Grid6 } from '../components/Grids';
+import {
+  Grid1,
+  Grid2,
+  Grid3,
+  Grid4,
+  Grid5,
+  Grid6,
+  Grid7,
+} from '../components/Grids';
 // Styling
 import {
   InnerWrapper,
@@ -78,7 +86,7 @@ export const Story = () => {
       <StoryInnerWrapper>
         <FlexWrapperSpace>
           <BackButton onClick={history.goBack}>Tillbaka</BackButton>
-          <BreadCrumbs>Projekt/ {storyData.title}</BreadCrumbs>
+          <BreadCrumbs>Projekt · {storyData.title}</BreadCrumbs>
         </FlexWrapperSpace>
         <MainImage src={storyData.main_image.url} />
         <StoryClient>{storyData.client}</StoryClient>
@@ -174,12 +182,21 @@ export const Story = () => {
                   <Grid6 image1={grid.images[0]} text={grid.text} key={index} />
                 );
               }
+              if (grid.name === 'grid-7') {
+                return (
+                  <Grid7
+                    image1={grid.images[0]}
+                    image2={grid.images[1]}
+                    key={index}
+                  />
+                );
+              }
               return null;
             })}
         </StoryGridWrapper>
         <FlexWrapperSpace style={{ marginTop: '50px' }}>
           <BackButton onClick={history.goBack}>Tillbaka</BackButton>
-          <BreadCrumbs>Projekt/ {storyData.title}</BreadCrumbs>
+          <BreadCrumbs>Projekt · {storyData.title}</BreadCrumbs>
         </FlexWrapperSpace>
       </StoryInnerWrapper>
     </Fade>
@@ -251,10 +268,12 @@ const StoryTextWrapper = styled.div`
 const StoryInfo = styled.ul`
   list-style: none;
   font-size: 16px;
+  margin-right: 20px;
 
   li {
     width: 20vw;
     max-width: 200px;
+    margin-right: auto;
   }
 
   @media (max-width: 900px) {
