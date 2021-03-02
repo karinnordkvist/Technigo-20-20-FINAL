@@ -220,14 +220,17 @@ const Tag = styled.span`
 `;
 
 const StoryThumbnail = styled.img`
-  width: 240px;
-  height: 220px;
+  min-width: 240px;
+  max-width: 240px;
+  min-height: 220px;
+  max-height: 220px;
+
   object-fit: cover;
-  max-width: 100%;
 
   @media (max-width: 900px) {
     width: 100%;
-    height: 350px;
+    min-height: 350px;
+    max-height: 350px;
   }
 `;
 
@@ -255,6 +258,7 @@ const StoryIntro = styled.p`
   font-size: 14px;
   line-height: 1.5;
 `;
+
 const StoryLink = styled(Link)`
   margin: 5px 0 10px 0;
   font-size: 14px;

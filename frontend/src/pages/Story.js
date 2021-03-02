@@ -37,8 +37,6 @@ export const Story = () => {
   const currentLocation = useLocation();
   const [storyData, setStoryData] = useState(null);
 
-  const [byline, setByline] = useState(null);
-
   // Fetch story data
   useEffect(() => {
     dispatch(location.actions.setLocation(currentLocation.pathname));
@@ -53,7 +51,6 @@ export const Story = () => {
           slug,
           tags,
           text, 
-          text2,
           "main_image":main_image.asset->{url, tags, title}, 
           "thumbnail":thumbnail.asset->{url, tags, title}, 
           creator, 
@@ -62,7 +59,6 @@ export const Story = () => {
           intro, 
           "grids": grids[]{"images":images[]{"image":asset->{tags, url}}.image, text, name},
           "images": images[] {"image":asset->{tags, url}}.image, 
-          quote, 
          }`
       )
       .then((data) => setStoryData(data[0]))
@@ -288,11 +284,6 @@ const Tag = styled.span`
   &:not(:last-child)::after {
     content: ', ';
   }
-`;
-
-const StoryMainText = styled.p`
-  font-size: 16px;
-  line-height: 1.6;
 `;
 
 const StoryGridWrapper = styled.div``;

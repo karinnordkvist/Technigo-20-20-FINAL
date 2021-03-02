@@ -108,9 +108,5 @@ export default {
         },
       ],
     },
-    {
-      name: 'break_out_text',
-      type: 'string',
-    },
   ],
 };

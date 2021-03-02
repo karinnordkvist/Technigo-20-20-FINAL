@@ -6,6 +6,7 @@ export default {
   type: 'document',
   initialValue: {
     selected_home: false,
+    hidden_project: false,
   },
   fields: [
     {
@@ -13,6 +14,16 @@ export default {
       title: 'Title*',
       type: 'string',
       validation: (Rule) => Rule.required(),
+    },
+    {
+      name: 'slug',
+      type: 'slug',
+      title: 'Slug*',
+      validation: (Rule) => Rule.required(),
+      options: {
+        source: 'title',
+        maxLength: 96,
+      },
     },
     {
       name: 'selected_story',
@@ -29,14 +40,11 @@ export default {
       type: 'boolean',
     },
     {
-      name: 'slug',
-      type: 'slug',
-      title: 'Slug*',
-      validation: (Rule) => Rule.required(),
-      options: {
-        source: 'title',
-        maxLength: 96,
-      },
+      name: 'hidden_project',
+      title: 'Hide on Projects page',
+      description:
+        'Check this box if you want this project to hidden from the projects page.',
+      type: 'boolean',
     },
     {
       name: 'tags',
