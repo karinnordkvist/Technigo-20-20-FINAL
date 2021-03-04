@@ -114,16 +114,7 @@ export const Story = () => {
             </li>
           </StoryInfo>
           <div>
-            {storyData.text &&
-              storyData.text.map((part) => {
-                return part.children.map((textPart) => {
-                  return (
-                    <p style={{ marginBottom: '15px' }} key={textPart._key}>
-                      {textPart.text}
-                    </p>
-                  );
-                });
-              })}
+            {storyData.text && <BlockContent blocks={storyData.text} />}
           </div>
         </StoryTextWrapper>
 
@@ -247,6 +238,15 @@ const StoryByline = styled.div`
   font-size: 16px;
   text-align: center;
   font-style: italic;
+
+  a {
+    border-bottom: 1px solid #000;
+
+    &:hover {
+      letter-spacing: 0;
+      border-bottom: 0px solid #000;
+    }
+  }
 `;
 
 const StoryTextWrapper = styled.div`

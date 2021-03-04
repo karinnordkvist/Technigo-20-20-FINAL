@@ -65,7 +65,7 @@ export const ResponsiveNavigation = () => {
               activeStyle={{ fontStyle: 'italic', letterSpacing: '.3px' }}
               onClick={() => setSubMenu(false)}
             >
-              Mat
+              Recept
             </NavLink>
           </LinkWrapper>
 

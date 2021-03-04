@@ -42,7 +42,8 @@ export const Projects = () => {
                   intro, 
                   "images": images[] {"image":asset->{tags, url}}.image, 
                   layout,
-                tags }`
+                  hidden_project,
+                  tags }`
         )
         .then((data) => setProjects(data))
         .catch(console.error);
@@ -50,14 +51,15 @@ export const Projects = () => {
       sanityClient
         .fetch(
           `*[_type == 'project' && ${category} in tags]| order(_createdAt desc){
-                  title, 
-                  slug, 
-                  client,
-                  "thumbnail":thumbnail.asset->{url, tags, title}, 
-                  date, 
-                  intro, 
-                  "images": images[] {"image":asset->{tags, url}}.image, 
-                  layout,
+                      title, 
+                      slug, 
+                      client,
+                      "thumbnail":thumbnail.asset->{url, tags, title}, 
+                      date, 
+                      intro, 
+                      "images": images[] {"image":asset->{tags, url}}.image, 
+                      layout,
+                      hidden_project,
                 tags }`
         )
         .then((data) => setProjects(data))
@@ -117,34 +119,36 @@ export const Projects = () => {
 
         {/* Listed projects */}
         {projects &&
-          projects.map((project) => {
-            return (
-              <StoryWrapper key={project.title}>
-                <StoryThumbnail src={project.thumbnail.url} />
-                <StoryTextWrapper>
-                  <Link
-                    to={'/projects/' + project.slug.current}
-                    key={project.slug.current}
-                  >
-                    <StoryTitle>{project.title}</StoryTitle>
-                    {project.client && (
-                      <StoryCategory>för {project.client}</StoryCategory>
-                    )}
-                  </Link>
-                  <StoryIntro>{project.intro}</StoryIntro>
-                  <StoryLink to={'/projects/' + project.slug.current}>
-                    Läs mer &#187;
-                  </StoryLink>
-                  <StoryCategory>
-                    {project.tags &&
-                      project.tags.map((tag, index) => (
-                        <Tag key={index}>{tag}</Tag>
-                      ))}
-                  </StoryCategory>
-                </StoryTextWrapper>
-              </StoryWrapper>
-            );
-          })}
+          projects
+            .filter((project) => !project.hidden_project)
+            .map((project) => {
+              return (
+                <StoryWrapper key={project.title}>
+                  <StoryThumbnail src={project.thumbnail.url} />
+                  <StoryTextWrapper>
+                    <Link
+                      to={'/projects/' + project.slug.current}
+                      key={project.slug.current}
+                    >
+                      <StoryTitle>{project.title}</StoryTitle>
+                      {project.client && (
+                        <StoryCategory>för {project.client}</StoryCategory>
+                      )}
+                    </Link>
+                    <StoryIntro>{project.intro}</StoryIntro>
+                    <StoryLink to={'/projects/' + project.slug.current}>
+                      Läs mer &#187;
+                    </StoryLink>
+                    <StoryCategory>
+                      {project.tags &&
+                        project.tags.map((tag, index) => (
+                          <Tag key={index}>{tag}</Tag>
+                        ))}
+                    </StoryCategory>
+                  </StoryTextWrapper>
+                </StoryWrapper>
+              );
+            })}
       </StoriesInnerWrapper>
     </Fade>
   );

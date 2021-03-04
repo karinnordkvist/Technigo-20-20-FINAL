@@ -8,6 +8,8 @@ export default {
     {
       name: 'hero_image',
       title: 'Hero Image',
+      description:
+        'Format: Fullscreen, on desktop horizontal rectangle, on tablet/phone vertical rectangle. Centered position in the image, both horizontally and vertically.',
       type: 'image',
       options: {
         hotspot: true,
@@ -30,6 +32,7 @@ export default {
     },
     {
       name: 'intro_image',
+      description: 'Format: 300x370px.',
       title: 'Intro Image',
       type: 'image',
       options: {
@@ -40,7 +43,7 @@ export default {
       name: 'category_images',
       title: 'Category Images',
       description:
-        'Add 3 images for the Category-section. Make sure the image goes with the headline specified in below list.',
+        'Format: 33% width on desktop, 100% width on tablet/phone. Add 3 images for the Category-section. Make sure the image goes with the headline specified in below list.',
       type: 'array',
       of: [
         {
@@ -65,7 +68,7 @@ export default {
       name: 'single_category_image',
       title: 'Single Category Image',
       description:
-        'Full width category-field. Add one image, and a title below.',
+        'Full width, horizontal rectangle. on desktop horizontal rectangle, on tablet/phone vertical rectangle.',
       type: 'image',
       options: {
         hotspot: true,

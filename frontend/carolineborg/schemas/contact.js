@@ -7,6 +7,8 @@ export default {
   fields: [
     {
       name: 'main_image',
+      description:
+        '35% width of the window. Proportions inherited from the image.',
       title: 'Main Image',
       type: 'image',
     },

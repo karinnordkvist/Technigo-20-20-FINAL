@@ -34,7 +34,7 @@ export const ThumbnailGallery = ({ project }) => {
         <button onClick={() => changeImage('decrease')}>&#60;</button>
         <button onClick={() => changeImage('increase')}>&#62;</button>
       </StoryImageNavWrapper>
-      <Link to={'/food/' + project.slug.current}>
+      <Link to={'/projects/' + project.slug.current}>
         <StoryThumbnail
           src={imageList[currentImage]}
           onClick={() => history.push('/projects/' + project.slug.current)}

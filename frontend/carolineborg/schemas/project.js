@@ -86,6 +86,7 @@ export default {
     {
       name: 'thumbnail',
       title: 'Thumbnail*',
+      description: 'Format: 240x220px',
       type: 'image',
       validation: (Rule) => Rule.required(),
       options: {
@@ -96,7 +97,8 @@ export default {
       name: 'main_image',
       title: 'Main Image*',
       type: 'image',
-      description: 'Horizontal orientation works best here.',
+      description:
+        'Format: Full width, max 500px high (Horizontal on desktop, vertical on mobile).',
       validation: (Rule) => Rule.required(),
       options: {
         hotspot: true,

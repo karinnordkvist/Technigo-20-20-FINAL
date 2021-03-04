@@ -3,6 +3,7 @@ import styled from 'styled-components/macro';
 import { useParams, useHistory, useLocation } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import Fade from 'react-reveal/Fade';
+import BlockContent from '@sanity/block-content-to-react';
 
 import sanityClient from '../client.js';
 
@@ -80,7 +81,9 @@ export const Recipe = () => {
           <RecipeCategory>{recipeData.category}</RecipeCategory>
           <RecipeTitle>{recipeData.title}</RecipeTitle>
           {recipeData.secondary_byline && (
-            <RecipeByline>{recipeData.secondary_byline}</RecipeByline>
+            <RecipeByline>
+              <BlockContent blocks={recipeData.secondary_byline} />
+            </RecipeByline>
           )}
         </RecipeHeaderTextWrapper>
       </RecipeHeaderWrapper>
@@ -205,6 +208,11 @@ const Portions = styled.p`
   text-align: right;
   margin-bottom: 20px;
   margin-right: 40px;
+
+  @media (max-width: 900px) {
+    text-align: left;
+    margin-top: 30px;
+  }
 `;
 
 const Ingredients = styled.div`
@@ -290,14 +298,23 @@ const RecipeIntro = styled.p`
   }
 `;
 
-const RecipeByline = styled.p`
+const RecipeByline = styled.div`
   margin-top: 10px;
-  font-size: 12px;
+  font-size: 14px;
   font-style: italic;
   margin-right: 50px;
 
   @media (max-width: 900px) {
     font-size: 14px;
     margin-right: 0;
+  }
+
+  a {
+    border-bottom: 1px solid #000;
+
+    &:hover {
+      border-bottom: 0px solid #000;
+      letter-spacing: 0;
+    }
   }
 `;

@@ -49,6 +49,7 @@ export default {
     },
     {
       name: 'thumbnail',
+      description: `Format: Full width, 250px high. Most often horizontally rectangular, if the phone is small, it's a bit square-ish. On iPad it's a wide horizontal rectangle.`,
       type: 'image',
       validation: (Rule) => Rule.required(),
       options: {
@@ -64,10 +65,14 @@ export default {
     {
       name: 'secondary_byline',
       description: 'If anyone else was part of creating the recipe',
-      type: 'string',
+      title: 'Byline',
+      type: 'array',
+      of: [{ type: 'block' }],
     },
     {
       name: 'main_image',
+      description:
+        'Format: Square/horizontal rectangle. 50% width, 600px high. On iPad/mobile, full width and 600px high.',
       type: 'image',
       options: {
         hotspot: true,
