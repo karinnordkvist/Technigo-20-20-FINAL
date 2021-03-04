@@ -97,7 +97,8 @@ export default {
     },
     {
       name: 'steps',
-      description: 'How to cook the recipe',
+      description:
+        'Photo formats: Full column width, proportions are inherited from the original image.',
       type: 'array',
       of: [
         {
