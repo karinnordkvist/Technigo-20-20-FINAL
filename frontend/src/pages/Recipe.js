@@ -254,7 +254,7 @@ const StepsList = styled.ol`
 
   img {
     width: 100%;
-    max-height: 373px;
+    /* max-height: 373px; */
     object-fit: cover;
     object-position: 50% 50%;
     margin: 20px 0;

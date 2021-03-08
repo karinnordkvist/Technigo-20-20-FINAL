@@ -193,6 +193,7 @@ const StoryClient = styled.p`
 
 const StoryIntro = styled.p`
   margin-top: 15px;
+  line-height: 1.5;
 `;
 
 const StoryLink = styled(Link)`

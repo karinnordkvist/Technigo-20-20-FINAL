@@ -113,9 +113,9 @@ export const Story = () => {
                 ))}
             </li>
           </StoryInfo>
-          <div>
+          <StoryText>
             {storyData.text && <BlockContent blocks={storyData.text} />}
-          </div>
+          </StoryText>
         </StoryTextWrapper>
 
         {/* Image-grids */}
@@ -256,6 +256,13 @@ const StoryTextWrapper = styled.div`
 
   @media (max-width: 900px) {
     flex-direction: column;
+  }
+`;
+
+const StoryText = styled.div`
+  p {
+    padding: 7px 0;
+    line-height: 1.5;
   }
 `;
 
