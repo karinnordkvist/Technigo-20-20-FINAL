@@ -10,9 +10,10 @@ export const ThumbnailGallery = ({ project }) => {
   let imageList = [];
 
   // Gather all images from all grids and compile to array
-  project.grids.map((grid) =>
-    grid.images.map((image) => (imageList = [...imageList, image.url]))
-  );
+  project.grids &&
+    project.grids.map((grid) =>
+      grid.images.map((image) => (imageList = [...imageList, image.url]))
+    );
 
   // Method-functions for switching between images
   const changeImage = (method) => {
