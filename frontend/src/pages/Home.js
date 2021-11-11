@@ -382,7 +382,7 @@ const HeroBG = styled.div`
   background-position: center;
   z-index: -1;
 
-  @supports (background-attachment: fixed) {
+  @media screen and (min-width: 1024px) {
     background-attachment: fixed;
 }
 `;
