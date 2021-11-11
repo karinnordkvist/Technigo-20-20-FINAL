@@ -381,7 +381,10 @@ const HeroBG = styled.div`
   background-size: cover;
   background-position: center;
   z-index: -1;
-  background-attachment: fixed;
+
+  @supports (background-attachment: fixed) {
+    background-attachment: fixed;
+}
 `;
 
 const HomePearlHeader = styled.h2`
