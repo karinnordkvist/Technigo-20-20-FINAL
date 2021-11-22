@@ -14,6 +14,7 @@ export const Footer = () => {
         style={{ marginTop: '80px' }}
       />
       <FooterText>© Caroline Borg – {now}</FooterText>
+      <FooterText>Webbsidan är byggd av <a href="https://karinnordkvist.se">K.N Dev & Design</a></FooterText>
     </FooterWrapper>
   );
 };
@@ -37,4 +38,5 @@ const FooterImage = styled.img`
 const FooterText = styled.p`
   font-size: 12px;
   font-style: italic;
+  margin-top: 5px;
 `;
