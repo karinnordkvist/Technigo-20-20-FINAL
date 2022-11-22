@@ -14,7 +14,10 @@ export const Footer = () => {
         style={{ marginTop: '80px' }}
       />
       <FooterText>© Caroline Borg – {now}</FooterText>
-      <FooterText>Webbsidan är byggd av <a href="https://karinnordkvist.se">K.N Dev & Design</a></FooterText>
+      <FooterText>
+        Sidan är byggd och designad av{' '}
+        <a href="https://cookieworks.se">Cookie Dev & Design</a>
+      </FooterText>
     </FooterWrapper>
   );
 };
