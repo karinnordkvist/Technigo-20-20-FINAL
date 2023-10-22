@@ -15,8 +15,14 @@ export const Footer = () => {
       />
       <FooterText>© Caroline Borg – {now}</FooterText>
       <FooterText>
-        Sidan är byggd och designad av{' '}
-        <a href="https://cookieworks.se">Cookie Dev & Design</a>
+        Developed & designed by{' '}
+        <a
+          href="https://cookieworks.se"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Cookie Dev & Design
+        </a>
       </FooterText>
     </FooterWrapper>
   );

@@ -39,7 +39,7 @@ export const ResponsiveNavigation = () => {
             onClick={() => setSubMenu(!subMenu)}
             style={{ fontSize: '18px' }}
           >
-            Meny
+            Menu
           </NavButton>
         </LinkWrapper>
       </LinksOuterWrapper>
@@ -48,7 +48,7 @@ export const ResponsiveNavigation = () => {
       {subMenu && (
         <SubLinksOuterWrapper location={currentLocation}>
           {/* Selected Stories ------------------------------------ */}
-          <LinkWrapper location={currentLocation}>
+          {/* <LinkWrapper location={currentLocation}>
             <NavLink
               to="/stories"
               activeStyle={{ fontStyle: 'italic', letterSpacing: '.3px' }}
@@ -56,10 +56,10 @@ export const ResponsiveNavigation = () => {
             >
               Stories
             </NavLink>
-          </LinkWrapper>
+          </LinkWrapper> */}
 
           {/* Food ------------------------------------ */}
-          <LinkWrapper location={currentLocation}>
+          {/* <LinkWrapper location={currentLocation}>
             <NavLink
               to="/food"
               activeStyle={{ fontStyle: 'italic', letterSpacing: '.3px' }}
@@ -67,7 +67,7 @@ export const ResponsiveNavigation = () => {
             >
               Recept
             </NavLink>
-          </LinkWrapper>
+          </LinkWrapper> */}
 
           {/* Projects ------------------------------------ */}
           <LinkWrapper location={currentLocation}>
@@ -76,7 +76,7 @@ export const ResponsiveNavigation = () => {
               activeStyle={{ fontStyle: 'italic', letterSpacing: '.3px' }}
               onClick={() => projectsClickHandler('')}
             >
-              Projekt
+              Selected work
             </NavLink>
           </LinkWrapper>
 
@@ -87,7 +87,7 @@ export const ResponsiveNavigation = () => {
               activeStyle={{ fontStyle: 'italic', letterSpacing: '.3px' }}
               onClick={() => setSubMenu(false)}
             >
-              Kontakt
+              Contact
             </NavLink>
           </LinkWrapper>
         </SubLinksOuterWrapper>

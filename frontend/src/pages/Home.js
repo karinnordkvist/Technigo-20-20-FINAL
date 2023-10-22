@@ -103,7 +103,7 @@ export const Home = () => {
               src={homeData.intro_image.url}
             />
           </ImageWrapper>
-          <HomePearlHeader>Om Caroline</HomePearlHeader>
+          <HomePearlHeader>About Caroline</HomePearlHeader>
           <AboutText>{homeData.intro_text}</AboutText>
         </AboutWrapper>
 
@@ -128,7 +128,7 @@ export const Home = () => {
         {/* Latest recipe/project section */}
         <LatestOuterWrapper>
           <HomePearlHeader style={{ marginBottom: '50px' }}>
-            Aktuellt
+            Latest projects
           </HomePearlHeader>
           {latest &&
             latest.map((project, index) => {
@@ -153,7 +153,7 @@ export const Home = () => {
                         {project._type === 'recipe' ? 'Recept' : 'Projekt'} /{' '}
                         {project.category}
                       </Category>
-                      {project.client && <Client>för {project.client}</Client>}
+                      {project.client && <Client>for {project.client}</Client>}
                       <Link
                         to={
                           project._type === 'recipe'
@@ -170,7 +170,7 @@ export const Home = () => {
                             : `/projects/${project.slug.current}`
                         }
                       >
-                        <p>Läs mer &#187;</p>
+                        <p>Read more &#187;</p>
                       </Link>
                     </div>
                   </LatestWrapper>
@@ -215,7 +215,7 @@ export const Home = () => {
                 );
               })}
           </div>
-          <WorkLink to="/contact">Kontakta mig &#187;</WorkLink>
+          <WorkLink to="/contact">Contact Caroline &#187;</WorkLink>
         </WorkWrapper>
       </HomeOuterWrapper>
     </Fade>
@@ -384,7 +384,7 @@ const HeroBG = styled.div`
 
   @media screen and (min-width: 1024px) {
     background-attachment: fixed;
-}
+  }
 `;
 
 const HomePearlHeader = styled.h2`

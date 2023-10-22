@@ -96,16 +96,16 @@ export const Projects = () => {
         {/* Responsive sorting menu */}
         <FlexWrapperSpace>
           <ResponsiveCategories>
-            <p>Sortera på:</p>
+            <p>Sort by:</p>
             <CategorySelect
               onChange={(event) => onChangeHandler(event.target.value)}
             >
-              <option value="">Alla</option>
-              <option value="fotografi">Fotografi</option>
+              <option value="">All</option>
+              <option value="photography">Photography</option>
               <option value="PR">PR</option>
               <option value="styling">Styling</option>
               <option value="editorial">Editorial</option>
-              <option value="motion">Rörligt</option>
+              <option value="motion">Motion</option>
             </CategorySelect>
           </ResponsiveCategories>
         </FlexWrapperSpace>
@@ -113,7 +113,7 @@ export const Projects = () => {
         {/* Breadcrumbs + back-button */}
         <FlexWrapperSpace>
           <BreadCrumbs>
-            Visar: {categoryRaw === '' ? 'Alla projekt' : categoryRaw}
+            Showing: {categoryRaw === '' ? 'All projects' : categoryRaw}
           </BreadCrumbs>
         </FlexWrapperSpace>
 
@@ -132,12 +132,12 @@ export const Projects = () => {
                     >
                       <StoryTitle>{project.title}</StoryTitle>
                       {project.client && (
-                        <StoryCategory>för {project.client}</StoryCategory>
+                        <StoryCategory>for {project.client}</StoryCategory>
                       )}
                     </Link>
                     <StoryIntro>{project.intro}</StoryIntro>
                     <StoryLink to={'/projects/' + project.slug.current}>
-                      Läs mer &#187;
+                      Read more &#187;
                     </StoryLink>
                     <StoryCategory>
                       {project.tags &&
@@ -185,7 +185,7 @@ const ProjectsIntro = styled.p`
 `;
 
 const ResponsiveCategories = styled.div`
-  display: none;
+  display: flex;
   flex-wrap: wrap;
   width: 100%;
   margin-bottom: 20px;

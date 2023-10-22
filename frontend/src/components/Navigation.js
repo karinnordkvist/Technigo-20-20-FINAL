@@ -67,7 +67,7 @@ export const Navigation = () => {
           </LinkWrapper>
 
           {/* Selected Stories ------------------------------------ */}
-          <DropdownLinkWrapper
+          {/* <DropdownLinkWrapper
             location={currentLocation}
             onMouseEnter={() => setStoriesActive(true)}
             onMouseLeave={() => setStoriesActive(false)}
@@ -100,12 +100,12 @@ export const Navigation = () => {
                   );
                 })}
             </Dropdown>
-          </DropdownLinkWrapper>
+          </DropdownLinkWrapper> */}
         </Left>
 
         <Right>
           {/* Food ------------------------------------ */}
-          <LinkWrapper location={currentLocation}>
+          {/* <LinkWrapper location={currentLocation}>
             <NavLink
               to="/food"
               activeStyle={{ fontStyle: 'italic', letterSpacing: '.3px' }}
@@ -113,7 +113,7 @@ export const Navigation = () => {
             >
               Recept
             </NavLink>
-          </LinkWrapper>
+          </LinkWrapper> */}
 
           {/* Projects ------------------------------------ */}
           <DropdownLinkWrapper
@@ -126,9 +126,9 @@ export const Navigation = () => {
               activeStyle={{ fontStyle: 'italic', letterSpacing: '.3px' }}
               onClick={() => projectsClickHandler('')}
             >
-              Projekt <DownArrow>▼</DownArrow>
+              Selected work
             </NavLink>
-            <Dropdown
+            {/* <Dropdown
               showing={projectsActive}
               style={{ transform: 'translateX(35px)' }}
               location={currentLocation}
@@ -147,7 +147,7 @@ export const Navigation = () => {
                     </DropdownButton>
                   );
                 })}
-            </Dropdown>
+            </Dropdown> */}
           </DropdownLinkWrapper>
 
           {/* Contact ------------------------------------ */}
@@ -156,7 +156,7 @@ export const Navigation = () => {
               to="/contact"
               activeStyle={{ fontStyle: 'italic', letterSpacing: '.3px' }}
             >
-              Kontakt
+              Contact
             </NavLink>
           </LinkWrapper>
         </Right>

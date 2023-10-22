@@ -50,12 +50,12 @@ export const Contact = () => {
         {contactInfo.main_image && (
           <ContactImage src={contactInfo.main_image.url} />
         )}
-        <ContactSubtitle>Kontakt</ContactSubtitle>
+        <ContactSubtitle>Contact</ContactSubtitle>
         {contactInfo.main_text && (
           <ContactText>{contactInfo.main_text}</ContactText>
         )}
         <ContactInfo>
-          Telefon:
+          Phone:
           {contactInfo.phone && <div>{contactInfo.phone}</div>}
         </ContactInfo>
         <ContactInfo>

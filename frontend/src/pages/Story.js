@@ -180,7 +180,7 @@ export const Story = () => {
             })}
         </StoryGridWrapper>
         <FlexWrapperSpace style={{ marginTop: '50px' }}>
-          <BackButton onClick={history.goBack}>Tillbaka</BackButton>
+          <BackButton onClick={history.goBack}>Back</BackButton>
           <BreadCrumbs>Projekt · {storyData.title}</BreadCrumbs>
         </FlexWrapperSpace>
       </StoryInnerWrapper>

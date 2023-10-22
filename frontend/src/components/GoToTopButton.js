@@ -13,7 +13,7 @@ export const GoToTopButton = () => {
 
   return (
     <FlexWrapperCenter>
-      <button onClick={handleGoToTop}>Gå till toppen &#8613;</button>
+      <button onClick={handleGoToTop}>Go to top &#8613;</button>
     </FlexWrapperCenter>
   );
 };
