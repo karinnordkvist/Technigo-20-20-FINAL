@@ -31,6 +31,11 @@ export const Home = () => {
   const onCategoryClickHandler = (category) => {
     dispatch(location.actions.setProjectCategory(category));
     history.push('/projects');
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: 'smooth',
+    });
   };
 
   useEffect(() => {

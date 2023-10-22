@@ -15,7 +15,11 @@ export const CategoryImage = ({
       url={url}
       onClick={() =>
         onCategoryClickHandler(
-          formattedTitle === 'alla projekt' ? '' : formattedTitle
+          formattedTitle === 'all projects'
+            ? ''
+            : formattedTitle === 'selected work'
+            ? ''
+            : formattedTitle
         )
       }
       height={height}
