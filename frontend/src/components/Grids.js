@@ -82,6 +82,7 @@ const G1ImageWrapper = styled(baseGrid)`
 
 const G2ImageWrapper = styled(baseGrid)`
   grid-template-columns: 1fr 1fr;
+  gap: 20px;
 
   img {
     width: 100%;
