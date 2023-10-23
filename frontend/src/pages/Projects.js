@@ -102,9 +102,9 @@ export const Projects = () => {
             >
               <option value="">All</option>
               <option value="photography">Photography</option>
-              <option value="PR">PR</option>
+              {/* <option value="PR">PR</option> */}
               <option value="styling">Styling</option>
-              <option value="editorial">Editorial</option>
+              {/* <option value="editorial">Editorial</option> */}
               <option value="motion">Motion</option>
             </CategorySelect>
           </ResponsiveCategories>

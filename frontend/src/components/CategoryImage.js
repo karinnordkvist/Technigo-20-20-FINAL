@@ -25,7 +25,9 @@ export const CategoryImage = ({
       height={height}
       fontSize={fontSize}
     >
-      <p fontSize={fontSize}>{title}</p>;
+      <p fontSize={fontSize} style={{ padding: '10px' }}>
+        {title}
+      </p>
     </ImageWrapper>
   );
 };

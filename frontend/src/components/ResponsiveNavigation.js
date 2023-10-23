@@ -129,7 +129,7 @@ const LinkWrapper = styled.div`
 `;
 
 const SubLinksOuterWrapper = styled.div`
-  width: 40%;
+  width: 60%;
   position: absolute;
   right: 0;
   display: flex;
