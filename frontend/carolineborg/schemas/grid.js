@@ -15,7 +15,6 @@ export default {
       title: 'Images',
       type: 'array',
       of: [{ type: 'image' }],
-      validation: (Rule) => Rule.required(),
     },
     {
       name: 'text',
@@ -58,6 +57,10 @@ export default {
           {
             value: 'grid-7',
             title: 'Grid 7 - 1 big image, 1 image above the other',
+          },
+          {
+            value: 'grid-8',
+            title: 'Grid 8 - Video',
           },
         ],
       },

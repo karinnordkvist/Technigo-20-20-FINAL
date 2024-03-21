@@ -15,6 +15,7 @@ import {
   Grid5,
   Grid6,
   Grid7,
+  Grid8,
 } from '../components/Grids';
 // Styling
 import {
@@ -175,6 +176,9 @@ export const Story = () => {
                     key={index}
                   />
                 );
+              }
+              if (grid.name === 'grid-8') {
+                return <Grid8 text={grid.text} key={index} />;
               }
               return null;
             })}

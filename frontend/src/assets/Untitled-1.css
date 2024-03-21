@@ -1,0 +1,162 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;300;400;700;900&display=swap');
+
+@font-face {
+  font-family: CircularMedium;
+  src: url(https://www.icoresolutions.com/fonts/CircularXXWeb-Medium.woff2);
+}
+
+@font-face {
+  font-family: CircularBook;
+  src: url(https://www.icoresolutions.com/fonts/CircularXXWeb-Book.woff2);
+}
+
+:root {
+  --font-primary: 'CircularMedium', sans-serif;
+  --font-secondary: 'Times', serif;
+  --base-size: 16px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+html {
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  margin: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  font-style: normal;
+  font-family: var(--font-primary);
+}
+
+p {
+  padding-bottom: 0.5em;
+  margin: 0;
+  font-size: var(--base-size);
+  line-height: 1.8;
+  font-style: normal;
+  font-family: var(--font-primary);
+  font-weight: 400;
+}
+
+p,
+ul,
+li {
+  font-weight: 400;
+}
+
+/* Wrappers and containers */
+.inner-wrapper {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.flex-x {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.flex-y {
+  display: flex;
+  flex-direction: column;
+}
+
+.justify-between {
+  justify-content: space-between;
+}
+
+.justify-start {
+  justify-content: flex-start;
+}
+
+.align-center {
+  align-items: center;
+}
+
+.align-start {
+  align-items: flex-start;
+}
+
+.align-end {
+  align-items: flex-end;
+}
+
+.gap-20 {
+  gap: 20px;
+}
+
+.gap-30 {
+  gap: 30px;
+}
+
+.gap-50 {
+  gap: 50px;
+}
+
+/* Links & Buttons */
+a {
+  display: inline-block;
+  font-size: var(--base-size);
+  font-family: var(--font-primary);
+  font-weight: 600;
+  text-decoration: none;
+  color: #000;
+}
+
+button {
+  padding: 16px 30px;
+  border-radius: 50px;
+  border: none;
+  cursor: pointer;
+  margin: 20px 0;
+  font-weight: 700;
+  font-size: 16px;
+}
+
+.primary-btn {
+  background: #629bd7;
+  color: #fff;
+}
+
+.secondary-btn {
+  background: #fff;
+  color: #4f4296;
+}
+
+button:hover {
+  opacity: 0.7;
+}
+
+ul {
+  list-style-type: disc;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  padding-inline-start: 20px;
+}
+
+li {
+  font-size: var(--base-size);
+  font-family: inherit;
+  line-height: 1.8;
+}

@@ -64,6 +64,29 @@ export const Grid7 = ({ image1, image2 }) => {
   );
 };
 
+export const Grid8 = ({ text }) => {
+  return (
+    <G1ImageWrapper>
+      <div style={{ padding: '55% 0 0 0', position: 'relative' }}>
+        <iframe
+          src={text}
+          style={{
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            width: '100%',
+            height: '100%',
+          }}
+          frameborder="0"
+          allow="autoplay; fullscreen; picture-in-picture"
+          allowFullScreen
+        ></iframe>
+      </div>
+      <script src="https://player.vimeo.com/api/player.js"></script>
+    </G1ImageWrapper>
+  );
+};
+
 // STYLES --------------------------------
 
 const baseGrid = styled.div`
